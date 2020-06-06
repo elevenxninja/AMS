@@ -1,0 +1,73 @@
+.Login{
+    display: flex;
+    justify-content: start;
+    min-height: 656px;
+}
+
+.Login .Company{
+    background-color: #ffec26;
+    width: 50%;
+    text-align: center;
+}
+
+.Login .Form{
+    background-color: #56c1ff;
+    width: 50%;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+}
+
+.Login .Form > div{
+    width: 95%;
+    height: 95%;
+    margin: 2.5%;
+    background: rgb(254,237,211); /* Old browsers */
+    background: -moz-linear-gradient(-45deg, rgba(254,237,211,1) 0%, rgba(172,208,241,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, rgba(254,237,211,1) 0%,rgba(172,208,241,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, rgba(254,237,211,1) 0%,rgba(172,208,241,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feedd3', endColorstr='#acd0f1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+
+.Login .Form .User{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -150px;
+}
+
+.Login .Form .User:nth-child(1){
+    color:#1b99e5;
+}
+
+.Login .Form .User .Input input{
+    display:block;
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 25px;
+    border: 1px solid gray;
+    width: 300px;
+}
+
+.Login .Form .User .Input input:focus{
+    border-radius: 25px;
+    border: 1px solid #1b99e5;
+    outline:none;
+}
+
+.Login .Form .User .Input .Text p{
+    display: inline;
+    margin: 10px 20px;
+    font-size: 13px;
+}
+
+.Login .Form .User .Input button{
+    margin-top: 10px;
+    background-color: #1b99e5;
+    color:white;
+    padding:10px 30px;
+    border-radius: 20px;
+    border:none;
+}

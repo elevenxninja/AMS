@@ -1,0 +1,25 @@
+.EmployeesList{
+    margin-left: 67px;
+    box-sizing: border-box;
+}
+
+.EmployeesList header{
+    box-sizing: border-box;
+    display:flex;
+    justify-content: space-between;
+    padding: 0px 50px;
+    margin-top: -22px;
+}
+
+.EmployeesList header p{
+    line-height: 30px;
+    position: relative;
+    padding-right:40px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.EmployeesList header span{
+    position: absolute;
+    right:0;
+}

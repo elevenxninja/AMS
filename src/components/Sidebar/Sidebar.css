@@ -1,0 +1,28 @@
+.Sidebar{
+    background-color: #2b86b3;
+    height: 100%;
+    min-width:50px;
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 5px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.Sidebar div{
+    margin-top: 50px;
+}
+
+.Sidebar a{
+    color: black;
+    text-decoration: none;
+}
+
+.Sidebar a p{
+    font-size: 10px;
+}
+
+.Sidebar .Active{
+    color: white;
+}

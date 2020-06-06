@@ -1,0 +1,18 @@
+.AddEmployee{
+    padding-top: 10px;
+    border-radius: 5px;
+    padding: 10px 50px;
+}
+
+.AddEmployee .AddEmpButton{
+    font-weight: bold;
+    display: inline-block;
+    background-color: white;
+    box-shadow: 1px 1px 3px 1px #ccc;
+    padding: 10px 15px;
+    border-radius: 40px;
+}
+
+.AddEmployee .AddEmpButton svg{
+    padding-right: 5px;
+}

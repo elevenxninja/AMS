@@ -1,0 +1,57 @@
+.Pagination{
+    display:flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 20px 10px 0px 10px;
+    font-size: 12px;
+}
+
+.Pagination .PaginationList{
+    display:flex;
+    list-style: none;
+}
+
+.Pagination .PaginationList li{
+    border-left: 1px solid #2d85b3;
+    padding:5px;
+    text-decoration: none;
+    color: #2d85b3;
+}
+
+.Pagination .PaginationList li:nth-child(1){
+    border:none;
+}
+
+.Pagination .PaginationList li:hover{
+    cursor: pointer;
+    color: #2d85b3;
+    font-weight: bold;
+    box-shadow: 1px 0px 3px #ccc;
+}
+
+.Pagination .PaginationList li.disable{
+    color:gray;
+    cursor: not-allowed;
+    box-shadow: none;
+    font-weight: normal;
+}
+
+.Pagination .PaginationList li.active{
+    color:gray;
+    border-left: 1px solid #CCC;
+}
+
+.Pagination .PaginationList li.active+li{
+    border-left: 1px solid #CCC;
+}
+
+.Pagination span{
+    margin-left: 5px;
+}
+
+.Pagination input{
+    width:30px;
+    margin-right: 50px;
+    border-radius: 3px;
+    border: 1px solid gray;
+}
