@@ -1,7 +1,8 @@
 .Login{
+    box-sizing: border-box;
     display: flex;
     justify-content: start;
-    min-height: 656px;
+    height: 100vh;
 }
 
 .Login .Company{
