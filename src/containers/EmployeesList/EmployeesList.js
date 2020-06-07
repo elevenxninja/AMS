@@ -171,6 +171,36 @@ class EmployeesList extends React.Component{
         alert(`Name: ${name}, email: ${email}`)
       }
 
+      handleUploadedFiles = files => {
+        var reader = new FileReader();
+        reader.onload = (e) => {
+            let jsonData = reader.result.split('\n');    
+            let updatedData = this.state.employeesList;
+            let data = [];
+            jsonData.forEach((element, index) => {
+                if(index) {
+                    const elementRaw = element.split(',');
+                    console.log(element, index);
+                    if(element) {
+                        let param = {
+                            'name' : elementRaw[0],
+                            'email' : elementRaw[1],
+                            'mobile' : elementRaw[2],
+                            'department' : elementRaw[3],
+                            'emp_id' : elementRaw[4],
+                            'employee_type' : elementRaw[5]
+                        }
+                        data.push(param);
+                    }
+                }
+            });
+        updatedData.push(data);
+        this.setState({
+            employeesList: updatedData,
+        })
+        }
+    }
+
     render(){
         const { filter, employeesList } = this.state;
         const lowercasedFilter = filter.toLowerCase();
@@ -188,7 +218,7 @@ class EmployeesList extends React.Component{
                     <header>
                         <h2>All Employees List</h2>
                     </header>
-                    <AddEmployees />
+                    <AddEmployees clicked={(files)=> this.handleUploadedFiles(files)}/>
                     <EmployeesDetails employeesList={currnetItems} 
                     clickedSms={(name, email) => this.sendSmsHandler(name, email)}
                     clickedMail={(name, email) => this.sendEmailHandler(name, email)}/>
