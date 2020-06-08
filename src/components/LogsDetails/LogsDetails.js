@@ -6,7 +6,7 @@ const LogsDetails = (props) =>{
     let logs = props.logs.map(log=>{
         return (
             <tr>
-                <td>{log.name}</td>
+                <td onClick={props.clicked}>{log.name}</td>
                 <td>{log.designation}</td>
                 <td><span>{log.inTimestamp}</span> <span>{log.outTimestamp}</span></td>
             </tr>

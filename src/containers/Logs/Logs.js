@@ -5,9 +5,12 @@ import Search from '../../components/Search/Search';
 import classes from './Logs.css';
 import LogsDetails from '../../components/LogsDetails/LogsDetails';
 import Pagination from '../../components/Pagination/Pagination';
+import Popup from '../../components/UI/Popup/Popup';
+import IndividualsUserLogs from '../../components/LogsDetails/IndividualsUserLogs/IndividualsUserLogs';
 
 class Logs extends React.Component{
     state = {
+        isPopup:false,
         filter:'',
         currentPage:1,
         displayItemsPerPage:8,
@@ -166,7 +169,20 @@ class Logs extends React.Component{
         })
     }
 
+    popupHandler = () =>{
+        this.setState({
+            isPopup: true,
+        })
+    }
+
     render(){
+        let popup = null;
+        if(this.state.isPopup){
+            popup = (<Popup>
+                <IndividualsUserLogs/>
+            </Popup>)
+        }
+
         const {filter, userLogs} = this.state;
         const lowerCaseFilter = filter.toLowerCase();
         const updatedForm = userLogs.filter(log=>
@@ -180,26 +196,16 @@ class Logs extends React.Component{
         const updatedEmpForm = updatedForm.slice(indexOfFirstItem, indexOfLastItem);
         return(
             <div>
+                {popup}
                 <Sidebar/>
                 <Search changed={(e)=>this.searchHandler(e)}/>
                 <div className={classes.Logs}>
                     <header>
                         <h2>User Logs</h2>
                     </header>
-                    <div className={classes.Filters}>
-                        <h4>Filters by:</h4>
-                        <div>
-                            <button>From Date</button>
-                            <button>To Date</button>
-                            <button>Weekly</button>
-                            <button>Monthly</button>
-                            <button>Designation</button>
-                            <button>Name</button>
-                            <button>Time</button>
-                            <button>Leaves</button>
-                        </div>
-                    </div>
-                    <LogsDetails logs={updatedEmpForm}/>
+                    <LogsDetails 
+                    clicked={this.popupHandler}
+                    logs={updatedEmpForm}/>
                     <Pagination
                     clicked={(page)=>this.pageHandler(page)}
                     prev={this.prevHandler}
