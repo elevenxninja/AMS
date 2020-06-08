@@ -28,7 +28,7 @@ const Pagination = (props) =>{
              <p>
                  Admins Per Page:
                  <span>
-                     <input type="number" placeholder='8' value={props.itemsPerPage} onChange={(e) => props.changed(e)}/>
+                     <input type="number" placeholder='8' value={props.itemsPerPage} onChange={props.changed}/>
                  </span>
              </p>  
            </div>

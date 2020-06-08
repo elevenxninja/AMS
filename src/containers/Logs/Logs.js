@@ -8,6 +8,9 @@ import Pagination from '../../components/Pagination/Pagination';
 
 class Logs extends React.Component{
     state = {
+        filter:'',
+        currentPage:1,
+        displayItemsPerPage:8,
         userLogs:[
             {name: 'Employee 1',
             inTimestamp: '06-08-2020 3 PM',
@@ -132,11 +135,53 @@ class Logs extends React.Component{
             },
         ]
     }
+
+    changedHandler = (e) =>{
+        this.setState({
+            displayItemsPerPage: e.target.value,
+        })
+    }
+
+    nextHandler = () =>{
+        this.setState((prevState)=>({
+            currentPage: prevState.currentPage + 1,
+        }))
+    }
+
+    prevHandler = () =>{
+        this.setState((prevState)=>({
+            currentPage: prevState.currentPage -1,
+        }))
+    }
+
+    pageHandler = (page) =>{
+        this.setState({
+            currentPage: page,
+        })
+    }
+
+    searchHandler = (e) =>{
+        this.setState({
+            filter:e.target.value
+        })
+    }
+
     render(){
+        const {filter, userLogs} = this.state;
+        const lowerCaseFilter = filter.toLowerCase();
+        const updatedForm = userLogs.filter(log=>
+            log.name.toLowerCase().includes(lowerCaseFilter)
+            )
+
+
+        const {currentPage, displayItemsPerPage} = this.state;
+        const indexOfLastItem = currentPage * displayItemsPerPage;
+        const indexOfFirstItem = indexOfLastItem - displayItemsPerPage;
+        const updatedEmpForm = updatedForm.slice(indexOfFirstItem, indexOfLastItem);
         return(
             <div>
-                <Sidebar />
-                <Search/>
+                <Sidebar/>
+                <Search changed={(e)=>this.searchHandler(e)}/>
                 <div className={classes.Logs}>
                     <header>
                         <h2>User Logs</h2>
@@ -154,8 +199,15 @@ class Logs extends React.Component{
                             <button>Leaves</button>
                         </div>
                     </div>
-                    <LogsDetails logs={this.state.userLogs}/>
-                    <Pagination />
+                    <LogsDetails logs={updatedEmpForm}/>
+                    <Pagination
+                    clicked={(page)=>this.pageHandler(page)}
+                    prev={this.prevHandler}
+                    next={this.nextHandler}
+                    changed={(e)=>this.changedHandler(e)}
+                    crntPage={this.state.currentPage}
+                    totalItems={this.state.userLogs.length} 
+                    itemsPerPage={this.state.displayItemsPerPage}/>
                 </div>
             </div>
         );
