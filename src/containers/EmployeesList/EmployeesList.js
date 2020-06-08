@@ -4,8 +4,9 @@ import axios from 'axios';
 import classes from './EmployeesList.css';
 import EmployeesDetails from '../../components/EmployeesDetails/EmployeesDetails';
 import Pagination from '../../components/Pagination/Pagination';
-import Header from '../../components/EmployeesDetails/Header/Header';
+import Search from '../../components/Search/Search';
 import AddEmployees from '../AddEmployee/AddEmployee';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 class EmployeesList extends React.Component{
     state = {
@@ -106,7 +107,8 @@ class EmployeesList extends React.Component{
         const currnetItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
         return(
             <div>
-                <Header value={filter} changed={this.searchHandler}/>
+                <Sidebar />
+                <Search value={filter} changed={this.searchHandler}/>
                 <div className={classes.EmployeesList}>
                     <header>
                         <h2>All Employees List</h2>

@@ -1,0 +1,36 @@
+.Logs{
+    margin-left: 67px;
+    box-sizing: border-box;
+}
+
+.Logs header{
+    box-sizing: border-box;
+    display:flex;
+    justify-content: space-between;
+    padding: 0px 50px;
+    margin-top: -22px;
+}
+
+.Logs .Filters{
+    margin-top: -15px;
+    padding: 20px 50px 0px 50px;
+    box-sizing: border-box;
+}
+
+.Logs .Filters div{
+    margin-top: -10px;
+    display:flex;
+    justify-content: space-between;
+    background-color: #2b86b3;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+.Logs .Filters button{
+    padding: 5px 0;
+    width:100px;
+    background-color: white;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}

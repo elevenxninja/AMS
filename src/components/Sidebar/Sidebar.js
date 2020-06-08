@@ -8,15 +8,15 @@ const Sidebar = () =>{
     return(
         <div className={classes.Sidebar}>
             <div>
-                <NavLink to='#' className={classes.Active}>
+                <NavLink to='/employees-list' activeClassName={classes.Active}>
                     <GoDashboard size='40px'/>
                     <p>
-                        DASHBOARD
+                        CONTACTS
                     </p>
                 </NavLink>
             </div>
             <div>
-                <NavLink to='#'>
+                <NavLink to='/logs' activeClassName={classes.Active}>
                 <GoServer size='40px'/>
                     <p>
                         LOGS

@@ -1,0 +1,56 @@
+.Logs{
+    display:flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 20px 50px 0px 50px;
+}
+
+.Logs table{
+    width: 100%;
+    font-size: 13px;
+}
+
+.Logs table thead tr th, .EmployeesDetails table tfoot tr td{
+    background-color: #e6e6e6;
+    padding: 10px 10px;
+}
+
+.Logs table thead tr th span:nth-child(1), .Logs table tbody tr td span:nth-child(1){
+    margin: 0 10%;
+    float: left;
+}
+
+.Logs table thead tr th span::after{
+    clear: both;
+}
+
+.Logs table thead tr th span:nth-child(2), .Logs table tbody tr td span:nth-child(2){
+    float: right;
+    margin: 0 10%;
+}
+
+.Logs table thead tr th:nth-of-type(odd), 
+.Logs table tbody tr th:nth-of-type(odd), 
+.Logs table tfoot tr th:nth-of-type(odd){
+    width: 38%;
+}
+
+.Logs table tfoot tr td{
+    background-color: #e6e6e6;
+    height: 30px;
+}
+
+.Logs table tbody tr td{
+    background-color: #efefef;
+    padding: 5px 10px;
+}
+.Logs table tbody tr td:nth-child(1){
+    cursor: pointer;
+    color: #2b86b3;
+    font-weight: bold;
+    text-decoration-line: underline;
+}
+
+.Logs table tbody tr td:nth-child(2){
+    padding: 0 50px;
+}
