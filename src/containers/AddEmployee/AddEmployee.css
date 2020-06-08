@@ -68,6 +68,7 @@
     margin-left: -300px;
     border-radius: 5px;
     box-shadow: 0px 0px 3px 1px #ccc;
+    z-index: 100;
 }
 
 .FormCard form{
@@ -97,6 +98,15 @@
     background-color: white;
     margin:13px;
     color: #2b86b3;
+}
+
+.FormCard form button:hover{
+    cursor: pointer;
+}
+
+.FormCard form button:disabled{
+    color:gray;
+    cursor: not-allowed;
 }
 
 .FormCard form input:focus, .FormCard form textarea:focus{

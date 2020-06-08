@@ -1,7 +1,5 @@
 import React from 'react';
 
-import classes from './Input.css';
-
 const Input = (props) =>{
     let inputEl ='';
     switch(props.elmType){
@@ -22,7 +20,7 @@ const Input = (props) =>{
                 </select>
         break;
         default:
-            inputEl = <input {...props.elmConfig} value={props.value} onChange={props.changed} />
+            inputEl = null;
         break;    
     }
     return(
