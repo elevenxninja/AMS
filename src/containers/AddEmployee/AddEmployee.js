@@ -15,22 +15,11 @@ class AddEmployee extends React.Component{
         isAddEmpOption: false,
         isPopup: false,
         empForm:{
-            firstName:{
+            Name:{
                 elmType:'input',
                 elmConfig:{
                     type:'text',
-                    placeholder:'First name'
-                },
-                validation:{
-                    required: true,
-                },
-                value:'',
-            },
-            lastName:{
-                elmType:'input',
-                elmConfig:{
-                    type:'text',
-                    placeholder:'Last name'
+                    placeholder:'Name'
                 },
                 validation:{
                     required: true,
@@ -85,7 +74,7 @@ class AddEmployee extends React.Component{
                 elmType:'textarea',
                 elmConfig:{
                     type:'number',
-                    placeholder:'Notes',
+                    placeholder:'Purpose',
                 },
                 validation:{
                     required: true,

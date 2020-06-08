@@ -103,17 +103,13 @@
     outline: none;
 }
 
-.FormCard form div:nth-child(1) input, 
 .FormCard form div:nth-child(2) input, 
-.FormCard form div:nth-child(3) input, 
-.FormCard form div:nth-child(4) input{
+.FormCard form div:nth-child(3) input{
     width: 200px;
 }
 
-.FormCard form div:nth-child(1), 
 .FormCard form div:nth-child(2), 
-.FormCard form div:nth-child(3), 
-.FormCard form div:nth-child(4){
+.FormCard form div:nth-child(3){
     display: inline;
 }
 
@@ -167,7 +163,7 @@
 .FormCard svg:nth-child(4),
 .FormCard svg:nth-child(5){
     color: gray;
-    left: 40px;
+    left: 50px;
 }
 
 .FormCard svg:nth-child(2){

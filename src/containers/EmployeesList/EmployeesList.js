@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import classes from './EmployeesList.css';
 import EmployeesDetails from '../../components/EmployeesDetails/EmployeesDetails';
@@ -12,132 +13,145 @@ class EmployeesList extends React.Component{
         currentPage: 1,
         displayItemPerPage:8,
         employeesList:[
-            {name: 'Employee 1',
-            email :'abc@gmail.com',
-            mobile : 123456, 
-            designation: 'Designer'
-            },
-            {name: 'Employee 2',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'UI'
-            },
-            {name: 'Employee 3',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Developer'
-            },
-            {name: 'Employee 4',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Designer'
-            },
-            {name: 'Employee 5',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'UX'
-            },
-            {name: 'Employee 6',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Developer'
-            },
-            {name: 'Employee 7',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'UX'
-            },
-            {name: 'Employee 8',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Designer'
-            },
-            {name: 'Employee 9',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Designer'
-            },
-            {name: 'Employee 10',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'UI'
-            },
-            {name: 'Employee 11',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Developer'
-            },
-            {name: 'Employee 12',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Designer'
-            },
-            {name: 'Employee 13',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'UX'
-            },
-            {name: 'Employee 14',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Developer'
-            },
-            {name: 'Employee 15',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'UX'
-            },
-            {name: 'Employee 16',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Designer'
-            },
-            {name: 'Employee 17',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Designer'
-            },
-            {name: 'Employee 18',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'UI'
-            },
-            {name: 'Employee 19',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Developer'
-            },
-            {name: 'Employee 20',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Designer'
-            },
-            {name: 'Employee 21',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'UX'
-            },
-            {name: 'Employee 22',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Developer'
-            },
-            {name: 'Employee 23',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'UX'
-            },
-            {name: 'Employee 24',
-            email :'abc@gmail.com',
-            mobile : 123456,
-            designation: 'Designer'
-            },
+            // {name: 'Employee 1',
+            // email :'abc@gmail.com',
+            // mobile : 123456, 
+            // designation: 'Designer'
+            // },
+            // {name: 'Employee 2',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'UI'
+            // },
+            // {name: 'Employee 3',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Developer'
+            // },
+            // {name: 'Employee 4',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Designer'
+            // },
+            // {name: 'Employee 5',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'UX'
+            // },
+            // {name: 'Employee 6',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Developer'
+            // },
+            // {name: 'Employee 7',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'UX'
+            // },
+            // {name: 'Employee 8',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Designer'
+            // },
+            // {name: 'Employee 9',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Designer'
+            // },
+            // {name: 'Employee 10',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'UI'
+            // },
+            // {name: 'Employee 11',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Developer'
+            // },
+            // {name: 'Employee 12',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Designer'
+            // },
+            // {name: 'Employee 13',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'UX'
+            // },
+            // {name: 'Employee 14',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Developer'
+            // },
+            // {name: 'Employee 15',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'UX'
+            // },
+            // {name: 'Employee 16',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Designer'
+            // },
+            // {name: 'Employee 17',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Designer'
+            // },
+            // {name: 'Employee 18',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'UI'
+            // },
+            // {name: 'Employee 19',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Developer'
+            // },
+            // {name: 'Employee 20',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Designer'
+            // },
+            // {name: 'Employee 21',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'UX'
+            // },
+            // {name: 'Employee 22',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Developer'
+            // },
+            // {name: 'Employee 23',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'UX'
+            // },
+            // {name: 'Employee 24',
+            // email :'abc@gmail.com',
+            // mobile : 123456,
+            // designation: 'Designer'
+            // },
         ]
     }
 
+    componentDidMount(){
+        axios.get('https://ams-api.herokuapp.com/getAllEmployees')
+        .then(response =>{
+            this.setState({
+                employeesList: response.data,
+            })
+        })
+    }
+
     changedHandler = (e) =>{
+        let val = e.target.value;
+        if(e.target.value <=1){
+            val = 1;
+        }
         this.setState({
-            displayItemPerPage: e.target.value
+            displayItemPerPage: val
         })
     }
 
