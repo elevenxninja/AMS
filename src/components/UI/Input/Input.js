@@ -25,6 +25,7 @@ const Input = (props) =>{
     }
     return(
         <div>
+            <label>{props.label}</label>
             {inputEl}
         </div>
     );

@@ -7,13 +7,67 @@ import Pagination from '../../components/Pagination/Pagination';
 import Search from '../../components/Search/Search';
 import AddEmployees from '../AddEmployee/AddEmployee';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import Popup from '../../components/UI/Popup/Popup';
+import Input from '../../components/UI/Input/Input';
 
 class EmployeesList extends React.Component{
     state = {
+        isPopup:false,
         filter:'',
         currentPage: 1,
         displayItemPerPage:8,
-        employeesList:[]
+        employeesList:[],
+        UserId:null,
+        userProfileForm:{
+            empId:{
+                elmType:'input',
+                label:'Employee ID',
+                elmConfig:{
+                    type:'text',
+                },
+                value:''
+            },
+            name:{
+                elmType:'input',
+                label:'Name',
+                elmConfig:{
+                    type:'text',
+                },
+                value:''
+            },
+            designation:{
+                elmType:'input',
+                label:'Designation',
+                elmConfig:{
+                    type:'text',
+                },
+                value:''
+            },
+            email:{
+                elmType:'input',
+                label:'Email - ID',
+                elmConfig:{
+                    type:'email',
+                },
+                value:''
+            },
+            department:{
+                elmType:'input',
+                label:'Department',
+                elmConfig:{
+                    type:'text',
+                },
+                value:''
+            },
+            phone:{
+                elmType:'input',
+                label:'Contact Number',
+                elmConfig:{
+                    type:'number',
+                },
+                value:''
+            }
+        }
     }
 
     componentDidMount(){
@@ -95,7 +149,81 @@ class EmployeesList extends React.Component{
         }
     }
 
+    hideFormHandler = () =>{
+        this.setState({
+            isPopup: false,
+        })
+    }
+
+    userHandler = (user) =>{
+        const userVal = {...this.state.userProfileForm}
+        userVal.empId.value = user.emp_id;
+        userVal.name.value = user.name;
+        userVal.email.value = user.email;
+        userVal.phone.value = user.mobile;
+        userVal.designation.value = user.designation;
+        userVal.department.value = user.department;
+        console.log(userVal);
+        this.setState({
+            userId: user.id,
+            isPopup:true,
+            userProfileForm: userVal,
+        })
+    }
+
+    changedUserHandler = (e, identifier) =>{
+        const userData = {...this.state.userProfileForm}
+        userData[identifier].value = e.target.value;
+        this.setState({
+            userProfileForm: userData,
+        })
+    }
+
+    submitHandler = (event) =>{
+        event.preventDefault();
+        const userFormVal = {...this.state.userProfileForm}
+        const userInfo = [...this.state.employeesList];
+        userInfo.map(user=>{
+            if(user.id === this.state.userId){
+                user.emp_id = userFormVal.empId.value;
+                user.name = userFormVal.name.value;
+                user.designation = userFormVal.designation.value;
+                user.department = userFormVal.department.value;
+                user.mobile = userFormVal.phone.value;
+                user.email = userFormVal.email.value;
+            }
+        })
+        console.log(userInfo);
+    }
+
     render(){
+        const  userProfileArray = [];
+        for(let key in this.state.userProfileForm){
+            userProfileArray.push({...this.state.userProfileForm[key], id:this.state.UserId, inputId:key});
+        }
+        const userForm = userProfileArray.map(user=>{
+            return <Input
+                    changed={(event)=>this.changedUserHandler(event, user.inputId)}
+                    key={user.inputId}
+                    label={user.label}
+                    elmType={user.elmType}
+                    value={user.value}
+                    elmConfig={user.elmConfig}/>
+        })
+
+        let popup = null;
+        if(this.state.isPopup){
+            popup = (<Popup>
+                        <div className={classes.FormCard}>
+                            <form onSubmit={this.submitHandler}>
+                                {userForm}
+                                <button type='submit'>Save</button>
+                                <button onClick={this.hideFormHandler}>Cancel</button>
+                            </form>
+                        </div>
+                    </Popup>)
+        }
+
         const { filter, employeesList } = this.state;
         const lowercasedFilter = filter.toLowerCase();
         const filteredData = employeesList.filter(item => 
@@ -107,6 +235,7 @@ class EmployeesList extends React.Component{
         const currnetItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
         return(
             <div>
+                {popup}
                 <Sidebar />
                 <Search value={filter} changed={this.searchHandler}/>
                 <div className={classes.EmployeesList}>
@@ -114,7 +243,8 @@ class EmployeesList extends React.Component{
                         <h2>All Employees List</h2>
                     </header>
                     <AddEmployees clicked={(files)=> this.handleUploadedFiles(files)}/>
-                    <EmployeesDetails employeesList={currnetItems} 
+                    <EmployeesDetails employeesList={currnetItems}
+                    clicked={(user)=>this.userHandler(user)} 
                     clickedSms={(name, email) => this.sendSmsHandler(name, email)}
                     clickedMail={(name, email) => this.sendEmailHandler(name, email)}/>
                     <Pagination totalItems={this.state.employeesList.length} 

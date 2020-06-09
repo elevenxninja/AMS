@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link} from 'react-router-dom';
 
 import classes from './EmployeesDetails.css';
 
@@ -8,8 +7,9 @@ const EmployeesDetails = (props) =>{
 
     const employees = props.employeesList.map(empl =>{
         return (
-                <tr key={empl.name}>
-                    <td><Link to="/user-profile">{empl.name}</Link></td>
+                <tr key={empl.id}>
+                    <td 
+                    onClick={()=>props.clicked(empl)}>{empl.name}</td>
                     <td>{empl.designation}</td>
                     <td><span><button 
                     onClick={() => props.clickedSms(empl.name, empl.email)}>

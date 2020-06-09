@@ -6,7 +6,7 @@
     width: 100%;
     height: 100%;
     animation: scale .5s;
-    z-index: 50;
+    z-index: 110;
 }
 
 @keyframes scale{

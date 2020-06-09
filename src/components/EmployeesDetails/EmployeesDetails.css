@@ -59,9 +59,10 @@
     border-radius: 5px;
 }
 
-.EmployeesDetails table tbody tr td a{
+.EmployeesDetails table tbody tr td:nth-child(1){
     color: #2b86b3;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .EmployeesDetails table tbody tr td:nth-child(2){

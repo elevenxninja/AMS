@@ -23,3 +23,30 @@
     position: absolute;
     right:0;
 }
+
+.FormCard{
+    position: absolute;
+    display: inline-block;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    margin-top: -180px;
+    margin-left: -300px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 1px #ccc;
+    z-index: 100;
+}
+
+.FormCard form{
+    margin-left:50px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    padding: 10px 50px;
+    position: relative;
+}
+
+.FormCard form label{
+    display: block;
+}
+
