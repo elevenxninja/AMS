@@ -129,7 +129,7 @@ class AddEmployee extends React.Component{
     checkValidtyHandler = (value, rules) =>{
         let isValid = true;
         if(rules.required){
-            isValid = value != '' && isValid;
+            isValid = value !== '' && isValid;
         }
         return isValid;
     }

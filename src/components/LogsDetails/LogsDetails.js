@@ -5,7 +5,7 @@ import classes from './LogsDetails.css'
 const LogsDetails = (props) =>{
     let logs = props.logs.map(log=>{
         return (
-            <tr>
+            <tr key={log.name}>
                 <td onClick={() =>props.clicked(log)}>{log.name}</td>
                 <td>{log.designation}</td>
                 <td><span>{log.inTimestamp}</span> <span>{log.outTimestamp}</span></td>
