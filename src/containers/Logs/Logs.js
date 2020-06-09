@@ -14,6 +14,8 @@ class Logs extends React.Component{
         isPopup:false,
         filter:'',
         currentPage:1,
+        fromDate:null,
+        toDate:null,
         displayItemsPerPage:8,
         userLogs:[
             {name: 'Employee 1',
@@ -169,19 +171,56 @@ class Logs extends React.Component{
         })
     }
 
+    opneDatePicker = () =>this._calendar.setOpen(true);
+
     popupHandler = (log) =>{
         console.log(log)
         this.setState({
             isPopup: true,
-            user: []
+            user: {...log, attendance:[
+                {date:'2020-06-18',
+                Present: 'yes'},
+                {date:'2020-06-19',
+                Present: 'yes'},
+                {date:'2020-06-20',
+                Present: 'yes'},
+                {date:'2020-06-21',
+                Present: 'yes'},
+                {date:'2020-06-22',
+                Present: 'yes'},
+                {date:'2020-06-23',
+                Present: 'yes'},
+                {date:'2020-06-24',
+                Present: 'yes'},
+                {date:'2020-06-25',
+                Present: 'yes'},
+            ]}
+        })
+    }
+
+    fromDateHandler = (e) =>{
+        this.setState({
+            fromDate: e.target.value
+        })
+    }
+
+    toDateHandler = (e) =>{
+        this.setState({
+            toDate: e.target.value
         })
     }
 
     render(){
+        console.log(this.state.fromDate, this.state.toDate);
         let popup = null;
         if(this.state.isPopup){
             popup = (<Popup>
-                <IndividualsUserLogs/>
+                <IndividualsUserLogs 
+                fromDateVal={this.state.fromDate}
+                toDateVal={this.state.toDate}
+                fromDate={(e) =>this.fromDateHandler(e)}
+                toDate={(e)=>this.toDateHandler(e)}
+                userLog={this.state.user}/>
             </Popup>)
         }
 

@@ -27,10 +27,33 @@
 }
 
 .UserLogs .Filters button{
+    position: relative;
     padding: 5px 0;
     width:90px;
     background-color: white;
     border-radius: 5px;
     outline: none;
     border: none;
+}
+
+.UserLogs .Filters button input{
+    opacity: 0;
+    width: 60px;
+    position: absolute;
+    left: 0;
+    top: -9px;
+    font-size: 26px;
+
+}
+
+.Attendance{
+    padding: 20px 30px;
+}
+
+.Attendance p{
+    display: block;
+}
+
+.Attendance p span{
+    padding: 5px 10px;
 }
