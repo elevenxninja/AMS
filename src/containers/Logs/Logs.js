@@ -211,7 +211,6 @@ class Logs extends React.Component{
     }
 
     render(){
-        console.log(this.state.fromDate, this.state.toDate);
         let popup = null;
         if(this.state.isPopup){
             popup = (<Popup>
