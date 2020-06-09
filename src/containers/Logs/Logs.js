@@ -10,6 +10,7 @@ import IndividualsUserLogs from '../../components/LogsDetails/IndividualsUserLog
 
 class Logs extends React.Component{
     state = {
+        user:null,
         isPopup:false,
         filter:'',
         currentPage:1,
@@ -18,7 +19,6 @@ class Logs extends React.Component{
             {name: 'Employee 1',
             inTimestamp: '06-08-2020 3 PM',
             outTimestamp: '06-08-2020 9 PM',
-
             designation: 'Designer'
             },
             {name: 'Employee 2',
@@ -169,9 +169,11 @@ class Logs extends React.Component{
         })
     }
 
-    popupHandler = () =>{
+    popupHandler = (log) =>{
+        console.log(log)
         this.setState({
             isPopup: true,
+            user: []
         })
     }
 
@@ -204,7 +206,7 @@ class Logs extends React.Component{
                         <h2>User Logs</h2>
                     </header>
                     <LogsDetails 
-                    clicked={this.popupHandler}
+                    clicked={(log)=>this.popupHandler(log)}
                     logs={updatedEmpForm}/>
                     <Pagination
                     clicked={(page)=>this.pageHandler(page)}
