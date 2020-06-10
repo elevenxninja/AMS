@@ -2,7 +2,6 @@
     border-radius: 5px;
     padding: 10px 50px;
     padding-top: 0px;
-    margin-top: -10px;
 }
 
 .AddEmployee .AddEmpButton{
@@ -24,11 +23,23 @@
 }
 
 .AddEmployee .EmpOptionsCard{
+    background-color: white;
+    position: absolute;
+    top:125px;
+    left:117px;
     padding: 10px 20px;
-    margin-top: 20px;
     display: inline-block;
     box-shadow: 1px 1px 2px 1px #ccc;
-    margin-bottom: -20px;
+    animation: cardAnimation .5s;
+}
+
+@keyframes cardAnimation{
+    from{
+        transform: translateX(-40px);
+    }
+    to{
+        transform: translateX(0);
+    }
 }
 
 .AddEmployee .EmpOptionsCard p{
