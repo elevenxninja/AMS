@@ -4,5 +4,9 @@
 }
 
 .ManageGuards header{
+    box-sizing: border-box;
+    display:flex;
+    justify-content: space-between;
     padding: 0px 50px;
+    margin-top: -22px;
 }

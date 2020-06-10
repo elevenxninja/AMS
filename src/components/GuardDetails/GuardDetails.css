@@ -1,0 +1,66 @@
+.GuardDetails{
+    display:flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 20px 50px 0px 50px;
+}
+
+.GuardDetails table{
+    width: 100%;
+    font-size: 13px;
+}
+
+.GuardDetails table thead tr th, .GuardDetails table tfoot tr td{
+    background-color: #e6e6e6;
+    padding: 10px 10px;
+}
+
+.GuardDetails table thead tr th span:nth-child(1), .GuardDetails table tbody tr td span:nth-child(1){
+    margin: 0 10%;
+    float: left;
+}
+
+.GuardDetails table thead tr th span:nth-child(2), .GuardDetails table tbody tr td span:nth-child(2){
+    float: right;
+    margin: 0 10%;
+}
+
+.GuardDetails table thead tr th:nth-child(1){
+    width: 40%;
+}
+
+.GuardDetails table thead tr th:nth-child(2), .GuardDetails table thead tr th:nth-child(3){
+    width: 30%;
+}
+
+.GuardDetails table tfoot tr td{
+    height: 20px;
+}
+
+.GuardDetails table tbody tr td{
+    background-color: #efefef;
+    padding: 5px 10px;
+}
+
+.GuardDetails table tbody tr td button{
+    background-color: #2b86b3;
+    padding: 3px 15px;
+    width: auto;
+    border:none;
+    color: white;
+    border-radius: 5px;
+}
+
+.GuardDetails table tbody tr td:nth-child(1){
+    color: #2b86b3;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.GuardDetails table tbody tr td:nth-child(2){
+    padding: 0 50px;
+}
+
+.GuardDetails table tbody tr td:nth-child(3) div{
+    margin: 0 auto;
+}

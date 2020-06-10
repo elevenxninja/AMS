@@ -1,0 +1,68 @@
+.AddGuard{
+    border-radius: 5px;
+    padding: 10px 50px;
+    padding-top: 0px;
+}
+
+.AddGuard .AddGuardButton{
+    font-weight: bold;
+    display: inline-block;
+    background-color: white;
+    box-shadow: 1px 1px 3px 1px #ccc;
+    padding: 10px 15px;
+    border-radius: 40px;
+}
+
+.AddGuard .AddGuardButton:hover{
+    box-shadow: 0px 0px 1px 1px #ccc;
+    cursor: pointer;
+}
+
+.AddGuard .AddGuardButton svg{
+    padding-right: 5px;
+}
+
+.AddGuard .GuardOptionsCard{
+    background-color: white;
+    position: absolute;
+    top:125px;
+    left:117px;
+    padding: 10px 20px;
+    display: inline-block;
+    box-shadow: 1px 1px 2px 1px #ccc;
+    animation: cardAnimation .5s;
+}
+
+@keyframes cardAnimation{
+    from{
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.AddGuard .GuardOptionsCard p{
+    color: gray;
+    margin-top: 0;
+    font-size: 12px;
+}
+
+.AddGuard .GuardOptionsCard button{
+    border: none;
+    padding:0;
+    color:gray;
+    background-color: white;
+}
+
+.AddGuard .GuardOptionsCard p:hover,
+.AddGuard .GuardOptionsCard button:hover{
+    color: black;
+    cursor: pointer;
+}
+
+.AddGuard .GuardOptionsCard button:focus{
+    outline: none;
+}

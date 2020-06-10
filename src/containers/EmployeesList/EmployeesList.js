@@ -5,7 +5,7 @@ import classes from './EmployeesList.css';
 import EmployeesDetails from '../../components/EmployeesDetails/EmployeesDetails';
 import Pagination from '../../components/Pagination/Pagination';
 import Search from '../../components/Search/Search';
-import AddEmployees from '../AddEmployee/AddEmployee';
+import AddEmployees from './AddEmployee/AddEmployee';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Popup from '../../components/UI/Popup/Popup';
 import Input from '../../components/UI/Input/Input';
