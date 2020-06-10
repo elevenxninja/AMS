@@ -6,3 +6,139 @@
 .Visitor header{
     padding: 0px 50px;
 }
+
+/* Form css */
+
+.FormCard{
+    position: absolute;
+    left: 50%;
+    margin-left: -370px;
+    display: inline-block;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 1px #ccc;
+    margin-top: 20px;
+}
+
+.FormCard form{
+    margin-left:50px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    padding: 10px 50px;
+    position: relative;
+}
+
+.FormCard form input, .FormCard form textarea{
+    box-sizing: border-box;
+    margin: 10px;
+    width: 600px;
+    border:none;
+    border-bottom: 1px solid rgb(192, 191, 191);
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+.FormCard form textarea{
+    height: 25px;
+} 
+
+.FormCard form button{
+    border: none;
+    float: right;
+    background-color: white;
+    margin:13px;
+    color: #2b86b3;
+}
+
+.FormCard form button:hover{
+    cursor: pointer;
+}
+
+.FormCard form button:disabled{
+    color:gray;
+    cursor: not-allowed;
+}
+
+.FormCard form input:focus, .FormCard form textarea:focus{
+    outline: none;
+}
+
+.FormCard form div:nth-child(2) input, 
+.FormCard form div:nth-child(3) input{
+    width: 290px;
+}
+
+.FormCard form div:nth-child(2), 
+.FormCard form div:nth-child(3){
+    display: inline;
+}
+
+.FormCard h4{
+    position: relative;
+    font-weight: normal;
+    margin: 0;
+    padding: 15px 25px;
+    padding-bottom: 0;
+}
+
+.FormCard h4::after{
+    content: '';
+    display: block;
+    height: 1px;
+    background-color: rgb(192, 191, 191);
+    width: 100%;
+    position: absolute;
+    top: 45px;
+    left: 0;
+}
+
+.FormCard form button::after{
+    content: '';
+    display: block;
+    height: 1px;
+    background-color: rgb(192, 191, 191);
+    width: 107%;
+    position: absolute;
+    top: 275px;
+    left: -50px;
+}
+
+.FormCard form button:focus{
+    outline: none;
+}
+
+/* Form svg css */
+.FormCard svg{
+    position: absolute;
+    left: 35px;
+    color:rgb(192, 191, 191);
+}
+.FormCard svg:nth-child(1){
+    font-size: 50px;
+    top: 55px;
+}
+
+.FormCard svg:nth-child(2),
+.FormCard svg:nth-child(3),
+.FormCard svg:nth-child(4),
+.FormCard svg:nth-child(5){
+    color: gray;
+    left: 50px;
+}
+
+.FormCard svg:nth-child(2){
+    top: 128px;
+}
+
+.FormCard svg:nth-child(3){
+    top: 180px;
+}
+
+.FormCard svg:nth-child(4){
+    top: 231px;
+}
+
+.FormCard svg:nth-child(5){
+    top: 286px;
+}
+
