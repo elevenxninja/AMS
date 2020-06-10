@@ -12,12 +12,13 @@
 }
 
 .UserLogs .Filters{
+    position: relative;
     margin-top: -15px;
     padding: 20px 30px 0px 30px;
     box-sizing: border-box;
 }
 
-.UserLogs .Filters div{
+.UserLogs .Filters > div{
     margin-top: -10px;
     display:flex;
     justify-content: space-between;
@@ -29,21 +30,53 @@
 .UserLogs .Filters button{
     position: relative;
     padding: 5px 0;
-    width:90px;
+    width:80px;
+    height: 30px;
     background-color: white;
     border-radius: 5px;
     outline: none;
     border: none;
+    margin-top: 5px;
 }
 
-.UserLogs .Filters button input{
-    opacity: 0;
-    width: 60px;
-    position: absolute;
-    left: 0;
-    top: -9px;
-    font-size: 26px;
+.UserLogs .Filters label{
+    font-size: 12px;
+    display:block;
+    color: white;
+}
 
+.UserLogs .Filters .Close{
+    position: absolute;
+    right: 10px;
+    top: 32px;
+    border-radius: 50%;
+    background-color: snow;
+    border: 1.1px solid red;
+    height: 15px;
+    width: 12px;
+}
+
+.UserLogs .Filters .Close:hover svg{
+    animation: close .5s;
+    cursor: pointer;
+}
+
+.UserLogs .Filters .Close:hover{
+    box-shadow: 0px 0px 3px 1px #ccc;
+}
+
+@keyframes close{
+    from{
+        transform: scale(2) rotate(0deg);
+    }
+    to{
+        transform: scale(2.5) rotate(180deg);
+    }
+}
+
+.UserLogs .Filters .Close svg{
+    transform: scale(2);
+    color: red;
 }
 
 .Attendance{
@@ -56,4 +89,11 @@
 
 .Attendance p span{
     padding: 5px 10px;
+}
+
+.DatePicker{
+    position: relative;
+    display: inline-block;
+    flex-wrap: nowrap;
+    z-index: 120;
 }

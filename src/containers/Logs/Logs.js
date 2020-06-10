@@ -210,11 +210,18 @@ class Logs extends React.Component{
         })
     }
 
+    closeUserHandler= () =>{
+        this.setState({
+            isPopup:false,
+        })
+    }
+
     render(){
         let popup = null;
         if(this.state.isPopup){
             popup = (<Popup>
                 <IndividualsUserLogs 
+                closeUser ={this.closeUserHandler}
                 fromDateVal={this.state.fromDate}
                 toDateVal={this.state.toDate}
                 fromDate={(e) =>this.fromDateHandler(e)}

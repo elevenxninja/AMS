@@ -191,6 +191,7 @@ class EmployeesList extends React.Component{
                 user.mobile = userFormVal.phone.value;
                 user.email = userFormVal.email.value;
             }
+            return null;
         })
         console.log(userInfo);
     }

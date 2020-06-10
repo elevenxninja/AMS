@@ -1,6 +1,7 @@
 import React from 'react';
 
 import classes from './IndividualsUserLogs.css';
+import { AiOutlineClose } from 'react-icons/ai';
 
 const IndividualsUserLogs = (props) =>{
     let attendance= props.userLog.attendance.map(attend=>{
@@ -20,16 +21,19 @@ const IndividualsUserLogs = (props) =>{
     return(
         <div className={classes.UserLogs}>
             <div className={classes.Filters}>
+                        <div className={classes.Close}>
+                            <AiOutlineClose onClick={props.closeUser}/>    
+                        </div>           
                         <h4>Filters by:</h4>
                         <div>
-                            <button>
-                                From Date
+                            <div>
+                                <label>From Date</label>
                                 <input type="date" onChange={props.fromDate}/>
-                            </button>
-                            <button>
-                                To Date
+                            </div>
+                            <div>
+                                <label>To Date</label>
                                 <input type="date" onChange={props.toDate}/>
-                            </button>
+                            </div>
                             <button>Weekly</button>
                             <button>Monthly</button>
                             <button>Designation</button>
