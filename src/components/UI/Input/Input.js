@@ -23,9 +23,13 @@ const Input = (props) =>{
             inputEl = null;
         break;    
     }
+    let label = null;
+    if(props.label){
+        label = <label>{props.label}</label>
+    }
     return(
         <div>
-            <label>{props.label}</label>
+            {label}
             {inputEl}
         </div>
     );

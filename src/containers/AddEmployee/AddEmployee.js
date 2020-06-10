@@ -63,7 +63,7 @@ class AddEmployee extends React.Component{
                 },
                 value:'',
             },
-            phone:{
+            mobile:{
                 elmType:'input',
                 elmConfig:{
                     type:'number',
@@ -134,12 +134,12 @@ class AddEmployee extends React.Component{
         return isValid;
     }
 
-    submitHandler = () =>{
+    submitHandler = (e) =>{
         let empDetails =[];
         let empForm = {...this.state.empForm};
         for(let key in empForm){
             empDetails.push({
-                key: empForm[key].value
+                [key]: empForm[key].value
             })
         }
         console.log(empDetails);

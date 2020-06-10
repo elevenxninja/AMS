@@ -18,6 +18,9 @@ class Visitor extends React.Component{
                     type:'text',
                     placeholder:'Name'
                 },
+                validation:{
+                    required:true,
+                },
                 value:'',
                 valid:false,
             },
@@ -26,6 +29,9 @@ class Visitor extends React.Component{
                 elmConfig:{
                     type:'text',
                     placeholder:'Company'
+                },
+                validation:{
+                    required:true,
                 },
                 value:'',
                 valid:false,
@@ -36,6 +42,9 @@ class Visitor extends React.Component{
                     type:'text',
                     placeholder:'Job title'
                 },
+                validation:{
+                    required:true,
+                },
                 value:'',
                 valid:false,
             },
@@ -45,14 +54,20 @@ class Visitor extends React.Component{
                     type:'email',
                     placeholder:'Email'
                 },
+                validation:{
+                    required:true,
+                },
                 value:'',
                 valid:false,
             },
-            phone:{
+            mobile:{
                 elmType:'input',
                 elmConfig:{
                     type:'number',
                     placeholder:'Phone'
+                },
+                validation:{
+                    required:true,
                 },
                 value:'',
                 valid:false,
@@ -63,24 +78,63 @@ class Visitor extends React.Component{
                     type:'text',
                     placeholder:'Purpose'
                 },
+                validation:{
+                    required:true,
+                },
                 value:'',
                 valid:false,
             },
-        }
+        },
+        isValidate:false,
     }
+
+    inputChangeHandler = (e, identifier) =>{
+        const inputForm = {...this.state.formInput};
+        inputForm[identifier].value = e.target.value;
+        inputForm[identifier].valid = this.validationHandler(inputForm[identifier].value, inputForm[identifier].validation);
+        let formValidation = true;
+        for(let key in inputForm){
+            formValidation = inputForm[key].valid && formValidation
+        }
+        this.setState({
+            formInput: inputForm,
+            isValidate: formValidation,
+        })
+    }
+
+    validationHandler = (value, rules) =>{
+        let isValid = true;
+        if(rules.required){
+            isValid = value !== '' && isValid;
+        }
+        return isValid;
+    }
+
+    submitHandler = (e) =>{
+        const visitorArray = [];
+        const visitorInfo = {...this.state.formInput};
+        for(let key in visitorInfo){
+            visitorArray.push({
+                [key]: visitorInfo[key].value
+            })
+        }
+        console.log(visitorArray)
+    }
+
     render(){
         const visitorFormArray = [];
         for(let key in this.state.formInput){
             visitorFormArray.push({...this.state.formInput[key], id:key})
         }
-        const visitorInput = <form>
+        const visitorInput = <form onSubmit={this.submitHandler}>
             {visitorFormArray.map(input=>{
-            return <Input 
+            return <Input key={input.id}
+            changed={(event)=>this.inputChangeHandler(event, input.id)}
             value={input.value}
             elmType={input.elmType}
             elmConfig={input.elmConfig}/>
         })}
-        <button type='submit'>Save</button>
+        <button type='submit' disabled={!this.state.isValidate}>Save</button>
         </form>
         return(
             <div>
