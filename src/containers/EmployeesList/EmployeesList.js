@@ -180,7 +180,6 @@ class EmployeesList extends React.Component{
     }
 
     submitHandler = (event) =>{
-        event.preventDefault();
         const userFormVal = {...this.state.userProfileForm}
         const userInfo = [...this.state.employeesList];
         userInfo.map(user=>{
@@ -215,6 +214,9 @@ class EmployeesList extends React.Component{
         if(this.state.isPopup){
             popup = (<Popup>
                         <div className={classes.FormCard}>
+                            <header>
+                                <h2>USER PROFILE</h2>
+                            </header>
                             <form onSubmit={this.submitHandler}>
                                 {userForm}
                                 <button type='submit'>Save</button>
