@@ -177,8 +177,8 @@
     color:rgb(192, 191, 191);
 }
 .FormCard svg:nth-child(1){
-    font-size: 50px;
-    top: 50px;
+    font-size: 60px;
+    top: 60px;
 }
 
 .FormCard svg:nth-child(2),
@@ -186,22 +186,19 @@
 .FormCard svg:nth-child(4),
 .FormCard svg:nth-child(5){
     color: gray;
-    left: 50px;
+    left: 57px;
 }
 
 .FormCard svg:nth-child(2){
-    top: 108px;
-}
-
-.FormCard svg:nth-child(3){
     top: 149px;
 }
 
-.FormCard svg:nth-child(4){
-    top: 190px;
+.FormCard svg:nth-child(3){
+    top: 188px;
 }
 
-.FormCard svg:nth-child(5){
-    top: 233px;
+.FormCard svg:nth-child(4){
+    top: 232px;
 }
+
 

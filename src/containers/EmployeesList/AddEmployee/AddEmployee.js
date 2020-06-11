@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactFileReader from 'react-file-reader';
+import axios from 'axios';
 
-import { BsBuilding } from "react-icons/bs";
-import {FaPlus, FaUser, FaUserFriends, FaUserCircle } from "react-icons/fa";
-import { GoMail } from 'react-icons/go';
-import { FiPhone, FiFile } from 'react-icons/fi';
+import {FaPlus, FaUser, FaUserFriends, FaUserCircle, FaRegAddressCard } from "react-icons/fa";
+import { BsBuilding } from 'react-icons/bs';
+import { FiPhone} from 'react-icons/fi';
 
 import classes from './AddEmployee.css';
 import Popup from '../../../components/UI/Popup/Popup';
@@ -27,11 +27,11 @@ class AddEmployee extends React.Component{
                 valid:false,
                 value:'',
             },
-            company:{
+            emp_id:{
                 elmType:'input',
                 elmConfig:{
                     type:'text',
-                    placeholder:'Company'
+                    placeholder:'Employee ID'
                 },
                 validation:{
                     required: true,
@@ -39,28 +39,16 @@ class AddEmployee extends React.Component{
                 valid:false,
                 value:'',
             },
-            jobTitle:{
+            employee_type:{
                 elmType:'input',
                 elmConfig:{
                     type:'text',
-                    placeholder:'Job title'
+                    placeholder:'Employee Type'
                 },
                 validation:{
                     required: true,
                 },
                 valid:false,
-                value:'',
-            },
-            email:{
-                elmType:'input',
-                elmConfig:{
-                    type:'email',
-                    placeholder:'Email'
-                },
-                valid:false,
-                validation:{
-                    required: true,
-                },
                 value:'',
             },
             mobile:{
@@ -69,17 +57,29 @@ class AddEmployee extends React.Component{
                     type:'number',
                     placeholder:'Phone'
                 },
+                valid:false,
+                validation:{
+                    required: true,
+                },
+                value:'',
+            },
+            designation:{
+                elmType:'input',
+                elmConfig:{
+                    type:'text',
+                    placeholder:'Designation'
+                },
                 validation:{
                     required: true,
                 },
                 valid:false,
                 value:'',
             },
-            notes:{
-                elmType:'textarea',
+            department:{
+                elmType:'input',
                 elmConfig:{
-                    type:'number',
-                    placeholder:'Purpose',
+                    type:'text',
+                    placeholder:'Department',
                 },
                 validation:{
                     required: true,
@@ -129,7 +129,6 @@ class AddEmployee extends React.Component{
             empForm: formObj,
             isValidate: isFormValid
         })
-        console.log(this.state.isValidate);
     }
 
     checkValidtyHandler = (value, rules) =>{
@@ -141,14 +140,25 @@ class AddEmployee extends React.Component{
     }
 
     submitHandler = (e) =>{
-        let empDetails =[];
+        e.preventDefault();
+        let empDetails ={};
         let empForm = {...this.state.empForm};
         for(let key in empForm){
-            empDetails.push({
-                [key]: empForm[key].value
-            })
+            empDetails[key] = empForm[key].value
         }
-        console.log(empDetails);
+        axios.post('https://ams-api.herokuapp.com/postAddEmploye', empDetails)
+        .then(res=>{
+            console.log(res.data)
+            this.setState({
+                isPopup:false,
+            })
+        })
+        .catch(err=>{
+            console.log(err)
+            this.setState({
+                isPopup:false,
+            })
+        })
     }
 
     render(){
@@ -179,10 +189,9 @@ class AddEmployee extends React.Component{
             popUp = <Popup>
                 <div className={classes.FormCard}>
                     <FaUserCircle/>
-                    <BsBuilding />
-                    <GoMail />
                     <FiPhone />
-                    <FiFile />
+                    <FaRegAddressCard />
+                    <BsBuilding />
                     <h4>Create new contact</h4>
                     {empInput}
                 </div>
