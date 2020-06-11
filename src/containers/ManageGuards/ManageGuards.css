@@ -10,3 +10,60 @@
     padding: 0px 50px;
     margin-top: -22px;
 }
+
+/* Form css */
+
+.FormCard{
+    position: absolute;
+    display: inline-block;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    margin-top: -250px;
+    margin-left: -300px;
+    border-radius: 5px;
+    padding: 10px 50px;
+    box-shadow: 0px 0px 3px 1px #ccc;
+    z-index: 100;
+}
+
+.FormCard form{
+    box-sizing: border-box;
+    margin-top: 10px;
+    position: relative;
+}
+
+.FormCard form label{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.FormCard form input{
+    width: 250px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    border: 1px solid #00a1ff;
+}
+
+.FormCard form input:focus{
+    outline: none;
+}
+
+.FormCard form button{
+    background-color: #00a1ff;
+    color: white;
+    padding: 7px 40px;
+    margin: 20px 0;
+    border-radius: 10px;
+    border: none;
+}
+
+.FormCard form button:last-child{
+    margin-left:41px;
+}
+
+.FormCard form button:focus{
+    outline: none;
+}

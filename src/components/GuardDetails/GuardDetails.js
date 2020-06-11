@@ -6,7 +6,7 @@ import classes from './GuardDetails.css';
 const GuardDetails = (props) =>{
     const guardItems = props.guardList.map(list=>{
     return (<tr>
-            <td>{list.name}</td>
+            <td onClick={()=>props.clicked(list)}>{list.name}</td>
             <td>{list.mobile}</td>
             <td><ToggleButton
   value={ props.value || false }

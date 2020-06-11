@@ -7,14 +7,65 @@ import Search from '../../components/Search/Search';
 import AddGuard from './AddGuard/AddGuard';
 import GuardDetails from '../../components/GuardDetails/GuardDetails';
 import Pagination from '../../components/Pagination/Pagination';
+import Popup from '../../components/UI/Popup/Popup';
+import Input from '../../components/UI/Input/Input';
 
 class ManageGuards extends React.Component{
     state={
+        isGuardPopup:false,
         filter:'',
         guardList:[],
         toggle:false,
         currentPage:1,
         dispalyItemsPerPage:2,
+        individualGuard:{
+            name:{
+                elmType:'input',
+                elmConfig:{
+                    type:'text',
+                    placeholder:'Name',
+                },
+                label:'Name',
+                value:'',
+            },
+            imei_no:{
+                elmType:'input',
+                elmConfig:{
+                    type:'number',
+                    placeholder:'IMEI No.',
+                },
+                label:'IMEI No.',
+                value:'',
+            },
+            status:{
+                elmType:'input',
+                elmConfig:{
+                    type:'text',
+                    placeholder:'Status',
+                },
+                label:'Status',
+                value:'',
+            },
+            mobile:{
+                elmType:'input',
+                elmConfig:{
+                    type:'number',
+                    placeholder:'Phone',
+                },
+                label:'Phone',
+                value:'',
+            },
+            email:{
+                elmType:'input',
+                elmConfig:{
+                    type:'email',
+                    placeholder:'E-mail',
+                },
+                label:'E-mail',
+                value:'',
+            },
+        },
+        guardId:null,
     }
 
     componentDidMount(){
@@ -66,6 +117,51 @@ class ManageGuards extends React.Component{
         })
     }
 
+    changedGuardHandler = (e, identifier) =>{
+        const guardForm = {...this.state.individualGuard};
+        guardForm[identifier].value = e.target.value;
+        this.setState({
+            individualGuard: guardForm
+        })
+    }
+
+    individualGuardHandler = (guard) =>{
+        console.log(guard)
+        const guardForm = {...this.state.individualGuard};
+        guardForm.name.value = guard.name;
+        guardForm.email.value = guard.email;
+        guardForm.mobile.value = guard.mobile;
+        guardForm.imei_no.value = guard.imei_no;
+        guardForm.status.value = guard.status;
+        this.setState({
+            guardId: guard.id,
+            guardForm: guardForm,
+            isGuardPopup:true,
+        })
+    }
+
+    hideGuardHandler = () =>{
+        this.setState({
+            isGuardPopup: false,
+        })
+    }
+
+    submitGuardHandler = (e) =>{
+        e.preventDefault();
+        const guard = {...this.state.individualGuard};
+        const guardArray = [...this.state.guardList];
+        guardArray.map(grd=>{
+            if(this.state.guardId === grd.id){
+                grd.name = guard.name.value;
+                grd.email = guard.email.value;
+                grd.mobile = guard.mobile.value;
+                grd.status = guard.status.value;
+                grd.imei_no = guard.status.value;
+            }
+        })
+        console.log(guardArray);
+    }
+
     render(){
         const {currentPage, dispalyItemsPerPage, guardList, filter} = this.state;
 
@@ -78,9 +174,40 @@ class ManageGuards extends React.Component{
         const indexOfFirstItem = indexOfLastItem - dispalyItemsPerPage;
         const currentLists = filterArray.slice(indexOfFirstItem, indexOfLastItem);
 
+        const individualGuardInputArray = [];
+        const individualGuardInput = {...this.state.individualGuard};
+        for(let key in individualGuardInput){
+            individualGuardInputArray.push({...individualGuardInput[key], id:key})
+        }
+        const guardInputVal = individualGuardInputArray.map(guard=>{
+            console.log(guard.value);
+            return <Input
+            key={guard.id}
+            label={guard.label}
+            changed={(e)=>this.changedGuardHandler(e, guard.id)}
+            value={guard.value} 
+            elmType={guard.elmType}
+            elmConfig={guard.elmConfig}/>
+        })
+        let individualGuardPopup = null;
+        if(this.state.isGuardPopup){
+            individualGuardPopup = (<Popup>
+                        <div className={classes.FormCard}>
+                            <header>
+                                <h2>USER PROFILE</h2>
+                            </header>
+                            <form onSubmit={this.submitGuardHandler} >
+                            {guardInputVal}
+                            <button type='submit'>Save</button>
+                            <button onClick={this.hideGuardHandler}>Cancel</button>
+                            </form>
+                        </div>
+                     </Popup>)
+        }
 
         return(
             <div>
+                {individualGuardPopup}
                 <Sidebar/>
                 <Search 
                 changed={this.searchHandler}
@@ -91,6 +218,7 @@ class ManageGuards extends React.Component{
                         </header>
                 <AddGuard />
                 <GuardDetails 
+                clicked={(guard)=>this.individualGuardHandler(guard)}
                 value={this.state.toggle}
                 toggle = {(value)=>this.toggleHandler(value)}
                 guardList={currentLists}/>
