@@ -146,7 +146,7 @@ class AddEmployee extends React.Component{
         for(let key in empForm){
             empDetails[key] = empForm[key].value
         }
-        axios.post('https://ams-api.herokuapp.com/postAddEmploye', empDetails)
+        axios.post('https://ams-api.herokuapp.com/postAddEmployee', empDetails)
         .then(res=>{
             console.log(res.data)
             this.setState({
