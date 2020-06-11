@@ -4,19 +4,37 @@ import ReactFileReader from 'react-file-reader';
 import { FaPlus, FaUserFriends, FaUser } from 'react-icons/fa';
 
 import classes from './AddGuard.css';
+import Popup from '../../../components/UI/Popup/Popup';
+import Input from '../../../components/UI/Input/Input';
 
 class AddGuard extends React.Component{
     state = {
         isGuardOption:false,
+        isPopup:false,
     }
 
-    AddGuardHandler = () =>{
+    toggleAddGuardHandler = () =>{
+        this.setState((prevState)=>({
+            isGuardOption: !prevState.isGuardOption,
+        }))
+    }
+
+    popUpHandler = () =>{
         this.setState({
-            isGuardOption:true,
+            isPopup:true,
         })
     }
 
     render(){
+        let popup = null;
+        if(this.state.isPopup){
+            popup = (<Popup>
+                <form>
+                    <input type='text' placeholder='no'/>
+                </form>
+            </Popup>)
+        }
+
         let addGuard = null;
         if(this.state.isGuardOption){
             addGuard = (<div className={classes.GuardOptionsCard}>
@@ -27,11 +45,11 @@ class AddGuard extends React.Component{
                             </div>)
         }
         return(
-            <div className={classes.AddGuard}>
-                {}
-                <div className={classes.AddGuardButton} onClick={this.AddGuardHandler}>
+            <div className={classes.AddGuard} onClick={this.toggleAddGuardHandler}>
+                {popup}
+                <div className={classes.AddGuardButton}>
                     <FaPlus />
-                    Add Employee
+                    Add Guard
                 </div>
                 <div>
                     {addGuard}

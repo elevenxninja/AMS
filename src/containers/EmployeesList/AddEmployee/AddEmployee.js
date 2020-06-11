@@ -99,6 +99,12 @@ class AddEmployee extends React.Component{
         )
     }
 
+    toggleOptionHandler = () =>{
+        this.setState((prevState)=>({
+            isAddEmpOption: !prevState.isAddEmpOption
+        }))
+    }
+
     popUpHandler = () =>{
         this.setState({
             isPopup: true,
@@ -193,11 +199,11 @@ class AddEmployee extends React.Component{
         }
         
         return(
-            <div className={classes.AddEmployee}>
+            <div className={classes.AddEmployee} onClick={this.toggleOptionHandler}>
                 {popUp}
-                <div className={classes.AddEmpButton} onClick={this.AddEmpHandler}>
-                    <FaPlus />
-                    Add Employee
+                <div className={classes.AddEmpButton} >
+                        <FaPlus />
+                        Add Employee
                 </div>
                 <div>
                     {addEmplyOption}
