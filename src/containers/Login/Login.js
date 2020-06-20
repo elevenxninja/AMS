@@ -1,13 +1,20 @@
 import React from 'react';
 import { FaUsers } from "react-icons/fa";
+import { connect } from 'react-redux';
 
-import classes from './Login.css'
-
+import classes from './Login.css';
+import { auth } from '../../store/actions/auth';
 
 class Login extends React.Component{
     state = {
         userName:'',
         password:'',
+    }
+
+    componentDidUpdate(){
+        if(this.props.authed){
+            this.props.history.push('/employees-list')
+        }
     }
 
     changeUserHandler = (e) =>{
@@ -22,7 +29,9 @@ class Login extends React.Component{
         })
     }
 
-    submitHandler = () =>{
+    submitHandler = (e) =>{
+        e.preventDefault();
+        this.props.onLogin(this.state.userName, this.state.password);
         alert(`Name: ${this.state.userName}, Password: ${this.state.password}`)
     }
 
@@ -55,4 +64,16 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+const mapStateToProps = (state) =>{
+    return{
+        authed: state.isLogin,
+    }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        onLogin: (email, password) =>dispatch(auth(email, password))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

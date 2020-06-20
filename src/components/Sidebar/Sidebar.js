@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { GoDashboard, GoServer } from "react-icons/go";
+import { connect } from 'react-redux';
 
+import { logOut } from '../../store/actions/auth';
 import classes from './Sidebar.css';
 import  about from '../../Images/about.png'
 import  logout from '../../Images/logout.png';
@@ -10,7 +12,7 @@ import  manageGuards from '../../Images/manage guards.png';
 import  visitor from '../../Images/visitor.png';
 import  logo from '../../Images/FINALSNAP.png';
 
-const Sidebar = () =>{
+const Sidebar = (props) =>{
     return(
         <div className={classes.Header}>
             <header>
@@ -68,17 +70,23 @@ const Sidebar = () =>{
                         </p>
                     </NavLink>
                 </div>
-                <div>
-                    <NavLink to='/'>
+                <div onClick={props.onLogout}>
+                    {/* <NavLink to='/'> */}
                         <img src={logout} alt='visitor'/>
                         <p>
                             LOGOUT
                         </p>
-                    </NavLink>
+                    {/* </NavLink> */}
                 </div>
             </div>
         </div>
         );
 }
 
-export default Sidebar;
+const mapDispatchToProps = dispatch =>{
+    return{
+        onLogout: () =>dispatch(logOut())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Sidebar);

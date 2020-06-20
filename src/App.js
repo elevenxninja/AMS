@@ -1,5 +1,7 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 import Login from './containers/Login/Login';
 import EmployeesList from './containers/EmployeesList/EmployeesList';
@@ -8,13 +10,24 @@ import About from './containers/About/About';
 import Analytics from './containers/Analytics/Analytics';
 import ManageGuards from './containers/ManageGuards/ManageGuards';
 import Visitor from './containers/Visitor/Visitor';
+import {authAutoCheck} from './store/actions/auth';
 
 
-function App() {
+class App extends React.Component {
+  componentDidMount(){
+    this.props.onCheckAuth();
+  }
+
+  render(){
+  let redirect = null;
+  if(!this.props.authed){
+    redirect = <Redirect to='/' />
+  }
   return (
     <div>
       <Switch>
         <Route path='/' exact component={Login} />
+        {redirect}
         <Route path='/employees-list' component={EmployeesList} />
         <Route path='/logs' component={Logs} />
         <Route path='/about' component={About} />
@@ -25,5 +38,18 @@ function App() {
     </div>
   );
 }
+}
 
-export default App;
+const mapStateToProps = state =>{
+  return{
+    authed: state.isLogin,
+  }
+}
+
+const mapDispatchToProps = dispatch =>{
+  return{
+    onCheckAuth: () => dispatch(authAutoCheck())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
