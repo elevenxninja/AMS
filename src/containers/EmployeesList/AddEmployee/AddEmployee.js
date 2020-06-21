@@ -15,7 +15,7 @@ class AddEmployee extends React.Component{
         isAddEmpOption: false,
         isPopup: false,
         empForm:{
-            Name:{
+            name:{
                 elmType:'input',
                 elmConfig:{
                     type:'text',
@@ -39,14 +39,15 @@ class AddEmployee extends React.Component{
                 valid:false,
                 value:'',
             },
-            employee_type:{
+            email:{
                 elmType:'input',
                 elmConfig:{
-                    type:'text',
-                    placeholder:'Employee Type'
+                    type:'email',
+                    placeholder:'E-mail'
                 },
                 validation:{
                     required: true,
+                    check: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                 },
                 valid:false,
                 value:'',
@@ -136,6 +137,9 @@ class AddEmployee extends React.Component{
         if(rules.required){
             isValid = value !== '' && isValid;
         }
+        if(rules.check){
+            isValid = rules.check.test(value);
+        }
         return isValid;
     }
 
@@ -146,7 +150,8 @@ class AddEmployee extends React.Component{
         for(let key in empForm){
             empDetails[key] = empForm[key].value
         }
-        axios.post('https://ams-api.herokuapp.com/postAddEmployee', empDetails)
+        console.log(empDetails)
+        axios.post('https://ams-api.herokuapp.com/postAddEmployee', null, {params: empDetails})
         .then(res=>{
             console.log(res.data)
             this.setState({
