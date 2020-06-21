@@ -25,10 +25,11 @@
     margin: 0 10%;
 }
 
-.EmployeesDetails table thead tr th:nth-of-type(odd), 
-.EmployeesDetails table tbody tr th:nth-of-type(odd), 
-.EmployeesDetails table tfoot tr th:nth-of-type(odd){
-    width: 38%;
+.EmployeesDetails table thead tr th:nth-child(1), .EmployeesDetails table thead tr th:nth-child(5), 
+.EmployeesDetails table tbody tr td:nth-child(1), .EmployeesDetails table tbody tr td:nth-child(5), 
+.EmployeesDetails table tfoot tr td:nth-child(1), .EmployeesDetails table tfoot tr td:nth-child(5){
+    width: 10%;
+    text-align: center;
 }
 
 .EmployeesDetails table tfoot tr td button{
@@ -59,12 +60,12 @@
     border-radius: 5px;
 }
 
-.EmployeesDetails table tbody tr td:nth-child(1){
+.EmployeesDetails table tbody tr td:nth-child(2){
     color: #2b86b3;
     font-weight: bold;
     cursor: pointer;
 }
 
-.EmployeesDetails table tbody tr td:nth-child(2){
+.EmployeesDetails table tbody tr td:nth-child(3){
     padding: 0 50px;
 }
