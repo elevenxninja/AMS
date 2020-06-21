@@ -1,9 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { GoDashboard, GoServer } from "react-icons/go";
-import { connect } from 'react-redux';
 
-import { logOut } from '../../store/actions/auth';
+
 import classes from './Sidebar.css';
 import  about from '../../Images/about.png'
 import  logout from '../../Images/logout.png';
@@ -71,22 +70,18 @@ const Sidebar = (props) =>{
                     </NavLink>
                 </div>
                 <div onClick={props.onLogout}>
-                    {/* <NavLink to='/'> */}
+                    <NavLink to='/logout'>
                         <img src={logout} alt='visitor'/>
                         <p>
                             LOGOUT
                         </p>
-                    {/* </NavLink> */}
+                    </NavLink>
                 </div>
             </div>
         </div>
         );
 }
 
-const mapDispatchToProps = dispatch =>{
-    return{
-        onLogout: () =>dispatch(logOut())
-    }
-}
 
-export default connect(null, mapDispatchToProps)(Sidebar);
+
+export default Sidebar;

@@ -11,6 +11,7 @@ import Analytics from './containers/Analytics/Analytics';
 import ManageGuards from './containers/ManageGuards/ManageGuards';
 import Visitor from './containers/Visitor/Visitor';
 import {authAutoCheck} from './store/actions/auth';
+import Logout from './containers/Logout/Logout';
 
 
 class App extends React.Component {
@@ -20,23 +21,26 @@ class App extends React.Component {
 
   render(){
   let redirect = null;
+  let redirectToMain = null;
   if(!this.props.authed){
     redirect = <Redirect to='/' />
   }
   if(this.props.authed){
-    redirect = <Redirect to='/employees-list' from='/' exact/>
+    redirectToMain = <Redirect to='/employees-list' from='/' exact/>
   }
   return (
     <div>
       <Switch>
         <Route path='/' exact component={Login} />
-        <Route path='/employees-list' component={EmployeesList} />
         {redirect}
+        <Route path='/employees-list' component={EmployeesList} />
+        {redirectToMain}
         <Route path='/logs' component={Logs} />
         <Route path='/about' component={About} />
         <Route path='/analytics' component={Analytics} />
         <Route path='/manage-guards' component={ManageGuards} />
         <Route path='/visitor-pass' component={Visitor} />
+        <Route path='/logout' component={Logout}/>
       </Switch>
     </div>
   );
