@@ -21,7 +21,7 @@ const EmployeesDetails = (props) =>{
                             SEND EMAIL
                         </button></span></td>
                     <td>
-                        <button>Delete</button>
+                        <button onClick={()=>props.clickedDelete(empl.id)}>Delete</button>
                     </td>
                 </tr>
         )

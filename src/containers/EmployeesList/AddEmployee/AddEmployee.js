@@ -157,6 +157,7 @@ class AddEmployee extends React.Component{
             this.setState({
                 isPopup:false,
             })
+            this.props.getAllEmployees();
         })
         .catch(err=>{
             console.log(err)

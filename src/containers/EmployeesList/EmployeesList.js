@@ -71,6 +71,10 @@ class EmployeesList extends React.Component{
     }
 
     componentDidMount(){
+        this.getAllEmployees();
+    }
+
+    getAllEmployees = () =>{
         axios.get('https://ams-api.herokuapp.com/getAllEmployees')
         .then(response =>{
             this.setState({
@@ -196,6 +200,11 @@ class EmployeesList extends React.Component{
         console.log(userInfo);
     }
 
+    deleteEmpHandler = (id) =>{
+        axios.post('https://ams-api.herokuapp.com/deleteEmployee', null, {params:{id:id}})
+        .then(res=>this.getAllEmployees())
+    }
+
     render(){
         const  userProfileArray = [];
         for(let key in this.state.userProfileForm){
@@ -245,10 +254,13 @@ class EmployeesList extends React.Component{
                     <header>
                         <h2>All Employees List</h2>
                     </header>
-                    <AddEmployees clicked={(files)=> this.handleUploadedFiles(files)}/>
+                    <AddEmployees 
+                    getAllEmployees = {this.getAllEmployees}
+                    clicked={(files)=> this.handleUploadedFiles(files)}/>
                     <EmployeesDetails employeesList={currnetItems}
                     clicked={(user)=>this.userHandler(user)} 
                     clickedSms={(name, email) => this.sendSmsHandler(name, email)}
+                    clickedDelete ={(id)=>this.deleteEmpHandler(id)}
                     clickedMail={(name, email) => this.sendEmailHandler(name, email)}/>
                     <Pagination totalItems={this.state.employeesList.length} 
                     itemsPerPage={this.state.displayItemPerPage} 
