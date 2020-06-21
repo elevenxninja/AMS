@@ -19,7 +19,7 @@ class EmployeesList extends React.Component{
         employeesList:[],
         UserId:null,
         userProfileForm:{
-            empId:{
+            emp_id:{
                 elmType:'input',
                 label:'Employee ID',
                 elmConfig:{
@@ -59,7 +59,7 @@ class EmployeesList extends React.Component{
                 },
                 value:''
             },
-            phone:{
+            mobile:{
                 elmType:'input',
                 label:'Contact Number',
                 elmConfig:{
@@ -138,9 +138,10 @@ class EmployeesList extends React.Component{
                             'name' : elementRaw[0],
                             'email' : elementRaw[1],
                             'mobile' : elementRaw[2],
-                            'department' : elementRaw[3],
-                            'emp_id' : elementRaw[4],
-                            'employee_type' : elementRaw[5]
+                            'designation' : elementRaw[3],
+                            'department' : elementRaw[4],
+                            'emp_id' : elementRaw[5],
+                            'employee_type' : elementRaw[6]
                         }
                         data.push(param);
                     }
@@ -161,13 +162,12 @@ class EmployeesList extends React.Component{
 
     userHandler = (user) =>{
         const userVal = {...this.state.userProfileForm}
-        userVal.empId.value = user.emp_id;
+        userVal.emp_id.value = user.emp_id;
         userVal.name.value = user.name;
         userVal.email.value = user.email;
-        userVal.phone.value = user.mobile;
+        userVal.mobile.value = user.mobile;
         userVal.designation.value = user.designation;
         userVal.department.value = user.department;
-        console.log(userVal);
         this.setState({
             userId: user.id,
             isPopup:true,
@@ -184,20 +184,15 @@ class EmployeesList extends React.Component{
     }
 
     submitHandler = (event) =>{
+        event.preventDefault();
         const userFormVal = {...this.state.userProfileForm}
-        const userInfo = [...this.state.employeesList];
-        userInfo.map(user=>{
-            if(user.id === this.state.userId){
-                user.emp_id = userFormVal.empId.value;
-                user.name = userFormVal.name.value;
-                user.designation = userFormVal.designation.value;
-                user.department = userFormVal.department.value;
-                user.mobile = userFormVal.phone.value;
-                user.email = userFormVal.email.value;
-            }
-            return null;
-        })
-        console.log(userInfo);
+        const userObj = {};
+        for(let key in userFormVal){
+            userObj[key] = userFormVal[key].value
+        }
+        userObj.id = this.state.userId;
+        axios.post('https://ams-api.herokuapp.com/postEditProfile', null, {params:userObj})
+        .then(res=>this.getAllEmployees())
     }
 
     deleteEmpHandler = (id) =>{

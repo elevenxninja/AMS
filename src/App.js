@@ -23,12 +23,15 @@ class App extends React.Component {
   if(!this.props.authed){
     redirect = <Redirect to='/' />
   }
+  if(this.props.authed){
+    redirect = <Redirect to='/employees-list' from='/' exact/>
+  }
   return (
     <div>
       <Switch>
         <Route path='/' exact component={Login} />
-        {redirect}
         <Route path='/employees-list' component={EmployeesList} />
+        {redirect}
         <Route path='/logs' component={Logs} />
         <Route path='/about' component={About} />
         <Route path='/analytics' component={Analytics} />

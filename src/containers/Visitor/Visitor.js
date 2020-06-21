@@ -36,11 +36,11 @@ class Visitor extends React.Component{
                 value:'',
                 valid:false,
             },
-            jobTitle:{
+            meetingwith:{
                 elmType:'input',
                 elmConfig:{
                     type:'text',
-                    placeholder:'Job title'
+                    placeholder:'Meeting with'
                 },
                 validation:{
                     required:true,
@@ -53,6 +53,18 @@ class Visitor extends React.Component{
                 elmConfig:{
                     type:'email',
                     placeholder:'Email'
+                },
+                validation:{
+                    required:true,
+                },
+                value:'',
+                valid:false,
+            },
+            timestamp:{
+                elmType:'input',
+                elmConfig:{
+                    type:'time',
+                    placeholder:'Time stamp'
                 },
                 validation:{
                     required:true,
