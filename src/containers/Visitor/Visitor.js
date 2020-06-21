@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import classes from './Visitor.css';
 import Sidebar from '../../components/Sidebar/Sidebar';
@@ -24,7 +25,7 @@ class Visitor extends React.Component{
                 value:'',
                 valid:false,
             },
-            company:{
+            companyname:{
                 elmType:'input',
                 elmConfig:{
                     type:'text',
@@ -123,14 +124,13 @@ class Visitor extends React.Component{
     }
 
     submitHandler = (e) =>{
-        const visitorArray = [];
+        e.preventDefault();
+        const visitorObj = {};
         const visitorInfo = {...this.state.formInput};
         for(let key in visitorInfo){
-            visitorArray.push({
-                [key]: visitorInfo[key].value
-            })
+                visitorObj[key] = visitorInfo[key].value
         }
-        console.log(visitorArray)
+        axios.post('https://ams-api.herokuapp.com/addVisitor', null, {params:visitorObj})
     }
 
     render(){
