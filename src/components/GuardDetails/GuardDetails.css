@@ -15,22 +15,23 @@
     padding: 10px 10px;
 }
 
-.GuardDetails table thead tr th span:nth-child(1), .GuardDetails table tbody tr td span:nth-child(1){
+.GuardDetails table thead tr th span:nth-child(2), .GuardDetails table tbody tr td span:nth-child(2){
     margin: 0 10%;
     float: left;
 }
 
-.GuardDetails table thead tr th span:nth-child(2), .GuardDetails table tbody tr td span:nth-child(2){
+.GuardDetails table thead tr th span:nth-child(3), .GuardDetails table tbody tr td span:nth-child(3){
     float: right;
     margin: 0 10%;
 }
 
-.GuardDetails table thead tr th:nth-child(1){
-    width: 40%;
+.GuardDetails table thead tr th:nth-child(1), .GuardDetails table thead tr th:nth-child(4), .GuardDetails table thead tr th:nth-child(5){
+    width: 10%;
 }
 
-.GuardDetails table thead tr th:nth-child(2), .GuardDetails table thead tr th:nth-child(3){
-    width: 30%;
+.GuardDetails table thead tr th:nth-child(2),
+.GuardDetails table thead tr th:nth-child(3){
+    width: 33%;
 }
 
 .GuardDetails table tfoot tr td{
@@ -51,16 +52,36 @@
     border-radius: 5px;
 }
 
-.GuardDetails table tbody tr td:nth-child(1){
+.GuardDetails table tbody tr td:nth-child(2){
     color: #2b86b3;
     font-weight: bold;
     cursor: pointer;
 }
 
-.GuardDetails table tbody tr td:nth-child(2){
+.GuardDetails table tbody tr td:nth-child(3){
     padding: 0 50px;
 }
 
-.GuardDetails table tbody tr td:nth-child(3) div{
+.GuardDetails table tbody tr td:nth-child(4) div{
     margin: 0 auto;
+}
+
+.GuardDetails table tbody tr td:nth-child(1), 
+.GuardDetails table tbody tr td:nth-child(5){
+    text-align: center;
+}
+
+.GuardDetails table tbody tr td button{
+    background-color: #2b86b3;
+    padding: 3px 15px;
+    width: auto;
+    border:none;
+    color: white;
+    border-radius: 5px;
+}
+
+.GuardDetails table button:hover{
+    background-color: #257197;
+    cursor: pointer;
+    box-shadow: 1px 1px 3px 1px #ccc;
 }
