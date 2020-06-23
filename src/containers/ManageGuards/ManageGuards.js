@@ -18,6 +18,7 @@ class ManageGuards extends React.Component{
         toggle:false,
         currentPage:1,
         dispalyItemsPerPage:2,
+        delId:null,
         individualGuard:{
             name:{
                 elmType:'input',
@@ -125,6 +126,27 @@ class ManageGuards extends React.Component{
         })
     }
 
+    deleteConfirm = (id) =>{
+        this.setState({
+            delId: id,
+        })
+    }
+
+    cancelDeleteHandler = () =>{
+        this.setState({
+            delId: null,
+        })
+    }
+
+    deleteEmpHandler = () =>{
+        axios.post('https://ams-api.herokuapp.com/deleteEmployee', null, {params:{id:this.state.delId}})
+        .then(res=>
+            this.setState({
+                delId: null,
+            }),
+            this.getAllEmployees())
+    }
+
     individualGuardHandler = (guard) =>{
         console.log(guard)
         const guardForm = {...this.state.individualGuard};
@@ -163,6 +185,21 @@ class ManageGuards extends React.Component{
     }
 
     render(){
+        let deletePop = null;
+        if(this.state.delId){
+            deletePop = (<Popup>
+                            <div className={classes.DeleteBox}>
+                                <h3>
+                                    Are you sure you want to delete this?
+                                </h3>
+                                <div>
+                                    <button onClick={this.deleteEmpHandler}>Yes</button>
+                                    <button onClick={this.cancelDeleteHandler}>No</button>
+                                </div>
+                            </div>
+                        </Popup>)
+        }
+
         const {currentPage, dispalyItemsPerPage, guardList, filter} = this.state;
 
         const lowerFilter = filter.toLowerCase();
@@ -207,6 +244,7 @@ class ManageGuards extends React.Component{
 
         return(
             <div>
+                {deletePop}
                 {individualGuardPopup}
                 <Sidebar/>
                 <Search 
@@ -220,6 +258,7 @@ class ManageGuards extends React.Component{
                 <GuardDetails 
                 clicked={(guard)=>this.individualGuardHandler(guard)}
                 value={this.state.toggle}
+                clickedDelete={(id)=>this.deleteConfirm(id)}
                 toggle = {(value)=>this.toggleHandler(value)}
                 guardList={currentLists}/>
                 <Pagination 
