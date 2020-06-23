@@ -26,35 +26,11 @@ class AddGuard extends React.Component{
                 value:'',
                 valid:false,
             },
-            imei_no:{
-                elmType:'input',
-                elmConfig:{
-                    type:'text',
-                    placeholder:'IMEI No.',
-                },
-                validation:{
-                    required:true,
-                },
-                value:'',
-                valid:false,
-            },
             status:{
                 elmType:'input',
                 elmConfig:{
                     type:'text',
                     placeholder:'Status',
-                },
-                validation:{
-                    required:true,
-                },
-                value:'',
-                valid:false,
-            },
-            email:{
-                elmType:'input',
-                elmConfig:{
-                    type:'email',
-                    placeholder:'E-mail'
                 },
                 validation:{
                     required:true,
@@ -74,11 +50,11 @@ class AddGuard extends React.Component{
                 value:'',
                 valid:false,
             },
-            purpose:{
+            imei_no:{
                 elmType:'input',
                 elmConfig:{
                     type:'text',
-                    placeholder:'Purpose',
+                    placeholder:'IMEI No.',
                 },
                 validation:{
                     required:true,
@@ -169,7 +145,6 @@ class AddGuard extends React.Component{
                             <FaUserCircle/>
                             <FiPhone />
                             <FaRegAddressCard />
-                            <BsBuilding />
                             <h4>Create new contact</h4>
                             {GuardForm}
                         </div>
