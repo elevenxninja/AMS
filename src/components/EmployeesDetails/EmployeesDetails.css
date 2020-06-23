@@ -32,6 +32,12 @@
     text-align: center;
 }
 
+.EmployeesDetails table tbody tr td:nth-child(2),
+.EmployeesDetails table tbody tr td:nth-child(3),
+.EmployeesDetails table tbody tr td:nth-child(4){
+    width: 26%;
+}
+
 .EmployeesDetails table tfoot tr td button{
     background-color: #2b86b3;
     padding: 5px 0;
@@ -50,6 +56,7 @@
 
 .EmployeesDetails table tfoot tr td{
     text-align: center;
+    height: 20px;
 }
 
 .EmployeesDetails table tbody tr td{
@@ -72,6 +79,6 @@
     cursor: pointer;
 }
 
-.EmployeesDetails table tbody tr td:nth-child(3){
-    padding: 0 50px;
+.EmployeesDetails table tbody tr td{
+    padding: 5px 20px;
 }

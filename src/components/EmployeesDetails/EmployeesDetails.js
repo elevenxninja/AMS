@@ -12,14 +12,17 @@ const EmployeesDetails = (props) =>{
                     <td 
                     onClick={()=>props.clicked(empl)}>{empl.name}</td>
                     <td>{empl.designation}</td>
-                    <td><span><button 
+                    <td>
+                        {/* <span><button 
                     onClick={() => props.clickedSms(empl.name, empl.email)}>
                         SEND SMS
                         </button></span> 
                         <span><button
                         onClick={() => props.clickedMail(empl.name, empl.email)}>
                             SEND EMAIL
-                        </button></span></td>
+                        </button></span> */}
+                        {empl.mobile}
+                        </td>
                     <td>
                         <button onClick={()=>props.clickedDelete(empl.id)}>Delete</button>
                     </td>
@@ -35,7 +38,7 @@ const EmployeesDetails = (props) =>{
                         <th>Id</th>
                         <th>Name/Username</th>
                         <th>Designation</th>
-                        <th><span>Send SMS</span> <span>Send EMAIL</span></th>
+                        <th>Mobile</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -47,7 +50,7 @@ const EmployeesDetails = (props) =>{
                     <td></td>
                         <td></td>
                         <td></td>
-                        <td><button>SEND TO ALL</button></td>
+                        <td></td>
                         <td></td>
                     </tr>
                 </tfoot>
