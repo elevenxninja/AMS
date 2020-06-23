@@ -67,7 +67,9 @@
 .FormCard form div:nth-child(2) input, 
 .FormCard form div:nth-child(3) input,
 .FormCard form div:nth-child(4) input,
-.FormCard form div:nth-child(5) input{
+.FormCard form div:nth-child(5) input,
+.FormCard form div:nth-child(6) input,
+.FormCard form div:nth-child(7) input{
     width: 290px;
 }
 
@@ -75,7 +77,8 @@
 .FormCard form div:nth-child(3),
 .FormCard form div:nth-child(4), 
 .FormCard form div:nth-child(5),
-.FormCard form div:nth-child(6){
+.FormCard form div:nth-child(6),
+.FormCard form div:nth-child(7){
     display: inline;
 }
 

@@ -4,7 +4,11 @@ const Input = (props) =>{
     let inputEl ='';
     switch(props.elmType){
         case('input'):
-            inputEl = <input {...props.elmConfig} value={props.value} onChange={props.changed} />
+            inputEl = <input {...props.elmConfig}
+            onFocus={(e) => e.target.type = props.onfocus} 
+            onBlur={(e) => e.target.type = 'text'}
+            value={props.value} 
+            onChange={props.changed} />
         break;
         case('textarea'):
             inputEl = <textarea {...props.elmConfig} value={props.value} onChange={props.changed} />

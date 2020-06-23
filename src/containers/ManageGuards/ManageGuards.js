@@ -72,7 +72,7 @@ class ManageGuards extends React.Component{
         axios.get('https://ams-api.herokuapp.com/getAllEmployees')
         .then(response =>{
             this.setState({
-                guardList: response.data,
+                guardList: response.data.data,
             })
         })
     }

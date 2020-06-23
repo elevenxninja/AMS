@@ -6,8 +6,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import Input from '../../components/UI/Input/Input';
 
 import { BsBuilding } from "react-icons/bs";
-import { FaUserCircle } from "react-icons/fa";
-import { GoMail } from 'react-icons/go';
+import { FaUserCircle, FaBusinessTime } from "react-icons/fa";
 import { FiPhone, FiFile } from 'react-icons/fi';
 
 class Visitor extends React.Component{
@@ -22,6 +21,7 @@ class Visitor extends React.Component{
                 validation:{
                     required:true,
                 },
+                onfocus:'text',
                 value:'',
                 valid:false,
             },
@@ -34,6 +34,7 @@ class Visitor extends React.Component{
                 validation:{
                     required:true,
                 },
+                onfocus:'text',
                 value:'',
                 valid:false,
             },
@@ -46,30 +47,33 @@ class Visitor extends React.Component{
                 validation:{
                     required:true,
                 },
+                onfocus:'text',
                 value:'',
                 valid:false,
             },
-            email:{
+            date:{
                 elmType:'input',
                 elmConfig:{
-                    type:'email',
-                    placeholder:'Email'
+                    type:'text',
+                    placeholder:'Select date'
                 },
                 validation:{
                     required:true,
                 },
+                onfocus:'date',
                 value:'',
                 valid:false,
             },
-            timestamp:{
+            time:{
                 elmType:'input',
                 elmConfig:{
-                    type:'time',
-                    placeholder:'Time stamp'
+                    type:'text',
+                    placeholder:'Select time'
                 },
                 validation:{
                     required:true,
                 },
+                onfocus:'time',
                 value:'',
                 valid:false,
             },
@@ -82,6 +86,20 @@ class Visitor extends React.Component{
                 validation:{
                     required:true,
                 },
+                onfocus:'text',
+                value:'',
+                valid:false,
+            },
+            email:{
+                elmType:'input',
+                elmConfig:{
+                    type:'email',
+                    placeholder:'Email'
+                },
+                validation:{
+                    required:true,
+                },
+                onfocus:'text',
                 value:'',
                 valid:false,
             },
@@ -141,6 +159,7 @@ class Visitor extends React.Component{
         const visitorInput = <form onSubmit={this.submitHandler}>
             {visitorFormArray.map(input=>{
             return <Input key={input.id}
+            onfocus={input.onfocus}
             changed={(event)=>this.inputChangeHandler(event, input.id)}
             value={input.value}
             elmType={input.elmType}
@@ -158,7 +177,7 @@ class Visitor extends React.Component{
                     <div className={classes.FormCard}>
                         <FaUserCircle/>
                         <BsBuilding />
-                        <GoMail />
+                        <FaBusinessTime />
                         <FiPhone />
                         <FiFile />
                         <h4>Create new contact</h4>
