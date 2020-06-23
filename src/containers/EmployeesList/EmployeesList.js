@@ -60,6 +60,14 @@ class EmployeesList extends React.Component{
                 },
                 value:''
             },
+            employee_type:{
+                elmType:'input',
+                label:'Employee Type',
+                elmConfig:{
+                    type:'text',
+                },
+                value:''
+            },
             mobile:{
                 elmType:'input',
                 label:'Contact Number',
@@ -163,6 +171,7 @@ class EmployeesList extends React.Component{
 
     userHandler = (user) =>{
         const userVal = {...this.state.userProfileForm}
+        userVal.employee_type.value = user.employee_type;
         userVal.emp_id.value = user.emp_id;
         userVal.name.value = user.name;
         userVal.email.value = user.email;
