@@ -18,6 +18,7 @@ class EmployeesList extends React.Component{
         displayItemPerPage:8,
         employeesList:[],
         UserId:null,
+        delId:null,
         userProfileForm:{
             emp_id:{
                 elmType:'input',
@@ -195,12 +196,43 @@ class EmployeesList extends React.Component{
         .then(res=>this.getAllEmployees())
     }
 
-    deleteEmpHandler = (id) =>{
-        axios.post('https://ams-api.herokuapp.com/deleteEmployee', null, {params:{id:id}})
-        .then(res=>this.getAllEmployees())
+    deleteConfirm = (id) =>{
+        this.setState({
+            delId: id,
+        })
+    }
+
+    cancelDeleteHandler = () =>{
+        this.setState({
+            delId: null,
+        })
+    }
+
+    deleteEmpHandler = () =>{
+        axios.post('https://ams-api.herokuapp.com/deleteEmployee', null, {params:{id:this.state.delId}})
+        .then(res=>
+            this.setState({
+                delId: null,
+            }),
+            this.getAllEmployees())
     }
 
     render(){
+        let deletePop = null;
+        if(this.state.delId){
+            deletePop = (<Popup>
+                            <div className={classes.DeleteBox}>
+                                <h3>
+                                    Are you sure you want to delete this?
+                                </h3>
+                                <div>
+                                    <button onClick={this.deleteEmpHandler}>Yes</button>
+                                    <button onClick={this.cancelDeleteHandler}>No</button>
+                                </div>
+                            </div>
+                        </Popup>)
+        }
+
         const  userProfileArray = [];
         for(let key in this.state.userProfileForm){
             userProfileArray.push({...this.state.userProfileForm[key], id:this.state.UserId, inputId:key});
@@ -242,6 +274,7 @@ class EmployeesList extends React.Component{
         const currnetItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
         return(
             <div>
+                {deletePop}
                 {popup}
                 <Sidebar />
                 <Search value={filter} changed={this.searchHandler}/>
@@ -255,7 +288,7 @@ class EmployeesList extends React.Component{
                     <EmployeesDetails employeesList={currnetItems}
                     clicked={(user)=>this.userHandler(user)} 
                     clickedSms={(name, email) => this.sendSmsHandler(name, email)}
-                    clickedDelete ={(id)=>this.deleteEmpHandler(id)}
+                    clickedDelete ={(id)=>this.deleteConfirm(id)}
                     clickedMail={(name, email) => this.sendEmailHandler(name, email)}/>
                     <Pagination totalItems={this.state.employeesList.length} 
                     itemsPerPage={this.state.displayItemPerPage} 
