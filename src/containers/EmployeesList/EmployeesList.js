@@ -201,8 +201,12 @@ class EmployeesList extends React.Component{
             userObj[key] = userFormVal[key].value
         }
         userObj.id = this.state.userId;
-        axios.post('https://ams-api.herokuapp.com/postEditProfile', null, {params:userObj})
-        .then(res=>this.getAllEmployees())
+        axios.post('https://ams-api.herokuapp.com/editProfile', null, {params:userObj})
+        .then(res=>
+            this.setState({
+                isPopup:false
+            }),
+            this.getAllEmployees())
     }
 
     deleteConfirm = (id) =>{

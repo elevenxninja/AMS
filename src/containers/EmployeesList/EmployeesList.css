@@ -71,6 +71,11 @@
     border: none;
 }
 
+.FormCard form button:hover{
+    cursor: pointer;
+    box-shadow: 1px 1px 3px 1px #ccc;
+}
+
 .FormCard form button:last-child{
     margin-left:41px;
 }
