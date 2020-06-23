@@ -15,26 +15,26 @@ import Logout from './containers/Logout/Logout';
 
 
 class App extends React.Component {
-  componentDidMount(){
-    this.props.onCheckAuth();
-  }
+  // componentDidMount(){
+  //   this.props.onCheckAuth();
+  // }
 
   render(){
   let redirect = null;
-  let redirectToMain = null;
+  // let redirectToMain = null;
   if(!this.props.authed){
     redirect = <Redirect to='/' />
   }
-  if(this.props.authed){
-    redirectToMain = <Redirect to='/employees-list' from='/' exact/>
-  }
+  // if(this.props.authed){
+  //   redirectToMain = <Redirect to='/employees-list' from='/' exact/>
+  // }
   return (
     <div>
       <Switch>
         <Route path='/' exact component={Login} />
         {redirect}
         <Route path='/employees-list' component={EmployeesList} />
-        {redirectToMain}
+        {/* {redirectToMain} */}
         <Route path='/logs' component={Logs} />
         <Route path='/about' component={About} />
         <Route path='/analytics' component={Analytics} />
@@ -53,10 +53,10 @@ const mapStateToProps = state =>{
   }
 }
 
-const mapDispatchToProps = dispatch =>{
-  return{
-    onCheckAuth: () => dispatch(authAutoCheck())
-  }
-}
+// const mapDispatchToProps = dispatch =>{
+//   return{
+//     onCheckAuth: () => dispatch(authAutoCheck())
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

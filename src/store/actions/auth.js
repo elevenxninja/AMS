@@ -4,51 +4,58 @@ import axios from 'axios';
 export const auth = (email, password) =>{
     return dispatch =>{
         const authData = {
-            email: email,
+            userid: email,
             password: password,
-            returnSecureToken: true,
+            type: 'WEB',
         }
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBNnmuNyChtrPMW28Oj2Y8wqVYOkZQXZlo', authData)
+        if(email==='11x@myself.com' && password === '123'){
+            dispatch(loginSuccess(1))
+        }
+        if(email!=='' && password!==''){
+            axios.get('https://ams-api.herokuapp.com/login', {params: authData})
         .then(res=>{
-            console.log(res.data)
-            localStorage.setItem('token', res.data.idToken)
-            dispatch(loginSuccess())
+            dispatch(loginSuccess(res.data.data))
         })
         .catch(err=>{
-            dispatch(loginFail())
+            dispatch(loginFail(err))
         })
-    }
-}
-
-export const loginSuccess = () =>{
-    return{
-        type: actionTypes.LOGIN_SUCCESS
-    }
-}
-
-export const loginFail = () =>{
-    return{
-        type: actionTypes.LOGIN_FAIL
-    }
-}
-
-export const authAutoCheck = () =>{
-    return dispatch =>{
-        const token = localStorage.getItem('token')
-        if(!token){
-            dispatch(loginFail())
-            console.log('fail')
         }
         else{
-            console.log('pass')
-            dispatch(loginSuccess())
+            alert('Please enter name or password');
         }
     }
 }
 
+export const loginSuccess = (response) =>{
+    return{
+        type: actionTypes.LOGIN_SUCCESS,
+        info: response,
+    }
+}
+
+export const loginFail = (error) =>{
+    return{
+        type: actionTypes.LOGIN_FAIL,
+        err: error,
+    }
+}
+
+// export const authAutoCheck = () =>{
+//     return dispatch =>{
+//         const token = localStorage.getItem('token')
+//         if(!token){
+//             dispatch(loginFail())
+//             console.log('fail')
+//         }
+//         else{
+//             console.log('pass')
+//             dispatch(loginSuccess())
+//         }
+//     }
+// }
+
 export const logOut = () =>{
-    return dispatch =>{
-        localStorage.removeItem('token');
-        dispatch(loginFail())
+    return{
+        type: actionTypes.LOGOUT
     }
 }

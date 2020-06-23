@@ -32,7 +32,7 @@ class Login extends React.Component{
     submitHandler = (e) =>{
         e.preventDefault();
         this.props.onLogin(this.state.userName, this.state.password);
-        alert(`Name: ${this.state.userName}, Password: ${this.state.password}`)
+        // alert(`Name: ${this.state.userName}, Password: ${this.state.password}`)
     }
 
     render(){
