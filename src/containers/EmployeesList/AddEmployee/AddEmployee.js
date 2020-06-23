@@ -24,6 +24,7 @@ class AddEmployee extends React.Component{
                 validation:{
                     required: true,
                 },
+                onfocus:'text',
                 valid:false,
                 value:'',
             },
@@ -36,6 +37,7 @@ class AddEmployee extends React.Component{
                 validation:{
                     required: true,
                 },
+                onfocus:'text',
                 valid:false,
                 value:'',
             },
@@ -49,6 +51,7 @@ class AddEmployee extends React.Component{
                     required: true,
                     check: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                 },
+                onfocus:'email',
                 valid:false,
                 value:'',
             },
@@ -62,6 +65,7 @@ class AddEmployee extends React.Component{
                 validation:{
                     required: true,
                 },
+                onfocus:'number',
                 value:'',
             },
             designation:{
@@ -73,6 +77,7 @@ class AddEmployee extends React.Component{
                 validation:{
                     required: true,
                 },
+                onfocus:'text',
                 valid:false,
                 value:'',
             },
@@ -85,6 +90,7 @@ class AddEmployee extends React.Component{
                 validation:{
                     required: true,
                 },
+                onfocus:'text',
                 valid:false,
                 value:'',
             },
@@ -176,6 +182,7 @@ class AddEmployee extends React.Component{
                     <form onSubmit={this.submitHandler}>
                         {empFormArray.map(empVal=>{
                             return <Input elmType={empVal.elmType} 
+                            onfocus={empVal.onfocus}
                             elmConfig={empVal.elmConfig} 
                             key={empVal.id}
                             changed={(event) =>this.changedEmpHandler(event, empVal.id)}/>

@@ -86,7 +86,7 @@ class Visitor extends React.Component{
                 validation:{
                     required:true,
                 },
-                onfocus:'text',
+                onfocus:'number',
                 value:'',
                 valid:false,
             },
@@ -98,8 +98,9 @@ class Visitor extends React.Component{
                 },
                 validation:{
                     required:true,
+                    check: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                 },
-                onfocus:'text',
+                onfocus:'email',
                 value:'',
                 valid:false,
             },
@@ -138,6 +139,9 @@ class Visitor extends React.Component{
         if(rules.required){
             isValid = value !== '' && isValid;
         }
+        if(rules.check){
+            isValid = rules.check.test(value)
+        }
         return isValid;
     }
 
@@ -149,6 +153,17 @@ class Visitor extends React.Component{
                 visitorObj[key] = visitorInfo[key].value
         }
         axios.post('https://ams-api.herokuapp.com/addVisitor', null, {params:visitorObj})
+        .then(res=>{
+            let input = {...this.state.formInput};
+            for(let key in input){
+                input[key].value = '';
+            }
+            this.setState({
+                formInput: input,
+            })
+            console.log(input)
+        }
+            )
     }
 
     render(){
