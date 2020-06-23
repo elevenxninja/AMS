@@ -78,7 +78,7 @@ class EmployeesList extends React.Component{
         axios.get('https://ams-api.herokuapp.com/getAllEmployees')
         .then(response =>{
             this.setState({
-                employeesList: response.data,
+                employeesList: response.data.data,
             })
         })
     }
