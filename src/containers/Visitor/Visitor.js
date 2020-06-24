@@ -161,7 +161,6 @@ class Visitor extends React.Component{
             this.setState({
                 formInput: input,
             })
-            console.log(res)
         }
             )
     }

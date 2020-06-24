@@ -7,6 +7,7 @@ import LogsDetails from '../../components/LogsDetails/LogsDetails';
 import Pagination from '../../components/Pagination/Pagination';
 import Popup from '../../components/UI/Popup/Popup';
 import IndividualsUserLogs from '../../components/LogsDetails/IndividualsUserLogs/IndividualsUserLogs';
+import axios from 'axios';
 
 class Logs extends React.Component{
     state = {
@@ -17,128 +18,18 @@ class Logs extends React.Component{
         fromDate:null,
         toDate:null,
         displayItemsPerPage:8,
-        userLogs:[
-            {name: 'Employee 1',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Designer'
-            },
-            {name: 'Employee 2',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'UI'
-            },
-            {name: 'Employee 3',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Developer'
-            },
-            {name: 'Employee 4',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Designer'
-            },
-            {name: 'Employee 5',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'UX'
-            },
-            {name: 'Employee 6',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Developer'
-            },
-            {name: 'Employee 7',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'UX'
-            },
-            {name: 'Employee 8',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Designer'
-            },
-            {name: 'Employee 9',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Designer'
-            },
-            {name: 'Employee 10',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'UI'
-            },
-            {name: 'Employee 11',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Developer'
-            },
-            {name: 'Employee 12',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Designer'
-            },
-            {name: 'Employee 13',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'UX'
-            },
-            {name: 'Employee 14',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Developer'
-            },
-            {name: 'Employee 15',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'UX'
-            },
-            {name: 'Employee 16',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Designer'
-            },
-            {name: 'Employee 17',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Designer'
-            },
-            {name: 'Employee 18',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'UI'
-            },
-            {name: 'Employee 19',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Developer'
-            },
-            {name: 'Employee 20',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Designer'
-            },
-            {name: 'Employee 21',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'UX'
-            },
-            {name: 'Employee 22',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Developer'
-            },
-            {name: 'Employee 23',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'UX'
-            },
-            {name: 'Employee 24',
-            inTimestamp: '06-08-2020 3 PM',
-            outTimestamp: '06-08-2020 9 PM',
-            designation: 'Designer'
-            },
-        ]
+        userLogs:[],
+    }
+
+    componentDidMount(){
+        axios.get('https://ams-api.herokuapp.com/getAllEmployeesLogs')
+        .then(res=>{
+            console.log(res.data.data)
+            this.setState({
+                userLogs: res.data.data
+            })
+        })
+        .catch(err=> console.log(err))
     }
 
     changedHandler = (e) =>{
@@ -233,7 +124,7 @@ class Logs extends React.Component{
         const {filter, userLogs} = this.state;
         const lowerCaseFilter = filter.toLowerCase();
         const updatedForm = userLogs.filter(log=>
-            log.name.toLowerCase().includes(lowerCaseFilter)
+            log.username.toLowerCase().includes(lowerCaseFilter)
             )
 
 

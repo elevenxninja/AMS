@@ -6,9 +6,10 @@ const LogsDetails = (props) =>{
     let logs = props.logs.map(log=>{
         return (
             <tr key={log.name}>
-                <td onClick={() =>props.clicked(log)}>{log.name}</td>
-                <td>{log.designation}</td>
-                <td><span>{log.inTimestamp}</span> <span>{log.outTimestamp}</span></td>
+                <td onClick={() =>props.clicked(log)}>{log.username}</td>
+                <td>{log.mobile}</td>
+                <td><span>{log.status === 'IN' ? log.timestamp : null}</span> 
+                <span>{log.status === 'OUT' ? log.timestamp : null}</span></td>
             </tr>
         )
     })
@@ -19,7 +20,7 @@ const LogsDetails = (props) =>{
                 <thead>
                     <tr>
                         <th>Name/Username</th>
-                        <th>Designation</th>
+                        <th>Mobile</th>
                         <th><span>In-Timestamp</span> <span>Our-Timestamp</span></th>
                     </tr>
                 </thead>
