@@ -18,13 +18,12 @@ class Logs extends React.Component{
         fromDate:null,
         toDate:null,
         displayItemsPerPage:8,
-        userLogs:[],
+        userLogs:[]
     }
 
     componentDidMount(){
         axios.get('https://ams-api.herokuapp.com/getAllEmployeesLogs')
         .then(res=>{
-            console.log(res.data.data)
             this.setState({
                 userLogs: res.data.data
             })
