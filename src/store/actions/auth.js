@@ -6,19 +6,26 @@ export const auth = (email, password) =>{
         const authData = {
             userid: email,
             password: password,
-            type: 'WEB',
+            type: 'mobile',
         }
         if(email==='11x@myself.com' && password === '123'){
             dispatch(loginSuccess(1))
         }
         if(email!=='' && password!==''){
-            axios.get('https://ams-api.herokuapp.com/login', {params: authData})
-        .then(res=>{
-            dispatch(loginSuccess(res.data.data))
-        })
-        .catch(err=>{
-            dispatch(loginFail(err))
-        })
+            console.log(authData)
+            axios.get('https://ams-api.herokuapp.com/login',{params:authData})
+            .then(res=>{
+                if(res.data.data.length > 0){
+                    dispatch(loginSuccess(res.data.data))
+                }
+                else{
+                    console.log(res)
+                    alert('Please enter valid username or Passsword!')
+                }            
+            })
+            .catch(err=>{
+                dispatch(loginFail(err))
+            })
         }
         else{
             alert('Please enter name or password');
