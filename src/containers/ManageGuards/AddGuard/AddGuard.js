@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import ReactFileReader from 'react-file-reader';
 import {FaPlus, FaUser, FaUserFriends, FaUserCircle, FaRegAddressCard } from "react-icons/fa";
@@ -50,7 +51,7 @@ class AddGuard extends React.Component{
                 value:'',
                 valid:false,
             },
-            imei_no:{
+            imei:{
                 elmType:'input',
                 elmConfig:{
                     type:'text',
@@ -66,7 +67,7 @@ class AddGuard extends React.Component{
         isValidate:false
     }
 
-    toggleAddGuardHandler = () =>{
+    toggleAddGuardHandler = (value) =>{
         this.setState((prevState)=>({
             isGuardOption: !prevState.isGuardOption,
         }))
@@ -113,7 +114,11 @@ class AddGuard extends React.Component{
         for(let key in objGuard){
             guardDetails[key] = objGuard[key].value;
         }
-        console.log(guardDetails)
+        axios.post('https://ams-api.herokuapp.com/addGuard', null, {params: guardDetails})
+        .then(res=>{
+            console.log(res.data)
+        })
+        .catch(err=> console.log(err))
     }
 
     render(){
