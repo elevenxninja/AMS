@@ -11,6 +11,7 @@ import axios from 'axios';
 
 class Logs extends React.Component{
     state = {
+        singleUser:[],
         user:null,
         isPopup:false,
         filter:'',
@@ -63,29 +64,37 @@ class Logs extends React.Component{
 
     opneDatePicker = () =>this._calendar.setOpen(true);
 
-    popupHandler = (log) =>{
-        console.log(log)
-        this.setState({
-            isPopup: true,
-            user: {...log, attendance:[
-                {date:'2020-06-18',
-                Present: 'yes'},
-                {date:'2020-06-19',
-                Present: 'yes'},
-                {date:'2020-06-20',
-                Present: 'yes'},
-                {date:'2020-06-21',
-                Present: 'yes'},
-                {date:'2020-06-22',
-                Present: 'yes'},
-                {date:'2020-06-23',
-                Present: 'yes'},
-                {date:'2020-06-24',
-                Present: 'yes'},
-                {date:'2020-06-25',
-                Present: 'yes'},
-            ]}
+    popupHandler = (logVal) =>{
+        axios.get('https://ams-api.herokuapp.com/getSingleEmployeesLogs', {params: {emp_id: logVal.emp_id, mobile: logVal.mobile}})
+        .then(res=>{
+            this.setState({
+                singleUser: res.data.data,
+                isPopup: true,
+            })
         })
+        .catch(err=>console.log(err))
+        
+        // this.setState({
+        //     isPopup: true,
+        //     user: {...log, attendance:[
+        //         {date:'2020-06-18',
+        //         Present: 'yes'},
+        //         {date:'2020-06-19',
+        //         Present: 'yes'},
+        //         {date:'2020-06-20',
+        //         Present: 'yes'},
+        //         {date:'2020-06-21',
+        //         Present: 'yes'},
+        //         {date:'2020-06-22',
+        //         Present: 'yes'},
+        //         {date:'2020-06-23',
+        //         Present: 'yes'},
+        //         {date:'2020-06-24',
+        //         Present: 'yes'},
+        //         {date:'2020-06-25',
+        //         Present: 'yes'},
+        //     ]}
+        // })
     }
 
     fromDateHandler = (e) =>{
@@ -107,6 +116,46 @@ class Logs extends React.Component{
     }
 
     render(){
+        
+
+        
+        var singleUserLog = [];
+        let logs = this.state.singleUser.map(log=>{
+            let timestamp = new Date(parseInt(log.timestamp));
+            let date = timestamp.getDate();
+            let filterLogs = this.state.singleUser.filter(filterLog=>{
+                let timestampFilter = new Date(parseInt(filterLog.timestamp));
+                let dateFilter = timestampFilter.getDate();
+                return dateFilter === date;
+            })
+            console.log(filterLogs)
+            let logObj = {};
+            let mapLogs = filterLogs.map(mapLog=>{
+                if(mapLog.status === 'IN'){
+                    logObj.username = mapLog.username;
+                    logObj.emp_id = mapLog.emp_id;
+                    logObj.mobile = mapLog.mobile;
+                    logObj.date =mapLog.timestamp;
+                }
+                // if(mapLog.status === 'OUT'){
+                //     logObj.outTime = new Date(parseInt(mapLog.timestamp)).toISOString().slice(11, -1);
+                // }
+                else{
+                   return null;
+                } 
+            })
+            singleUserLog.push(logObj);
+        })
+                let jsonObject = singleUserLog.map(JSON.stringify); 
+          
+                // console.log(jsonObject); 
+          
+                let uniqueSet = new Set(jsonObject); 
+                let uniqueArray = Array.from(uniqueSet).map(JSON.parse); 
+        
+
+
+
         let popup = null;
         if(this.state.isPopup){
             popup = (<Popup>
@@ -116,7 +165,7 @@ class Logs extends React.Component{
                 toDateVal={this.state.toDate}
                 fromDate={(e) =>this.fromDateHandler(e)}
                 toDate={(e)=>this.toDateHandler(e)}
-                userLog={this.state.user}/>
+                userLog={uniqueArray}/>
             </Popup>)
         }
 
@@ -131,6 +180,7 @@ class Logs extends React.Component{
         const indexOfLastItem = currentPage * displayItemsPerPage;
         const indexOfFirstItem = indexOfLastItem - displayItemsPerPage;
         const updatedEmpForm = updatedForm.slice(indexOfFirstItem, indexOfLastItem);
+        
         return(
             <div>
                 {popup}

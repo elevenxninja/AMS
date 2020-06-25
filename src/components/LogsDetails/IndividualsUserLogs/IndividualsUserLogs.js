@@ -4,18 +4,21 @@ import classes from './IndividualsUserLogs.css';
 import { AiOutlineClose } from 'react-icons/ai';
 
 const IndividualsUserLogs = (props) =>{
-    let attendance= props.userLog.attendance.map(attend=>{
-            return (<p><span>{attend.Present}</span>
-            <span>{attend.date}</span></p>)
+    console.log('userLog')
+    console.log(props.userLog)
+    let attendance= props.userLog.map(attend=>{
+        console.log(attend.date)
+            return (<p><span>Yes</span>
+            <span>{new Date(parseInt(attend.date)).toLocaleDateString()}</span></p>)
     })
 
-    let filterAttendance = props.userLog.attendance
-    .filter(attend=> (Date.parse(attend.date) >=Date.parse(props.fromDateVal) && 
-        Date.parse(attend.date)<= Date.parse(props.toDateVal)) )
+    let filterAttendance = props.userLog
+    .filter(attend=> attend.date >=Date.parse(props.fromDateVal) && 
+        attend.date<= Date.parse(props.toDateVal) + 86400000)
     if(props.fromDateVal && props.toDateVal){
         attendance = filterAttendance.map(attend=>{
-            return (<p><span>{attend.Present}</span>
-            <span>{attend.date}</span></p>)
+            return (<p><span>Yes</span>
+            <span>{new Date(parseInt(attend.date)).toLocaleDateString()}</span></p>)
     })}
 
     return(
