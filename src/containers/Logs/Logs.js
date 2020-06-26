@@ -33,10 +33,8 @@ class Logs extends React.Component{
     componentDidMount(){
         axios.get('https://ams-api.herokuapp.com/getAllEmployeesLogs')
         .then(res=>{
-            this.setState({
-                userLogs: res.data.data
-            })
-        })
+            this.mergeInOutTimestampInSingleObj(res.data.data)
+       })
         .catch(err=> console.log(err))
         axios.get('https://ams-api.herokuapp.com/getAllDesignation')
         .then(res=>{
@@ -56,6 +54,56 @@ class Logs extends React.Component{
                 employeeOpt: res.data.data
             })
         })
+    }
+
+    mergeInOutTimestampInSingleObj = (data) =>{
+        console.log('data')
+        console.log(data)
+        var newLog = [];
+    let logs = data.map(log=>{
+        let timestamp = new Date(parseInt(log.timestamp));
+        let date = timestamp.getDate();
+        let filterLogs = data.filter(filterLog=>{
+            let timestampFilter = new Date(parseInt(filterLog.timestamp));
+            let dateFilter = timestampFilter.getDate();
+            return filterLog.emp_id === log.emp_id && dateFilter === date;
+        })
+        console.log('log')
+        console.log(log)
+        console.log(filterLogs)
+        console.log('filter')
+        let logObj = {};
+        let mapLogs = filterLogs.map(mapLog=>{
+            if(mapLog.status === 'IN'){
+                logObj.username = mapLog.username;
+                logObj.emp_id = mapLog.emp_id;
+                logObj.mobile = mapLog.mobile;
+                logObj.inTime = mapLog.timestamp;
+                logObj.designation = mapLog.designation;
+                logObj.department = mapLog.department;
+                logObj.emp_type = mapLog.emp_type;
+            }
+            if(mapLog.status === 'OUT'){
+                logObj.outTime = mapLog.timestamp;
+            }
+            else{
+               return null;
+            } 
+        })
+        newLog.push(logObj);
+        console.log(newLog)
+    })
+            let jsonObject = newLog.map(JSON.stringify); 
+      
+            // console.log(jsonObject); 
+      
+            let uniqueSet = new Set(jsonObject); 
+            let uniqueArray = Array.from(uniqueSet).map(JSON.parse);
+            console.log('uniqueArray');
+            console.log(uniqueArray)
+            this.setState({
+                userLogs: uniqueArray
+            }) 
     }
 
     changedHandler = (e) =>{
@@ -234,19 +282,20 @@ class Logs extends React.Component{
 
         if(fromDateFilter){
             updatedForm = userLogs.filter(log=>{
-                return log.timestamp >= fromDateFilter;
+                console.log(log.inTime)
+                return log.inTime >= fromDateFilter;
             })
         }
 
         if(toDateFilter){
             updatedForm = userLogs.filter(log=>{
-                return log.timestamp <= toDateFilter + 86400000;
+                return log.inTime <= toDateFilter + 86400000;
             })
         }
 
         if(fromDateFilter!==null && toDateFilter!== null){
             updatedForm = userLogs.filter(log=>{
-                return log.timestamp >= fromDateFilter && log.timestamp <= toDateFilter + 86400000;
+                return log.inTime >= fromDateFilter && log.inTime <= toDateFilter + 86400000;
             })
         }
 
@@ -275,8 +324,8 @@ class Logs extends React.Component{
         }
 
         const {currentPage, displayItemsPerPage} = this.state;
-        const indexOfLastItem = currentPage * displayItemsPerPage;
-        const indexOfFirstItem = indexOfLastItem - displayItemsPerPage;
+        const indexOfLastItem = currentPage * displayItemsPerPage*2;
+        const indexOfFirstItem = indexOfLastItem - displayItemsPerPage*2;
         const updatedEmpForm = updatedForm.slice(indexOfFirstItem, indexOfLastItem);
         
         return(
