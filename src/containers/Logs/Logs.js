@@ -22,6 +22,9 @@ class Logs extends React.Component{
         userLogs:[],
         fromDateFilter:null,
         toDateFilter:null,
+        designationOpt:'',
+        departmentOpt:'',
+        employeeOpt:'',
     }
 
     componentDidMount(){
@@ -32,6 +35,24 @@ class Logs extends React.Component{
             })
         })
         .catch(err=> console.log(err))
+        axios.get('https://ams-api.herokuapp.com/getAllDesignation')
+        .then(res=>{
+            this.setState({
+                designationOpt: res.data.data
+            })
+        })
+        axios.get('https://ams-api.herokuapp.com/getAllDepartment')
+        .then(res=>{
+            this.setState({
+                departmentOpt: res.data.data
+            })
+        })
+        axios.get('https://ams-api.herokuapp.com/getAllEmployeeType')
+        .then(res=>{
+            this.setState({
+                employeeOpt: res.data.data
+            })
+        })
     }
 
     changedHandler = (e) =>{
@@ -109,7 +130,26 @@ class Logs extends React.Component{
     }
 
     render(){
-        
+        let departmentOption = null;
+        let designationOption = null;
+        let employeeOption = null;
+        if(this.state.departmentOpt !== ''){
+            departmentOption = this.state.departmentOpt.map(opt=>{
+                return <option>{opt.department}</option>
+            })
+        }
+
+        if(this.state.designationOpt !== ''){
+            designationOption = this.state.designationOpt.map(opt=>{
+                return <option>{opt.designation}</option>
+            })
+        }
+
+        if(this.state.employeeOpt !== ''){
+            employeeOption = this.state.employeeOpt.map(opt=>{
+                return <option>{opt.emp_type}</option>
+            })
+        }
 
         
         var singleUserLog = [];
@@ -214,9 +254,8 @@ class Logs extends React.Component{
                             <div>
                                 <label>Designation</label>
                                 <select>
-                                    <option>
-                                        Please select
-                                    </option>
+                                    <option>Please Select</option>
+                                    {designationOption}
                                 </select>
                             </div>
                             <div>
@@ -225,6 +264,7 @@ class Logs extends React.Component{
                                     <option>
                                         Please select
                                     </option>
+                                    {departmentOption}
                                 </select>
                             </div>
                             <div>
@@ -233,6 +273,7 @@ class Logs extends React.Component{
                                     <option>
                                         Please select
                                     </option>
+                                    {employeeOption}
                                 </select>
                             </div>
                         </div>
