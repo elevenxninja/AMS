@@ -19,7 +19,9 @@ class Logs extends React.Component{
         fromDate:null,
         toDate:null,
         displayItemsPerPage:8,
-        userLogs:[]
+        userLogs:[],
+        fromDateFilter:null,
+        toDateFilter:null,
     }
 
     componentDidMount(){
@@ -94,6 +96,17 @@ class Logs extends React.Component{
     }
 
     // Filters logics
+    fromDateFilterHandler = (e) =>{
+        this.setState({
+            fromDateFilter: Date.parse(e.target.value)
+        })
+    }
+
+    toDateFilterHandler = (e) =>{
+        this.setState({
+            toDateFilter: Date.parse(e.target.value)
+        })
+    }
 
     render(){
         
@@ -149,12 +162,29 @@ class Logs extends React.Component{
             </Popup>)
         }
 
-        const {filter, userLogs} = this.state;
+        const {filter, userLogs, fromDateFilter, toDateFilter} = this.state;
         const lowerCaseFilter = filter.toLowerCase();
-        const updatedForm = userLogs.filter(log=>
+        let updatedForm = userLogs.filter(log=>
             log.username.toLowerCase().includes(lowerCaseFilter)
             )
 
+        if(fromDateFilter){
+            updatedForm = userLogs.filter(log=>{
+                return log.timestamp >= fromDateFilter;
+            })
+        }
+
+        if(toDateFilter){
+            updatedForm = userLogs.filter(log=>{
+                return log.timestamp <= toDateFilter + 86400000;
+            })
+        }
+
+        if(fromDateFilter!==null && toDateFilter!== null){
+            updatedForm = userLogs.filter(log=>{
+                return log.timestamp >= fromDateFilter && log.timestamp <= toDateFilter + 86400000;
+            })
+        }
 
         const {currentPage, displayItemsPerPage} = this.state;
         const indexOfLastItem = currentPage * displayItemsPerPage;
@@ -175,11 +205,11 @@ class Logs extends React.Component{
                         <div>
                             <div>
                                 <label>From Date</label>
-                                <input type="date" onChange={this.fromDateFilter}/>
+                                <input type="date" onChange={this.fromDateFilterHandler}/>
                             </div>
                             <div>
                                 <label>To Date</label>
-                                <input type="date" />
+                                <input type="date" onChange={this.toDateFilterHandler}/>
                             </div>
                             <div>
                                 <label>Designation</label>
