@@ -73,28 +73,6 @@ class Logs extends React.Component{
             })
         })
         .catch(err=>console.log(err))
-        
-        // this.setState({
-        //     isPopup: true,
-        //     user: {...log, attendance:[
-        //         {date:'2020-06-18',
-        //         Present: 'yes'},
-        //         {date:'2020-06-19',
-        //         Present: 'yes'},
-        //         {date:'2020-06-20',
-        //         Present: 'yes'},
-        //         {date:'2020-06-21',
-        //         Present: 'yes'},
-        //         {date:'2020-06-22',
-        //         Present: 'yes'},
-        //         {date:'2020-06-23',
-        //         Present: 'yes'},
-        //         {date:'2020-06-24',
-        //         Present: 'yes'},
-        //         {date:'2020-06-25',
-        //         Present: 'yes'},
-        //     ]}
-        // })
     }
 
     fromDateHandler = (e) =>{
@@ -114,6 +92,8 @@ class Logs extends React.Component{
             isPopup:false,
         })
     }
+
+    // Filters logics
 
     render(){
         
@@ -190,6 +170,43 @@ class Logs extends React.Component{
                     <header>
                         <h2>User Logs</h2>
                     </header>
+                    <div className={classes.Filters}>
+                        <h4>Filters by:</h4>
+                        <div>
+                            <div>
+                                <label>From Date</label>
+                                <input type="date" onChange={this.fromDateFilter}/>
+                            </div>
+                            <div>
+                                <label>To Date</label>
+                                <input type="date" />
+                            </div>
+                            <div>
+                                <label>Designation</label>
+                                <select>
+                                    <option>
+                                        Please select
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Department</label>
+                                <select>
+                                    <option>
+                                        Please select
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Employee Type</label>
+                                <select>
+                                    <option>
+                                        Please select
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+            </div>
                     <LogsDetails 
                     clicked={(log)=>this.popupHandler(log)}
                     logs={updatedEmpForm}/>

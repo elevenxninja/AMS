@@ -59,7 +59,7 @@ const LogsDetails = (props) =>{
                     <tr>
                         <th>Name/Username</th>
                         <th>Mobile</th>
-                        <th><span>In-Timestamp</span> <span>Our-Timestamp</span></th>
+                        <th><span>In-Timestamp</span> <span>Out-Timestamp</span></th>
                     </tr>
                 </thead>
                 <tbody>

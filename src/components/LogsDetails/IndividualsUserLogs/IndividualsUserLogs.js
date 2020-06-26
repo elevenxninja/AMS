@@ -4,8 +4,6 @@ import classes from './IndividualsUserLogs.css';
 import { AiOutlineClose } from 'react-icons/ai';
 
 const IndividualsUserLogs = (props) =>{
-    console.log('userLog')
-    console.log(props.userLog)
     let attendance= props.userLog.map(attend=>{
         console.log(attend.date)
             return (<p><span>Yes</span>
