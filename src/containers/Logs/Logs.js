@@ -25,6 +25,9 @@ class Logs extends React.Component{
         designationOpt:'',
         departmentOpt:'',
         employeeOpt:'',
+        designationVal: '',
+        departmentVal: '',
+        employeeVal: '',
     }
 
     componentDidMount(){
@@ -129,6 +132,24 @@ class Logs extends React.Component{
         })
     }
 
+    designationFilterHandler = (e) =>{
+        this.setState({
+            designationVal: e.target.value
+        })
+    }
+
+    departmentFilterHandler = (e) =>{
+        this.setState({
+            departmentVal: e.target.value
+        })
+    }
+
+    employeeFilterHandler = (e) =>{
+        this.setState({
+            employeeVal: e.target.value
+        })
+    }
+
     render(){
         let departmentOption = null;
         let designationOption = null;
@@ -169,6 +190,9 @@ class Logs extends React.Component{
                     logObj.emp_id = mapLog.emp_id;
                     logObj.mobile = mapLog.mobile;
                     logObj.date =mapLog.timestamp;
+                    logObj.designation = mapLog.designation;
+                    logObj.emp_type = mapLog.emp_type;
+                    logObj.department = mapLog.department;
                 }
                 // if(mapLog.status === 'OUT'){
                 //     logObj.outTime = new Date(parseInt(mapLog.timestamp)).toISOString().slice(11, -1);
@@ -202,7 +226,7 @@ class Logs extends React.Component{
             </Popup>)
         }
 
-        const {filter, userLogs, fromDateFilter, toDateFilter} = this.state;
+        const {filter, userLogs, fromDateFilter, toDateFilter, designationVal, departmentVal, employeeVal} = this.state;
         const lowerCaseFilter = filter.toLowerCase();
         let updatedForm = userLogs.filter(log=>
             log.username.toLowerCase().includes(lowerCaseFilter)
@@ -224,6 +248,30 @@ class Logs extends React.Component{
             updatedForm = userLogs.filter(log=>{
                 return log.timestamp >= fromDateFilter && log.timestamp <= toDateFilter + 86400000;
             })
+        }
+
+        if(designationVal !== '' ){
+            if(designationVal !== 'Please Select'){
+                updatedForm = userLogs.filter(log=>{
+                    return log.designation === designationVal
+                })
+            }
+        }
+
+        if(departmentVal !== '' ){
+            if(departmentVal !== 'Please Select'){
+                updatedForm = userLogs.filter(log=>{
+                    return log.department === departmentVal
+                })
+            }
+        }
+
+        if(employeeVal !== ''){
+            if(employeeVal !== 'Please Select'){
+                updatedForm = userLogs.filter(log=>{
+                    return log.emp_type === employeeVal
+                })
+            }
         }
 
         const {currentPage, displayItemsPerPage} = this.state;
@@ -253,25 +301,25 @@ class Logs extends React.Component{
                             </div>
                             <div>
                                 <label>Designation</label>
-                                <select>
+                                <select onChange={this.designationFilterHandler}>
                                     <option>Please Select</option>
                                     {designationOption}
                                 </select>
                             </div>
                             <div>
                                 <label>Department</label>
-                                <select>
+                                <select onChange={this.departmentFilterHandler}>
                                     <option>
-                                        Please select
+                                        Please Select
                                     </option>
                                     {departmentOption}
                                 </select>
                             </div>
                             <div>
                                 <label>Employee Type</label>
-                                <select>
+                                <select onChange={this.employeeFilterHandler}>
                                     <option>
-                                        Please select
+                                        Please Select
                                     </option>
                                     {employeeOption}
                                 </select>

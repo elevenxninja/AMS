@@ -214,7 +214,7 @@ class AddEmployee extends React.Component{
         if(this.state.isAddEmpOption){
             addEmplyOption = (<div className={classes.EmpOptionsCard}>
                                 <p onClick={this.popUpHandler}><FaUser/> Create a contact</p>
-                                <ReactFileReader handleUploadedFiles={(files) =>this.props.clicked(files)} fileTypes={'.csv'}>
+                                <ReactFileReader handleFiles={(files) =>this.props.clicked(files)} fileTypes={'.xlsx'}>
                                 <button><FaUserFriends/> Create multiple contacts</button>
                                 </ReactFileReader>
                             </div>)
