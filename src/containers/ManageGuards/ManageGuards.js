@@ -19,53 +19,53 @@ class ManageGuards extends React.Component{
         currentPage:1,
         dispalyItemsPerPage:2,
         delId:null,
-        individualGuard:{
-            name:{
-                elmType:'input',
-                elmConfig:{
-                    type:'text',
-                    placeholder:'Name',
-                },
-                label:'Name',
-                value:'',
-            },
-            imei_no:{
-                elmType:'input',
-                elmConfig:{
-                    type:'number',
-                    placeholder:'IMEI No.',
-                },
-                label:'IMEI No.',
-                value:'',
-            },
-            status:{
-                elmType:'input',
-                elmConfig:{
-                    type:'text',
-                    placeholder:'Status',
-                },
-                label:'Status',
-                value:'',
-            },
-            mobile:{
-                elmType:'input',
-                elmConfig:{
-                    type:'number',
-                    placeholder:'Phone',
-                },
-                label:'Phone',
-                value:'',
-            },
-            email:{
-                elmType:'input',
-                elmConfig:{
-                    type:'email',
-                    placeholder:'E-mail',
-                },
-                label:'E-mail',
-                value:'',
-            },
-        },
+    //     individualGuard:{
+    //         name:{
+    //             elmType:'input',
+    //             elmConfig:{
+    //                 type:'text',
+    //                 placeholder:'Name',
+    //             },
+    //             label:'Name',
+    //             value:'',
+    //         },
+    //         imei_no:{
+    //             elmType:'input',
+    //             elmConfig:{
+    //                 type:'number',
+    //                 placeholder:'IMEI No.',
+    //             },
+    //             label:'IMEI No.',
+    //             value:'',
+    //         },
+    //         status:{
+    //             elmType:'input',
+    //             elmConfig:{
+    //                 type:'text',
+    //                 placeholder:'Status',
+    //             },
+    //             label:'Status',
+    //             value:'',
+    //         },
+    //         mobile:{
+    //             elmType:'input',
+    //             elmConfig:{
+    //                 type:'number',
+    //                 placeholder:'Phone',
+    //             },
+    //             label:'Phone',
+    //             value:'',
+    //         },
+    //         email:{
+    //             elmType:'input',
+    //             elmConfig:{
+    //                 type:'email',
+    //                 placeholder:'E-mail',
+    //             },
+    //             label:'E-mail',
+    //             value:'',
+    //         },
+    //     },
         guardId:null,
     }
 
@@ -152,42 +152,42 @@ class ManageGuards extends React.Component{
             this.getAllEmployees())
     }
 
-    individualGuardHandler = (guard) =>{
-        console.log(guard)
-        const guardForm = {...this.state.individualGuard};
-        guardForm.name.value = guard.name;
-        guardForm.email.value = guard.email;
-        guardForm.mobile.value = guard.mobile;
-        guardForm.imei_no.value = guard.imei_no;
-        guardForm.status.value = guard.status;
-        this.setState({
-            guardId: guard.id,
-            guardForm: guardForm,
-            isGuardPopup:true,
-        })
-    }
+    // individualGuardHandler = (guard) =>{
+    //     console.log(guard)
+    //     const guardForm = {...this.state.individualGuard};
+    //     guardForm.name.value = guard.name;
+    //     guardForm.email.value = guard.email;
+    //     guardForm.mobile.value = guard.mobile;
+    //     guardForm.imei_no.value = guard.imei_no;
+    //     guardForm.status.value = guard.status;
+    //     this.setState({
+    //         guardId: guard.id,
+    //         guardForm: guardForm,
+    //         isGuardPopup:true,
+    //     })
+    // }
 
-    hideGuardHandler = () =>{
-        this.setState({
-            isGuardPopup: false,
-        })
-    }
+    // hideGuardHandler = () =>{
+    //     this.setState({
+    //         isGuardPopup: false,
+    //     })
+    // }
 
-    submitGuardHandler = (e) =>{
-        e.preventDefault();
-        const guard = {...this.state.individualGuard};
-        const guardArray = [...this.state.guardList];
-        guardArray.map(grd=>{
-            if(this.state.guardId === grd.id){
-                grd.name = guard.name.value;
-                grd.email = guard.email.value;
-                grd.mobile = guard.mobile.value;
-                grd.status = guard.status.value;
-                grd.imei_no = guard.status.value;
-            }
-        })
-        console.log(guardArray);
-    }
+    // submitGuardHandler = (e) =>{
+    //     e.preventDefault();
+    //     const guard = {...this.state.individualGuard};
+    //     const guardArray = [...this.state.guardList];
+    //     guardArray.map(grd=>{
+    //         if(this.state.guardId === grd.id){
+    //             grd.name = guard.name.value;
+    //             grd.email = guard.email.value;
+    //             grd.mobile = guard.mobile.value;
+    //             grd.status = guard.status.value;
+    //             grd.imei_no = guard.status.value;
+    //         }
+    //     })
+    //     console.log(guardArray);
+    // }
 
     render(){
         let deletePop = null;
@@ -231,26 +231,26 @@ class ManageGuards extends React.Component{
             elmType={guard.elmType}
             elmConfig={guard.elmConfig}/>
         })
-        let individualGuardPopup = null;
-        if(this.state.isGuardPopup){
-            individualGuardPopup = (<Popup>
-                        <div className={classes.FormCard}>
-                            <header>
-                                <h2>USER PROFILE</h2>
-                            </header>
-                            <form onSubmit={this.submitGuardHandler} >
-                            {guardInputVal}
-                            <button type='submit'>Save</button>
-                            <button onClick={this.hideGuardHandler}>Cancel</button>
-                            </form>
-                        </div>
-                     </Popup>)
-        }
+        // let individualGuardPopup = null;
+        // if(this.state.isGuardPopup){
+        //     individualGuardPopup = (<Popup>
+        //                 <div className={classes.FormCard}>
+        //                     <header>
+        //                         <h2>USER PROFILE</h2>
+        //                     </header>
+        //                     <form onSubmit={this.submitGuardHandler} >
+        //                     {guardInputVal}
+        //                     <button type='submit'>Save</button>
+        //                     <button onClick={this.hideGuardHandler}>Cancel</button>
+        //                     </form>
+        //                 </div>
+        //              </Popup>)
+        // }
 
         return(
             <div>
                 {deletePop}
-                {individualGuardPopup}
+                {/* {individualGuardPopup} */}
                 <Sidebar/>
                 <Search 
                 changed={this.searchHandler}
@@ -261,7 +261,7 @@ class ManageGuards extends React.Component{
                         </header>
                 <AddGuard />
                 <GuardDetails 
-                clicked={(guard)=>this.individualGuardHandler(guard)}
+                // clicked={(guard)=>this.individualGuardHandler(guard)}
                 value={this.state.toggle}
                 clickedDelete={(id)=>this.deleteConfirm(id)}
                 toggle = {(value, imei)=>this.toggleHandler(value, imei)}

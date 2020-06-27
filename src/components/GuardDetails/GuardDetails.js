@@ -8,7 +8,9 @@ const GuardDetails = (props) =>{
     const imei = list.imei;
     return (<tr>
             <td>{list.id}</td>
-            <td onClick={()=>props.clicked(list)}>{list.name}</td>
+            <td 
+            // onClick={()=>props.clicked(list)}
+            >{list.name}</td>
             <td>{list.imei}</td>
             <td><ToggleButton
             value={ list.status || false }
