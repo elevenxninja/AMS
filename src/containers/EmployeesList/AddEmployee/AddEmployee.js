@@ -41,19 +41,22 @@ class AddEmployee extends React.Component{
                 valid:false,
                 value:'',
             },
-            email:{
-                elmType:'input',
+            employee_type:{
+                elmType:'select',
                 elmConfig:{
-                    type:'email',
-                    placeholder:'E-mail'
+                    type:'text',
+                    placeholder:'Please Select',
+                    options: [
+                        {name:'Employee type', value: ''},
+                        {name:'Permanent', value: 'Permanent'},
+                        {name:'Contractual', value: 'Contractual'}
+                    ]
                 },
                 validation:{
                     required: true,
-                    check: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                 },
-                onfocus:'email',
-                valid:false,
-                value:'',
+                valid: false,
+                value: '',
             },
             mobile:{
                 elmType:'input',
@@ -66,6 +69,20 @@ class AddEmployee extends React.Component{
                     required: true,
                 },
                 onfocus:'number',
+                value:'',
+            },
+            email:{
+                elmType:'input',
+                elmConfig:{
+                    type:'email',
+                    placeholder:'E-mail'
+                },
+                validation:{
+                    required: true,
+                    check: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                },
+                onfocus:'email',
+                valid:false,
                 value:'',
             },
             designation:{

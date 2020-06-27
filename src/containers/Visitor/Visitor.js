@@ -154,12 +154,14 @@ class Visitor extends React.Component{
         }
         axios.post('https://ams-api.herokuapp.com/addVisitor', null, {params:visitorObj})
         .then(res=>{
+            console.log(res)
             let input = {...this.state.formInput};
             for(let key in input){
                 input[key].value = '';
             }
             this.setState({
                 formInput: input,
+                isValidate: false,
             })
         }
             )

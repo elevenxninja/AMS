@@ -18,7 +18,7 @@ const Input = (props) =>{
                 <select value={props.value} onChange={props.changed} >
                     {props.elmConfig.options.map(option=>{
                         return <option key={option.value} value={option.value}>
-                                    {option.displayValue}
+                                    {option.name}
                                 </option>
                     })}
                 </select>

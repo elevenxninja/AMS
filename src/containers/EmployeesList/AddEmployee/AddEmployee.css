@@ -92,7 +92,7 @@
     position: relative;
 }
 
-.FormCard form input, .FormCard form textarea{
+.FormCard form input, .FormCard form textarea, .FormCard form select{
     box-sizing: border-box;
     margin: 10px;
     width: 420px;
@@ -122,17 +122,22 @@
     cursor: not-allowed;
 }
 
-.FormCard form input:focus, .FormCard form textarea:focus{
+.FormCard form input:focus, .FormCard form textarea:focus, .FormCard form select:focus{
     outline: none;
 }
 
 .FormCard form div:nth-child(2) input, 
-.FormCard form div:nth-child(3) input{
+.FormCard form div:nth-child(3) select,
+.FormCard form div:nth-child(4) input,
+.FormCard form div:nth-child(5) input{
     width: 200px;
 }
 
+
 .FormCard form div:nth-child(2), 
-.FormCard form div:nth-child(3){
+.FormCard form div:nth-child(3),
+.FormCard form div:nth-child(4), 
+.FormCard form div:nth-child(5){
     display: inline;
 }
 

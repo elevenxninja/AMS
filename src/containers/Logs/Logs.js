@@ -74,7 +74,7 @@ class Logs extends React.Component{
         console.log('filter')
         let logObj = {};
         let mapLogs = filterLogs.map(mapLog=>{
-            if(mapLog.status === 'IN'){
+            if((mapLog.status).toLowerCase() === 'in'){
                 logObj.username = mapLog.username;
                 logObj.emp_id = mapLog.emp_id;
                 logObj.mobile = mapLog.mobile;
@@ -83,7 +83,7 @@ class Logs extends React.Component{
                 logObj.department = mapLog.department;
                 logObj.emp_type = mapLog.emp_type;
             }
-            if(mapLog.status === 'OUT'){
+            if((mapLog.status).toLowerCase() === 'out'){
                 logObj.outTime = mapLog.timestamp;
             }
             else{
