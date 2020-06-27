@@ -61,10 +61,13 @@ class EmployeesList extends React.Component{
                 value:''
             },
             employee_type:{
-                elmType:'input',
+                elmType:'select',
                 label:'Employee Type',
                 elmConfig:{
-                    type:'text',
+                    options:[
+                        {name: 'Permanent', value: 'Permanent'},
+                        {name: 'Contractual', value: 'Contractual'}
+                ]
                 },
                 value:''
             },
