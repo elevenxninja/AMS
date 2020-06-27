@@ -147,7 +147,7 @@
 }
 
 .FormCard form div::before{
-    color: red;
+    color: #f44336;
     content: "*";
     position: absolute;
     top: 0;
