@@ -21,7 +21,7 @@
 .UserLogs .Filters > div{
     margin-top: -10px;
     display:flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     background-color: #2b86b3;
     padding: 8px 10px;
     border-radius: 5px;
@@ -41,8 +41,23 @@
 
 .UserLogs .Filters label{
     font-size: 12px;
-    display:block;
     color: white;
+    margin-right: 20px;
+}
+
+.UserLogs .Filters div:nth-child(3) div:nth-child(2) label{
+    margin-left: 50px;
+}
+
+.UserLogs .Filters input{
+    border:none;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 3px 5px;
+}
+
+.UserLogs .Filters input:focus{
+    outline: none;
 }
 
 .UserLogs .Filters .Close{

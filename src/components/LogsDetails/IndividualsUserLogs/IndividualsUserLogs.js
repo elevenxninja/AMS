@@ -28,19 +28,13 @@ const IndividualsUserLogs = (props) =>{
                         <h4>Filters by:</h4>
                         <div>
                             <div>
-                                <label>From Date</label>
+                                <label>From Date:</label>
                                 <input type="date" onChange={props.fromDate}/>
                             </div>
                             <div>
-                                <label>To Date</label>
+                                <label>To Date:</label>
                                 <input type="date" onChange={props.toDate}/>
                             </div>
-                            <button>Weekly</button>
-                            <button>Monthly</button>
-                            <button>Designation</button>
-                            <button>Name</button>
-                            <button>Time</button>
-                            <button>Leaves</button>
                         </div>
             </div>
             <div className={classes.Attendance}>
