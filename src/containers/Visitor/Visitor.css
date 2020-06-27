@@ -64,6 +64,24 @@
     outline: none;
 }
 
+.FormCard form div{
+    position: relative;
+}
+
+.FormCard form div::before{
+    color: #f44336;
+    content: "*";
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.FormCard form div:nth-child(4)::before,
+.FormCard form div:nth-child(6)::before{
+    left:-619px;
+    top:43px;
+}
+
 .FormCard form div:nth-child(2) input, 
 .FormCard form div:nth-child(3) input,
 .FormCard form div:nth-child(4) input,
