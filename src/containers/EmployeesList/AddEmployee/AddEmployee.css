@@ -130,6 +130,7 @@
 .FormCard form div:nth-child(3) select,
 .FormCard form div:nth-child(4) input,
 .FormCard form div:nth-child(5) input{
+    position: relative;
     width: 200px;
 }
 
@@ -139,6 +140,23 @@
 .FormCard form div:nth-child(4), 
 .FormCard form div:nth-child(5){
     display: inline;
+}
+
+.FormCard form div{
+    position: relative;
+}
+
+.FormCard form div::before{
+    color: red;
+    content: "*";
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.FormCard form div:nth-child(4)::before{
+    left: -440px;
+    top: 43px;
 }
 
 .FormCard h4{
