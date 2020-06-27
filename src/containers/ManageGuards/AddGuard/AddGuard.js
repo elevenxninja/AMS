@@ -121,6 +121,7 @@ class AddGuard extends React.Component{
         }
         axios.post('https://ams-api.herokuapp.com/addGuard', null, {params: guardDetails})
         .then(res=>{
+            this.props.getAllGuard();
             this.setState({
                 isPopup: false,
             })

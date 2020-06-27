@@ -261,7 +261,7 @@ class ManageGuards extends React.Component{
                         <header>
                             <h2>Manage Guards</h2>
                         </header>
-                <AddGuard />
+                <AddGuard getAllGuard={this.getAllGuard}/>
                 <GuardDetails 
                 // clicked={(guard)=>this.individualGuardHandler(guard)}
                 value={this.state.toggle}
