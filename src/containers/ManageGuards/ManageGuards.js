@@ -70,7 +70,11 @@ class ManageGuards extends React.Component{
     }
 
     componentDidMount(){
-        axios.get('https://ams-api.herokuapp.com/getAllEmployees')
+        this.getAllGuard();
+    }
+
+    getAllGuard = () =>{
+        axios.get('https://ams-api.herokuapp.com/getAllGuard')
         .then(response =>{
             this.setState({
                 guardList: response.data.data,
@@ -78,9 +82,10 @@ class ManageGuards extends React.Component{
         })
     }
 
-    toggleHandler = (value) =>{
-        this.setState({
-            toggle: !value
+    toggleHandler = (value, imei) =>{
+        axios.post('https://ams-api.herokuapp.com/updateGuardStatus', null, {params: {imei: imei, status: !value}} )
+        .then(res=>{
+            this.getAllGuard();
         })
     }
 
@@ -259,7 +264,7 @@ class ManageGuards extends React.Component{
                 clicked={(guard)=>this.individualGuardHandler(guard)}
                 value={this.state.toggle}
                 clickedDelete={(id)=>this.deleteConfirm(id)}
-                toggle = {(value)=>this.toggleHandler(value)}
+                toggle = {(value, imei)=>this.toggleHandler(value, imei)}
                 guardList={currentLists}/>
                 <Pagination 
                 changed = {this.itemsControlHandler}

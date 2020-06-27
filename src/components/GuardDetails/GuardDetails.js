@@ -5,13 +5,14 @@ import classes from './GuardDetails.css';
 
 const GuardDetails = (props) =>{
     const guardItems = props.guardList.map(list=>{
+    const imei = list.imei;
     return (<tr>
             <td>{list.id}</td>
             <td onClick={()=>props.clicked(list)}>{list.name}</td>
-            <td>{list.mobile}</td>
+            <td>{list.imei}</td>
             <td><ToggleButton
-            value={ props.value || false }
-            onToggle={(value) =>props.toggle(value) } 
+            value={ list.status || false }
+            onToggle={(value) =>props.toggle(value, imei) } 
             />
             </td>
             <td>
