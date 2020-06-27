@@ -28,10 +28,13 @@ class AddGuard extends React.Component{
                 valid:false,
             },
             status:{
-                elmType:'input',
+                elmType:'select',
                 elmConfig:{
-                    type:'text',
-                    placeholder:'Status',
+                    options:[
+                        {name:'Status', value:''},
+                        {name:'True', value:true},
+                        {name:'False', value:false}
+                    ]
                 },
                 validation:{
                     required:true,
@@ -48,6 +51,7 @@ class AddGuard extends React.Component{
                 validation:{
                     required:true,
                 },
+                onfocus: 'number',
                 value:'',
                 valid:false,
             },
@@ -60,6 +64,7 @@ class AddGuard extends React.Component{
                 validation:{
                     required:true,
                 },
+                onfocus:'number',
                 value:'',
                 valid:false,
             },
@@ -131,6 +136,7 @@ class AddGuard extends React.Component{
         const GuardInputVal = GuardInputArray.map(guard=>{
             return <Input 
             key={guard.id}
+            onfocus={guard.onfocus}
             changed={(event)=>this.ChangedHandler(event, guard.id)}
             value={guard.value}
             elmConfig={guard.elmConfig}

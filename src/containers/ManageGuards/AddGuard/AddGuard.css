@@ -90,7 +90,7 @@
     position: relative;
 }
 
-.FormCard form input, .FormCard form textarea{
+.FormCard form input, .FormCard form textarea, .FormCard form select{
     box-sizing: border-box;
     margin: 10px;
     width: 420px;
@@ -102,6 +102,10 @@
 .FormCard form textarea{
     height: 25px;
 } 
+
+.FormCard form select:focus{
+    outline: none;
+}
 
 .FormCard form button{
     border: none;
