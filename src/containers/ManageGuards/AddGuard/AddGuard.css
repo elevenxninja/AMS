@@ -107,6 +107,18 @@
     outline: none;
 }
 
+.FormCard form div{
+    position: relative;
+}
+
+.FormCard form div::before{
+    color: #f44336;
+    content: "*";
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 .FormCard form button{
     border: none;
     float: right;

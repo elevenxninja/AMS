@@ -17,7 +17,7 @@ class ManageGuards extends React.Component{
         guardList:[],
         toggle:false,
         currentPage:1,
-        dispalyItemsPerPage:2,
+        dispalyItemsPerPage:8,
         delId:null,
     //     individualGuard:{
     //         name:{
