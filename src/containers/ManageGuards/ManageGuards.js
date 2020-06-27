@@ -144,12 +144,14 @@ class ManageGuards extends React.Component{
     }
 
     deleteEmpHandler = () =>{
-        axios.post('https://ams-api.herokuapp.com/deleteEmployee', null, {params:{id:this.state.delId}})
-        .then(res=>
-            this.setState({
-                delId: null,
-            }),
-            this.getAllEmployees())
+        axios.post('https://ams-api.herokuapp.com/deleteGuard', null, {params:{id:this.state.delId}})
+        .then(res=>{
+            this.getAllGuard();
+                this.setState({
+                    delId: null,
+                })
+        })
+            
     }
 
     // individualGuardHandler = (guard) =>{
