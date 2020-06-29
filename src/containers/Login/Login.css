@@ -59,8 +59,8 @@
 }
 
 .Login .Form .User .Input .Text p{
-    display: inline;
-    margin: 10px 20px;
+    text-align: left;
+    margin: 10px 5px;
     font-size: 13px;
 }
 

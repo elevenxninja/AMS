@@ -1,0 +1,128 @@
+.Profile{
+    box-sizing: border-box;
+    padding: 20px 40px;
+  }
+  .Profile div{
+    text-align: left;
+    position: relative;
+    margin-top: 25px;
+  }
+  
+  .Profile div::after{
+    content: '';
+    height: 1px;
+    background-color: gainsboro;
+    width:100%;
+    position: absolute;
+    left:0;
+    top:25px;
+  }
+  
+  .Profile span{
+    display: inline-block;
+    text-align: left;
+  }
+  
+  .Profile div span:nth-child(1){
+    width: 150px;
+  }
+  
+  .Profile input{
+    outline: none;
+    background-color: transparent;
+    border:none;
+  }
+  
+  .Profile p{
+    text-align: right;
+    color: #015ca2;
+    font-size: 12px;
+  }
+  
+  .Profile p:hover{
+    cursor: pointer;
+  }
+  
+  /* change password css */
+.ChangeBox{
+    width: 350px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 15px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin-left: -175px;
+    margin-top: -90px;
+}
+
+  .ChangeBox div:nth-child(1){
+      text-align: center;
+    position: relative;
+  }
+  
+  .ChangeBox div:nth-child(1)::after{
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color:gainsboro;
+    position: absolute;
+    left: 0;
+    top: 35px;
+  }
+  
+  .ChangeBox div:nth-child(1) h3{
+    margin-top: 10px;
+  }
+  
+  .ChangeBox div:nth-child(2){
+    margin-top: 50px;
+  }
+  
+  .ChangeBox div:nth-child(2) span{
+    margin:10px;
+  }
+  
+  .ChangeBox div:nth-child(3){
+    margin-top: 40px;
+  }
+  
+  .ChangeBox button{
+    margin: 0 20px;
+  }
+
+  .ChangeBox button:nth-child(1){
+      margin-left: 70px;
+  }
+  
+  .ChangeBox input{
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+  
+  .ChangeBox input:focus{
+    outline: none;
+    border: 1px solid #015ca2;
+  }
+  
+  .ChangeBox button{
+    background-color: #0c5198;
+    color: white;
+    border: none;
+    border: 1px solid #0c5198;
+    padding: 5px 20px;
+    border-radius: 25px;
+    transition: .5s;
+  }
+  
+  .ChangeBox button:hover{
+    background-color: white;
+    box-shadow: 1px 1px 3px 1px #ccc;
+    color: #0c5198;
+    cursor: pointer;
+  }
+  
+  .ChangeBox button:focus{
+    outline: none;
+  }

@@ -10,8 +10,8 @@ import About from './containers/About/About';
 import Analytics from './containers/Analytics/Analytics';
 import ManageGuards from './containers/ManageGuards/ManageGuards';
 import Visitor from './containers/Visitor/Visitor';
-import {authAutoCheck} from './store/actions/auth';
 import Logout from './containers/Logout/Logout';
+import UserProfile from './containers/UserProfile/UserProfile';
 
 
 class App extends React.Component {
@@ -35,6 +35,7 @@ class App extends React.Component {
         {redirect}
         <Route path='/employees-list' component={EmployeesList} />
         {/* {redirectToMain} */}
+        <Route path='/profile' component={UserProfile} />
         <Route path='/logs' component={Logs} />
         <Route path='/about' component={About} />
         <Route path='/analytics' component={Analytics} />

@@ -13,11 +13,19 @@ import  logo from '../../Images/FINALSNAP.png';
 
 const Sidebar = (props) =>{
     return(
+        <div>
         <div className={classes.Header}>
             <header>
                 <img src={logo} alt='logo'/>
                 <h2>SNAP</h2>
             </header>
+            <div className={classes.Profile}>
+            <NavLink to='/profile' activeClassName={classes.ActiveI}>
+                
+                    A
+                
+            </NavLink>
+            </div>
             <div className={classes.Sidebar}>
                 <div>
                     <NavLink to='/employees-list' activeClassName={classes.ActiveI}>
@@ -78,6 +86,7 @@ const Sidebar = (props) =>{
                     </NavLink>
                 </div>
             </div>
+        </div>
         </div>
         );
 }

@@ -50,7 +50,6 @@ class Login extends React.Component{
                                     <input type='text' placeholder= 'USER NAME' value={this.state.userName} onChange={this.changeUserHandler}/>
                                     <input type='password' placeholder= '*******' value={this.state.password} onChange={this.changePasswordHandler}/>
                                     <div className={classes.Text}>
-                                        <p>Change password</p>
                                         <p>Forgot password</p>
                                     </div>
                                     <button type='submit'>LOGIN</button>
