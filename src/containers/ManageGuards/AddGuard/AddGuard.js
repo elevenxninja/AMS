@@ -50,6 +50,7 @@ class AddGuard extends React.Component{
                 },
                 validation:{
                     required:true,
+                    length:10,
                 },
                 onfocus: 'number',
                 value:'',
@@ -102,6 +103,9 @@ class AddGuard extends React.Component{
         let isValid = true;
         if(rules.required){
             isValid = value !== '' && isValid;
+        }
+        if(rules.length){
+            isValid = value.length === 10;
         }
         return isValid;
     }
@@ -170,7 +174,7 @@ class AddGuard extends React.Component{
             addGuard = (<div className={classes.GuardOptionsCard}>
                                 <p onClick={this.popUpHandler}><FaUser/> Create a contact</p>
                                 <ReactFileReader handleUploadedFiles={(files) =>this.props.clicked(files)} fileTypes={'.csv'}>
-                                <button><FaUserFriends/> Create multiple contacts</button>
+                                {/* <button><FaUserFriends/> Create multiple contacts</button> */}
                                 </ReactFileReader>
                             </div>)
         }

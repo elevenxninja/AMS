@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactFileReader from 'react-file-reader';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 import {FaPlus, FaUser, FaUserFriends, FaUserCircle, FaRegAddressCard } from "react-icons/fa";
 import { BsBuilding } from 'react-icons/bs';
@@ -186,6 +187,13 @@ class AddEmployee extends React.Component{
                 isPopup:false,
             })
             this.props.getAllEmployees();
+            axios.post('https://ams-api.herokuapp.com/addToLoginMaster', null, {params: 
+            {username: this.props.userInfo.userid,
+                pwd: this.props.userInfo.password,
+                type: this.props.userInfo.type,
+            }})
+            .then(res=>console.log(res))
+            .catch(err=>console.log(err))
         })
         .catch(err=>{
             console.log(err)
@@ -196,6 +204,7 @@ class AddEmployee extends React.Component{
     }
 
     render(){
+        console.log(this.props.userInfo.userid)
         let empFormArray = [];
         for(let key in this.state.empForm){
             empFormArray.push({...this.state.empForm[key], id:key})
@@ -237,7 +246,7 @@ class AddEmployee extends React.Component{
             addEmplyOption = (<div className={classes.EmpOptionsCard}>
                                 <p onClick={this.popUpHandler}><FaUser/> Create a contact</p>
                                 <ReactFileReader handleFiles={(files) =>this.props.clicked(files)} fileTypes={'.xlsx'}>
-                                <button><FaUserFriends/> Create multiple contacts</button>
+                                {/* <button><FaUserFriends/> Create multiple contacts</button> */}
                                 </ReactFileReader>
                             </div>)
         }
@@ -257,4 +266,10 @@ class AddEmployee extends React.Component{
     }
 }
 
-export default AddEmployee;
+const mapStateToProps = state =>{
+    return{
+        userInfo: state.userInfo,
+    }
+}
+
+export default connect(mapStateToProps)(AddEmployee);

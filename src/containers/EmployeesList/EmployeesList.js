@@ -49,6 +49,7 @@ class EmployeesList extends React.Component{
                 label:'Email - ID',
                 elmConfig:{
                     type:'email',
+                    disabled: true,
                 },
                 value:''
             },
@@ -174,7 +175,7 @@ class EmployeesList extends React.Component{
 
     userHandler = (user) =>{
         const userVal = {...this.state.userProfileForm}
-        userVal.employee_type.value = user.employee_type;
+        userVal.employee_type.value = user.emp_type;
         userVal.emp_id.value = user.emp_id;
         userVal.name.value = user.name;
         userVal.email.value = user.email;
@@ -198,20 +199,35 @@ class EmployeesList extends React.Component{
 
     submitHandler = (event) =>{
         event.preventDefault();
-        const userFormVal = {...this.state.userProfileForm}
-        const userObj = {};
-        for(let key in userFormVal){
-            userObj[key] = userFormVal[key].value
+        if(this.validateInputHandler()){
+            const userFormVal = {...this.state.userProfileForm}
+            const userObj = {};
+            for(let key in userFormVal){
+                userObj[key] = userFormVal[key].value
+            }
+            userObj.id = this.state.userId;
+            axios.post('https://ams-api.herokuapp.com/editProfile', null, {params:userObj})
+            .then(res=>
+                {
+                    this.setState({
+                        isPopup:false
+                    }),
+                    this.getAllEmployees()
+                })
         }
-        userObj.id = this.state.userId;
-        axios.post('https://ams-api.herokuapp.com/editProfile', null, {params:userObj})
-        .then(res=>
-            {
-                this.setState({
-                    isPopup:false
-                }),
-                this.getAllEmployees()
-            })
+        else{
+            alert('Please fill all the required field')
+        }
+       
+    }
+
+    validateInputHandler = () =>{
+        let isEmpty = true;
+        const userFormVal = {...this.state.userProfileForm};
+        for(let key in userFormVal){
+            isEmpty = userFormVal[key].value !== '' && isEmpty;
+        }
+        return isEmpty;
     }
 
     deleteConfirm = (id) =>{
