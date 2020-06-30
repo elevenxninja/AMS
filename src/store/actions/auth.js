@@ -6,7 +6,7 @@ export const auth = (email, password) =>{
         const authData = {
             userid: email,
             password: password,
-            type: 'mobile',
+            type: 'web',
         }
         if(email==='11x@myself.com' && password === '123'){
             dispatch(loginSuccess(1))
