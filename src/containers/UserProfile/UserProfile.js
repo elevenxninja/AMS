@@ -31,9 +31,9 @@ class UserProfile extends React.Component{
 
     changePasswordHandler = () =>{
         let data = {
-            username:this.props.userData[0].userid,
+            username:this.props.userData.userid,
             newPwd:this.state.pass,
-            type:this.props.userData[0].type,
+            type:this.props.userData.type,
         }
         axios.post('https://ams-api.herokuapp.com/updatePassword', null, {params: data})
         .then(res=>{
@@ -72,19 +72,19 @@ class UserProfile extends React.Component{
             <div style={{backgroundColor:'white', maxWidth: '1000px', margin:'0 auto', borderRadius:'10px'}} className={classes.Profile}>
                 <div>
                     <span>Id:</span>
-                    <span>{this.props.userData[0].id}</span>
+                    <span>{this.props.userData.id}</span>
                 </div>
                 <div>
                     <span>User Id:</span>
-                    <span>{this.props.userData[0].userid}</span>
+                    <span>{this.props.userData.userid}</span>
                 </div>
                 <div>
                     <span>Password:</span>
-                    <span><input type='password' disabled value={this.props.userData[0].password} /></span>
+                    <span><input type='password' disabled value={this.props.userData.password} /></span>
                 </div>
                 <div>
                     <span>Type:</span>
-                    <span>{this.props.userData[0].type}</span>
+                    <span>{this.props.userData.type}</span>
                 </div>
                 <p onClick={this.changePassHandler}>Change Password</p>
             </div>
