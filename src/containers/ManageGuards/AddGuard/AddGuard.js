@@ -27,18 +27,17 @@ class AddGuard extends React.Component{
                 value:'',
                 valid:false,
             },
-            status:{
-                elmType:'select',
+            email:{
+                elmType:'input',
                 elmConfig:{
-                    options:[
-                        {name:'Status', value:''},
-                        {name:'True', value:true},
-                        {name:'False', value:false}
-                    ]
+                    type: 'email',
+                    placeholder: 'E-mail',
                 },
                 validation:{
                     required:true,
+                    check: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                 },
+                onfocus: 'email',
                 value:'',
                 valid:false,
             },
@@ -64,6 +63,8 @@ class AddGuard extends React.Component{
                 },
                 validation:{
                     required:true,
+                    minLength:14,
+                    maxLength:16,
                 },
                 onfocus:'number',
                 value:'',
@@ -104,8 +105,17 @@ class AddGuard extends React.Component{
         if(rules.required){
             isValid = value !== '' && isValid;
         }
+        if(rules.check){
+            isValid = rules.check.test(value) && isValid;
+        }
         if(rules.length){
-            isValid = value.length === 10;
+            isValid = value.length === rules.length && isValid;
+        }
+        if(rules.minLength){
+            isValid = value.length >= rules.minLength && isValid;
+        }
+        if(rules.maxLength){
+            isValid = value.length <= rules.maxLength && isValid;
         }
         return isValid;
     }
@@ -128,7 +138,14 @@ class AddGuard extends React.Component{
             this.props.getAllGuard();
             this.setState({
                 isPopup: false,
-            })
+            });
+            axios.post('https://ams-api.herokuapp.com/addToLoginMaster', null, {params: 
+            {username: guardDetails.email,
+                pwd: 'nhai@123',
+                type: 'mobile',
+            }})
+            .then(res=>console.log(res))
+            .catch(err=>console.log(err))
         })
         .catch(err=> console.log(err))
     }
@@ -179,14 +196,16 @@ class AddGuard extends React.Component{
                             </div>)
         }
         return(
-            <div className={classes.AddGuard} onClick={this.toggleAddGuardHandler}>
-                {popup}
+            <div className={classes.AddGuard} >
+                    {popup}
+                <div onClick={this.toggleAddGuardHandler}>
                 <div className={classes.AddGuardButton}>
                     <FaPlus />
                     Add Guard
                 </div>
                 <div>
                     {addGuard}
+                </div>
                 </div>
             </div>
         );

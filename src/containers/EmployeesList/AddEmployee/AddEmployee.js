@@ -179,7 +179,6 @@ class AddEmployee extends React.Component{
         for(let key in empForm){
             empDetails[key] = empForm[key].value
         }
-        console.log(empDetails)
         axios.post('https://ams-api.herokuapp.com/postAddEmployee', null, {params: empDetails})
         .then(res=>{
             console.log(res.data)
@@ -188,9 +187,9 @@ class AddEmployee extends React.Component{
             })
             this.props.getAllEmployees();
             axios.post('https://ams-api.herokuapp.com/addToLoginMaster', null, {params: 
-            {username: this.props.userInfo.userid,
-                pwd: this.props.userInfo.password,
-                type: this.props.userInfo.type,
+            {username: empDetails.email,
+                pwd: 'nhai@123',
+                type: 'mobile',
             }})
             .then(res=>console.log(res))
             .catch(err=>console.log(err))
@@ -204,7 +203,6 @@ class AddEmployee extends React.Component{
     }
 
     render(){
-        console.log(this.props.userInfo.userid)
         let empFormArray = [];
         for(let key in this.state.empForm){
             empFormArray.push({...this.state.empForm[key], id:key})
@@ -252,14 +250,17 @@ class AddEmployee extends React.Component{
         }
         
         return(
-            <div className={classes.AddEmployee} onClick={this.toggleOptionHandler}>
+            <div className={classes.AddEmployee}>
                 {popUp}
+                <div onClick={this.toggleOptionHandler}>
+
                 <div className={classes.AddEmpButton} >
                         <FaPlus />
                         Add Employee
                 </div>
                 <div>
                     {addEmplyOption}
+                </div>
                 </div>
             </div>
         );
