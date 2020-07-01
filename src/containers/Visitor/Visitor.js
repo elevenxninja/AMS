@@ -99,7 +99,7 @@ class Visitor extends React.Component{
                 },
                 validation:{
                     required:true,
-                    check: true,
+                    check: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                 },
                 onfocus:'email',
                 value:'',
@@ -141,11 +141,10 @@ class Visitor extends React.Component{
             isValid = value !== '' && isValid;
         }
         if(rules.check){
-            let lastVal = value.split('@');
-            isValid = lastVal[1] === 'nhai.org';
+            isValid = rules.check.test(value) && isValid;
         }
         if(rules.length){
-            isValid = value.length === 10;
+            isValid = value.length === 10  && isValid;
             }
         return isValid;
     }
@@ -159,6 +158,7 @@ class Visitor extends React.Component{
         }
         axios.post('https://ams-api.herokuapp.com/addVisitor', null, {params:visitorObj})
         .then(res=>{
+            console.log('res')
             console.log(res)
             let input = {...this.state.formInput};
             for(let key in input){
