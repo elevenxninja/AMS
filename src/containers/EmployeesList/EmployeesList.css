@@ -58,6 +58,7 @@
     border: 1px solid #00a1ff;
 }
 
+
 .FormCard form select{
     width: 270px;
 }
@@ -87,6 +88,13 @@
 .FormCard form button:hover{
     cursor: pointer;
     box-shadow: 1px 1px 3px 1px #ccc;
+}
+
+
+.FormCard form button:disabled{
+    background-color:gray;
+    cursor: not-allowed!important;
+    box-shadow: none;
 }
 
 .FormCard form button:last-child{

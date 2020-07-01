@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactFileReader from 'react-file-reader';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 import {FaPlus, FaUser, FaUserFriends, FaUserCircle, FaRegAddressCard } from "react-icons/fa";
 import { BsBuilding } from 'react-icons/bs';
@@ -67,6 +68,7 @@ class AddEmployee extends React.Component{
                 valid:false,
                 validation:{
                     required: true,
+                    length: 10,
                 },
                 onfocus:'number',
                 value:'',
@@ -79,7 +81,7 @@ class AddEmployee extends React.Component{
                 },
                 validation:{
                     required: true,
-                    check: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                    check: true,
                 },
                 onfocus:'email',
                 valid:false,
@@ -161,8 +163,12 @@ class AddEmployee extends React.Component{
             isValid = value !== '' && isValid;
         }
         if(rules.check){
-            isValid = rules.check.test(value);
+            let lastVal = value.split('@');
+            isValid = lastVal[1] === 'nhai.org';
         }
+        if(rules.length){
+            isValid = value.length === 10;
+            }
         return isValid;
     }
 
@@ -173,7 +179,6 @@ class AddEmployee extends React.Component{
         for(let key in empForm){
             empDetails[key] = empForm[key].value
         }
-        console.log(empDetails)
         axios.post('https://ams-api.herokuapp.com/postAddEmployee', null, {params: empDetails})
         .then(res=>{
             console.log(res.data)
@@ -181,6 +186,13 @@ class AddEmployee extends React.Component{
                 isPopup:false,
             })
             this.props.getAllEmployees();
+            axios.post('https://ams-api.herokuapp.com/addToLoginMaster', null, {params: 
+            {username: empDetails.email,
+                pwd: 'nhai@123',
+                type: 'mobile',
+            }})
+            .then(res=>console.log(res))
+            .catch(err=>console.log(err))
         })
         .catch(err=>{
             console.log(err)
@@ -232,14 +244,16 @@ class AddEmployee extends React.Component{
             addEmplyOption = (<div className={classes.EmpOptionsCard}>
                                 <p onClick={this.popUpHandler}><FaUser/> Create a contact</p>
                                 <ReactFileReader handleFiles={(files) =>this.props.clicked(files)} fileTypes={'.xlsx'}>
-                                <button><FaUserFriends/> Create multiple contacts</button>
+                                {/* <button><FaUserFriends/> Create multiple contacts</button> */}
                                 </ReactFileReader>
                             </div>)
         }
         
         return(
-            <div className={classes.AddEmployee} onClick={this.toggleOptionHandler}>
+            <div className={classes.AddEmployee}>
                 {popUp}
+                <div onClick={this.toggleOptionHandler}>
+
                 <div className={classes.AddEmpButton} >
                         <FaPlus />
                         Add Employee
@@ -247,9 +261,16 @@ class AddEmployee extends React.Component{
                 <div>
                     {addEmplyOption}
                 </div>
+                </div>
             </div>
         );
     }
 }
 
-export default AddEmployee;
+const mapStateToProps = state =>{
+    return{
+        userInfo: state.userInfo,
+    }
+}
+
+export default connect(mapStateToProps)(AddEmployee);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { GoDashboard, GoServer } from "react-icons/go";
+import { connect } from 'react-redux';
 
 
 import classes from './Sidebar.css';
@@ -22,7 +23,7 @@ const Sidebar = (props) =>{
             <div className={classes.Profile}>
             <NavLink to='/profile' activeClassName={classes.ActiveI}>
                 
-                    A
+                   {props.userData.userid.slice(0,1).toUpperCase()}
                 
             </NavLink>
             </div>
@@ -91,6 +92,10 @@ const Sidebar = (props) =>{
         );
 }
 
+const mapStateToProps = state =>{
+    return{
+        userData: state.userInfo,
+    }
+}
 
-
-export default Sidebar;
+export default connect(mapStateToProps)(Sidebar);

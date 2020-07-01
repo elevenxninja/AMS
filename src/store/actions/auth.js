@@ -16,7 +16,7 @@ export const auth = (email, password) =>{
             axios.get('https://ams-api.herokuapp.com/login',{params:authData})
             .then(res=>{
                 if(res.data.data.length > 0){
-                    dispatch(loginSuccess(res.data.data))
+                    dispatch(loginSuccess(res.data.data[0]))
                 }
                 else{
                     console.log(res)

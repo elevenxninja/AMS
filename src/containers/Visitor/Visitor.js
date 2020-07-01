@@ -85,6 +85,7 @@ class Visitor extends React.Component{
                 },
                 validation:{
                     required:true,
+                    length: 10,
                 },
                 onfocus:'number',
                 value:'',
@@ -98,7 +99,7 @@ class Visitor extends React.Component{
                 },
                 validation:{
                     required:true,
-                    check: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                    check: true,
                 },
                 onfocus:'email',
                 value:'',
@@ -140,8 +141,12 @@ class Visitor extends React.Component{
             isValid = value !== '' && isValid;
         }
         if(rules.check){
-            isValid = rules.check.test(value)
+            let lastVal = value.split('@');
+            isValid = lastVal[1] === 'nhai.org';
         }
+        if(rules.length){
+            isValid = value.length === 10;
+            }
         return isValid;
     }
 
