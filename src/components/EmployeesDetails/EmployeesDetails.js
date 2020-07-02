@@ -24,7 +24,7 @@ const EmployeesDetails = (props) =>{
                         {empl.mobile}
                         </td>
                     <td>
-                        <button onClick={()=>props.clickedDelete(empl.id)}>Delete</button>
+                        <button onClick={()=>props.clickedDelete(empl.id, empl.email)}>Delete</button>
                     </td>
                 </tr>
         )

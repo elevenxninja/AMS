@@ -21,6 +21,7 @@ class EmployeesList extends React.Component{
         QRCodeData: '',
         UserId:null,
         delId:null,
+        email: null,
         userProfileForm:{
             emp_id:{
                 elmType:'input',
@@ -103,12 +104,14 @@ class EmployeesList extends React.Component{
         then((data) =>{
             console.log('Qr code ')
         console.log(data.data.data[0])
-
         let QRDATA = JSON.stringify(data.data.data[0])
-        this.setState({QRCodeData : QRDATA})
+        if(data.data.data.length > 0){
+            this.setState({QRCodeData : QRDATA})
+        }
         }).catch((error) => {
           console.log(error)
         })
+       
     }
 
     changedHandler = (e) =>{
@@ -246,9 +249,10 @@ class EmployeesList extends React.Component{
         return isEmpty;
     }
 
-    deleteConfirm = (id) =>{
+    deleteConfirm = (id, email) =>{
         this.setState({
             delId: id,
+            email: email,
         })
     }
 
@@ -259,12 +263,30 @@ class EmployeesList extends React.Component{
     }
 
     deleteEmpHandler = () =>{
+        this.deleteQrData();
+        this.deleteLoginData();
         axios.post('https://ams-api.herokuapp.com/deleteEmployee', null, {params:{id:this.state.delId}})
         .then(res=>
             this.setState({
                 delId: null,
             }),
             this.getAllEmployees())
+    }
+
+    deleteQrData = () =>{
+        axios.post('https://ams-api.herokuapp.com/deleteEmployeeFromQR', null, {params: {username: this.state.email}})
+        .then(res=>{
+            console.log(res)
+        } )
+        .catch(err=> console.log(err))
+    }
+
+    deleteLoginData = () =>{
+        axios.post('https://ams-api.herokuapp.com/deleteEmployeeFromLogin', null, {params: {userid: this.state.email}})
+        .then(res=> 
+            {
+            console.log(res)})
+        .catch(err=> console.log(err))
     }
 
     render(){
@@ -341,7 +363,7 @@ class EmployeesList extends React.Component{
                     <EmployeesDetails employeesList={currnetItems}
                     clicked={(user)=>this.userHandler(user)} 
                     clickedSms={(name, email) => this.sendSmsHandler(name, email)}
-                    clickedDelete ={(id)=>this.deleteConfirm(id)}
+                    clickedDelete ={(id, email)=>this.deleteConfirm(id, email)}
                     clickedMail={(name, email) => this.sendEmailHandler(name, email)}/>
                     <Pagination totalItems={this.state.employeesList.length} 
                     itemsPerPage={this.state.displayItemPerPage} 
