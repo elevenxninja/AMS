@@ -186,6 +186,7 @@ class AddEmployee extends React.Component{
                 isPopup:false,
             })
             this.props.getAllEmployees();
+            this.postQrData();
             axios.post('https://ams-api.herokuapp.com/addToLoginMaster', null, {params: 
             {username: empDetails.email,
                 pwd: 'nhai@123',
@@ -199,6 +200,27 @@ class AddEmployee extends React.Component{
             this.setState({
                 isPopup:false,
             })
+        })
+    }
+
+    postQrData = () =>{
+        let QrObj = {
+            emp_name : this.state.empForm.name.value,
+            email: this.state.empForm.email.value,
+            mobile: this.state.empForm.mobile.value,
+            emp_id: this.state.empForm.emp_id.value,
+            designation: this.state.empForm.designation.value,
+            department: this.state.empForm.department.value,
+            emp_type: this.state.empForm.employee_type.value
+        }
+        console.log('QrObj')
+        console.log(QrObj)
+        axios.post('https://ams-api.herokuapp.com/postQrCodeData', null, {params: QrObj})
+        .then(res=>{
+            console.log(res)
+        })
+        .catch(err=>{
+            console.log(err)
         })
     }
 
