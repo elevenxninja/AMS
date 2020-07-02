@@ -10,8 +10,8 @@ const LogsDetails = (props) =>{
             <tr key={log.id}>
                 <td onClick={() =>props.clicked(log)}>{log.username}</td>
                 <td>{log.mobile}</td>
-                <td><span>{new Date(parseInt(log.inTime)).toISOString().slice(11, -1)}</span> 
-                <span>{new Date(parseInt(log.outTime)).toISOString().slice(11, -1)}</span></td>  
+                <td><span>{log.inTime ? new Date(parseInt(log.inTime)).toISOString().slice(11, -1) : null}</span> 
+                <span>{log.outTime ? new Date(parseInt(log.outTime)).toISOString().slice(11, -1) : null}</span></td>  
             </tr>
         )
     })

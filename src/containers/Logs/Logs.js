@@ -204,7 +204,7 @@ class Logs extends React.Component{
         let designationOption = null;
         let employeeOption = null;
         let updatedEmpForm = [];
-        if(this.state.singleUser > 0){
+        if(this.state.userLogs.length > 0){
         if(this.state.departmentOpt !== ''){
             departmentOption = this.state.departmentOpt.map(opt=>{
                 return <option>{opt.department}</option>
