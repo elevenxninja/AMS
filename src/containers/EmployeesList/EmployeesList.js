@@ -9,6 +9,7 @@ import AddEmployees from './AddEmployee/AddEmployee';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Popup from '../../components/UI/Popup/Popup';
 import Input from '../../components/UI/Input/Input';
+import QrCode from '../../components/QrCode/QrCode';
 
 class EmployeesList extends React.Component{
     state = {
@@ -17,6 +18,7 @@ class EmployeesList extends React.Component{
         currentPage: 1,
         displayItemPerPage:8,
         employeesList:[],
+        QRCodeData: '',
         UserId:null,
         delId:null,
         userProfileForm:{
@@ -93,6 +95,19 @@ class EmployeesList extends React.Component{
             this.setState({
                 employeesList: response.data.data,
             })
+        })
+    }
+
+    qrCodeGenerator = () =>{
+        axios.get(`https://ams-api.herokuapp.com/getQrCodeDetails?userid=${this.state.userProfileForm.email.value}`).
+        then((data) =>{
+            console.log('Qr code ')
+        console.log(data.data.data[0])
+
+        let QRDATA = JSON.stringify(data.data.data[0])
+        this.setState({QRCodeData : QRDATA})
+        }).catch((error) => {
+          console.log(error)
         })
     }
 
@@ -187,6 +202,7 @@ class EmployeesList extends React.Component{
             isPopup:true,
             userProfileForm: userVal,
         })
+        this.qrCodeGenerator();
     }
 
     changedUserHandler = (e, identifier) =>{
@@ -288,11 +304,14 @@ class EmployeesList extends React.Component{
                             <header>
                                 <h2>USER PROFILE</h2>
                             </header>
-                            <form onSubmit={this.submitHandler}>
-                                {userForm}
-                                <button type='submit'>Save</button>
-                                <button onClick={this.hideFormHandler}>Cancel</button>
-                            </form>
+                            <div className={classes.QrWrapper}>
+                                <form onSubmit={this.submitHandler}>
+                                    {userForm}
+                                    <button type='submit'>Save</button>
+                                    <button onClick={this.hideFormHandler}>Cancel</button>
+                                </form>
+                                <QrCode value={this.state.QRCodeData}/>
+                            </div>
                         </div>
                     </Popup>)
         }
