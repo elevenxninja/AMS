@@ -11,6 +11,7 @@ const GuardDetails = (props) =>{
             <td 
             // onClick={()=>props.clicked(list)}
             >{list.name}</td>
+            <td>{list.email}</td>
             <td>{list.imei}</td>
             <td><ToggleButton
             value={ list.status || false }
@@ -32,6 +33,7 @@ const GuardDetails = (props) =>{
                         <tr>
                             <th>Id</th>
                             <th>Name/Username</th>
+                            <th>E-mail</th>
                             <th>IMEI No.</th>
                             <th>Toggle Button</th>
                             <th></th>
@@ -42,6 +44,7 @@ const GuardDetails = (props) =>{
                     </tbody>
                     <tfoot>
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
