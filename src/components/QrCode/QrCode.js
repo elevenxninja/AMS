@@ -1,5 +1,5 @@
 import React from 'react';
-import QRCode from 'qrcode.react';
+import QRCode from "react-qr-code";
 import classes from './QrCode.css';
 
 const QrCode = (props) =>{
