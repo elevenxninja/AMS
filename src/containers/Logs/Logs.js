@@ -20,14 +20,30 @@ class Logs extends React.Component{
         toDate:null,
         displayItemsPerPage:8,
         userLogs:[],
+        updatedForm:[],
         fromDateFilter:null,
         toDateFilter:null,
+        actualFromFilterDate: null,
+        actualToFilterDate: null,
         designationOpt:'',
         departmentOpt:'',
         employeeOpt:'',
         designationVal: '',
         departmentVal: '',
         employeeVal: '',
+    }
+
+    
+    clearAllFiltersHandler = () =>{
+        this.setState({
+            fromDateFilter: null,
+            toDateFilter: null,
+            actualToFilterDate: '',
+            actualFromFilterDate: '',
+            designationVal: '',
+            departmentVal: '',
+            employeeVal: '',
+        })
     }
 
     componentDidMount(){
@@ -55,6 +71,7 @@ class Logs extends React.Component{
             })
         })
     }
+
 
     mergeInOutTimestampInSingleObj = (data) =>{
         console.log('data')
@@ -102,7 +119,8 @@ class Logs extends React.Component{
             console.log('uniqueArray');
             console.log(uniqueArray)
             this.setState({
-                userLogs: uniqueArray
+                userLogs: uniqueArray,
+                updatedForm: this.state.userLogs
             }) 
     }
 
@@ -170,13 +188,15 @@ class Logs extends React.Component{
     // Filters logics
     fromDateFilterHandler = (e) =>{
         this.setState({
-            fromDateFilter: Date.parse(e.target.value)
+            fromDateFilter: Date.parse(e.target.value),
+            actualFromFilterDate: e.target.value,
         })
     }
 
     toDateFilterHandler = (e) =>{
         this.setState({
-            toDateFilter: Date.parse(e.target.value)
+            toDateFilter: Date.parse(e.target.value),
+            actualToFilterDate: e.target.value,
         })
     }
 
@@ -199,6 +219,7 @@ class Logs extends React.Component{
     }
 
     render(){
+        let updatedForm = [...this.state.userLogs]
         let popup = null;
         let departmentOption = null;
         let designationOption = null;
@@ -279,51 +300,56 @@ class Logs extends React.Component{
 
         const {filter, userLogs, fromDateFilter, toDateFilter, designationVal, departmentVal, employeeVal} = this.state;
         const lowerCaseFilter = filter.toLowerCase();
-        let updatedForm = userLogs.filter(log=>
+        updatedForm = updatedForm.filter(log=>
             log.username.toLowerCase().includes(lowerCaseFilter)
             )
 
-        if(fromDateFilter){
-            updatedForm = userLogs.filter(log=>{
-                console.log(log.inTime)
-                return log.inTime >= fromDateFilter;
-            })
-        }
-
-        if(toDateFilter){
-            updatedForm = userLogs.filter(log=>{
-                return log.inTime <= toDateFilter + 86400000;
-            })
-        }
-
-        if(fromDateFilter!==null && toDateFilter!== null){
-            updatedForm = userLogs.filter(log=>{
-                return log.inTime >= fromDateFilter && log.inTime <= toDateFilter + 86400000;
-            })
-        }
-
-        if(designationVal !== '' ){
-            if(designationVal !== 'Please Select'){
-                updatedForm = userLogs.filter(log=>{
-                    return log.designation === designationVal
+        if(fromDateFilter!==null || toDateFilter!== null || designationVal !== '' || departmentVal !== '' || employeeVal !== ''){
+            if(fromDateFilter){
+                updatedForm = updatedForm.filter(log=>{
+                    console.log(log.inTime)
+                    return log.inTime >= fromDateFilter;
                 })
             }
-        }
-
-        if(departmentVal !== '' ){
-            if(departmentVal !== 'Please Select'){
-                updatedForm = userLogs.filter(log=>{
-                    return log.department === departmentVal
+    
+            if(toDateFilter){
+                updatedForm = updatedForm.filter(log=>{
+                    return log.inTime <= toDateFilter + 86400000;
                 })
             }
-        }
-
-        if(employeeVal !== ''){
-            if(employeeVal !== 'Please Select'){
-                updatedForm = userLogs.filter(log=>{
-                    return log.emp_type === employeeVal
+    
+            if(fromDateFilter!==null && toDateFilter!== null){
+                updatedForm = updatedForm.filter(log=>{
+                    return log.inTime >= fromDateFilter && log.inTime <= toDateFilter + 86400000;
                 })
             }
+    
+            if(designationVal !== '' ){
+                if(designationVal !== 'Please Select'){
+                    updatedForm = updatedForm.filter(log=>{
+                        return log.designation === designationVal
+                    })
+                }
+            }
+    
+            if(departmentVal !== '' ){
+                if(departmentVal !== 'Please Select'){
+                    updatedForm = updatedForm.filter(log=>{
+                        return log.department === departmentVal
+                    })
+                }
+            }
+    
+            if(employeeVal !== ''){
+                if(employeeVal !== 'Please Select'){
+                    updatedForm = updatedForm.filter(log=>{
+                        return log.emp_type === employeeVal
+                    })
+                }
+            }
+        }
+        else{
+            updatedForm = [...this.state.userLogs]
         }
 
         const {currentPage, displayItemsPerPage} = this.state;
@@ -342,26 +368,31 @@ class Logs extends React.Component{
                         <h2>User Logs</h2>
                     </header>
                     <div className={classes.Filters}>
-                        <h4>Filters by:</h4>
+                        <div>
+                            <h4>Filters by:</h4>
+                            <div>
+                             <button onClick={this.clearAllFiltersHandler}>Clear All Filters</button>
+                            </div>
+                        </div>
                         <div>
                             <div>
                                 <label>From Date</label>
-                                <input type="date" onChange={this.fromDateFilterHandler}/>
+                                <input type="date" onChange={this.fromDateFilterHandler} value={this.state.actualFromFilterDate}/>
                             </div>
                             <div>
                                 <label>To Date</label>
-                                <input type="date" onChange={this.toDateFilterHandler}/>
+                                <input type="date" onChange={this.toDateFilterHandler} value={this.state.actualToFilterDate}/>
                             </div>
                             <div>
                                 <label>Designation</label>
-                                <select onChange={this.designationFilterHandler}>
+                                <select onChange={this.designationFilterHandler} value={this.state.designationVal}>
                                     <option>Please Select</option>
                                     {designationOption}
                                 </select>
                             </div>
                             <div>
                                 <label>Department</label>
-                                <select onChange={this.departmentFilterHandler}>
+                                <select onChange={this.departmentFilterHandler} value={this.state.departmentVal}>
                                     <option>
                                         Please Select
                                     </option>
@@ -370,7 +401,7 @@ class Logs extends React.Component{
                             </div>
                             <div>
                                 <label>Employee Type</label>
-                                <select onChange={this.employeeFilterHandler}>
+                                <select onChange={this.employeeFilterHandler} value={this.state.employeeVal}>
                                     <option>
                                         Please Select
                                     </option>
