@@ -1,12 +1,25 @@
 .Visitor{
     margin-left: 67px;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .Visitor header{
     padding: 0px 50px;
 }
 
+.Visitor h3{
+    color: #3295c7;
+    cursor: pointer;
+    text-align: center;
+    font-weight: normal;
+    margin-top: 425px;
+    transition: .5s;
+}
+
+.Visitor h3:hover{
+    letter-spacing: 1.2px;
+}
 /* Form css */
 
 .FormCard{

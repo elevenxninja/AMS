@@ -1,0 +1,109 @@
+.Logs{
+    margin-left: 67px;
+    box-sizing: border-box;
+}
+
+.Logs header{
+    box-sizing: border-box;
+    display:flex;
+    justify-content: space-between;
+    padding: 0px 50px;
+    margin-top: -22px;
+}
+
+.Logs header h2{
+    color:#37a1d6;
+    transition: .5s;
+}
+
+.Logs header h2:hover{
+    cursor: pointer;
+    letter-spacing: 1.2px;
+}
+
+
+/* Filter css */
+.Filters{
+    position: relative;
+    margin-top: -15px;
+    padding: 20px 50px 0px 50px;
+    margin-bottom: -10px;
+    box-sizing: border-box;
+}
+
+.Filters > div{
+    margin-top: -10px;
+    display:flex;
+    justify-content: space-between;
+    background-color: #2b86b3;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+.Filters > div:nth-child(1){
+    margin-top: 0;
+    background-color: transparent;
+    padding: 8px 10px;
+    border:none;
+}
+
+.Filters > div:nth-child(1) button{
+    margin-top: 15px;
+    padding: 5px 10px;
+    background-color: #2b86b3;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+
+.Filters > div:nth-child(1) button:hover{
+    box-shadow: 0px 0px 1px 1px #ccc;
+    cursor: pointer;
+}
+
+.Filters label{
+    font-size: 12px;
+    display:block;
+    color: white;
+}
+
+.Filters select{
+    width: 150px;
+}
+
+.Filters select, .Filters input{
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-top: 5px;
+}
+
+.Filters select:focus, .Filters input:focus{
+    outline-color: #2b86b3;
+}
+
+.Filters select{
+    padding: 5px 10px;
+}
+
+.Filters input{
+    padding: 3px 8px;
+}
+
+.FiltersDate{
+    display: flex!important;
+    justify-content: flex-start!important;
+}
+
+.FiltersDate div{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.FiltersDate div label{
+    margin-top: 11px;
+    margin-right: 7px;
+}
+
+.FiltersDate div input{
+    margin-right: 15px;
+}

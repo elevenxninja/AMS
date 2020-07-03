@@ -4,6 +4,7 @@ import axios from 'axios';
 import classes from './Visitor.css';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Input from '../../components/UI/Input/Input';
+import AllVisitors from './AllVisitors/AllVisitors';
 
 import { BsBuilding } from "react-icons/bs";
 import { FaUserCircle, FaBusinessTime } from "react-icons/fa";
@@ -119,6 +120,7 @@ class Visitor extends React.Component{
             },
         },
         isValidate:false,
+        isFormOpn: true,
     }
 
     inputChangeHandler = (e, identifier) =>{
@@ -147,6 +149,18 @@ class Visitor extends React.Component{
             isValid = value.length === 10  && isValid;
             }
         return isValid;
+    }
+
+    openVisitorHandler = () =>{
+        this.setState({
+            isFormOpn: false
+        })
+    }
+
+    backToFormHandler = () =>{
+        this.setState({
+            isFormOpn: true
+        })
     }
 
     submitHandler = (e) =>{
@@ -188,10 +202,8 @@ class Visitor extends React.Component{
         })}
         <button type='submit' disabled={!this.state.isValidate}>Save</button>
         </form>
-        return(
-            <div>
-                <Sidebar />
-                <div className={classes.Visitor}>
+        const form = (
+            <div className={classes.Visitor}>
                     <header>
                         <h2>Issue Visitor Pass</h2>
                     </header>
@@ -204,7 +216,14 @@ class Visitor extends React.Component{
                         <h4>Create new contact</h4>
                         {visitorInput}
                     </div>
+                    <h3 onClick={this.openVisitorHandler}>View All Visitor</h3>
                 </div>
+        )
+        return(
+            <div>
+                <Sidebar />
+                {this.state.isFormOpn ? form : <AllVisitors backToForm={this.backToFormHandler}/> }
+              
             </div>
         );
     }

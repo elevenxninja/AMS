@@ -299,10 +299,10 @@ class Logs extends React.Component{
         }
 
         const {filter, userLogs, fromDateFilter, toDateFilter, designationVal, departmentVal, employeeVal} = this.state;
-        const lowerCaseFilter = filter.toLowerCase();
-        updatedForm = updatedForm.filter(log=>
-            log.username.toLowerCase().includes(lowerCaseFilter)
-            )
+        const lowercasedFilter = filter.toLowerCase();
+        updatedForm = updatedForm.filter(item => 
+            item.username.toLowerCase().includes(lowercasedFilter)
+            );
 
         if(fromDateFilter!==null || toDateFilter!== null || designationVal !== '' || departmentVal !== '' || employeeVal !== ''){
             if(fromDateFilter){
@@ -347,9 +347,6 @@ class Logs extends React.Component{
                     })
                 }
             }
-        }
-        else{
-            updatedForm = [...this.state.userLogs]
         }
 
         const {currentPage, displayItemsPerPage} = this.state;
