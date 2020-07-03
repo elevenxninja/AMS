@@ -18,7 +18,7 @@ const GuardDetails = (props) =>{
             />
             </td>
             <td>
-                <button onClick={()=>props.clickedDelete(list.id)}>
+                <button onClick={()=>props.clickedDelete(list.id, list.email)}>
                     Delete
                 </button>
             </td>

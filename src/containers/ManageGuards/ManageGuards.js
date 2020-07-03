@@ -19,6 +19,7 @@ class ManageGuards extends React.Component{
         currentPage:1,
         dispalyItemsPerPage:8,
         delId:null,
+        email:null,
     //     individualGuard:{
     //         name:{
     //             elmType:'input',
@@ -131,9 +132,10 @@ class ManageGuards extends React.Component{
         })
     }
 
-    deleteConfirm = (id) =>{
+    deleteConfirm = (id, email) =>{
         this.setState({
             delId: id,
+            email: email,
         })
     }
 
@@ -144,6 +146,7 @@ class ManageGuards extends React.Component{
     }
 
     deleteEmpHandler = () =>{
+        this.deleteGuardFromLogin();
         axios.post('https://ams-api.herokuapp.com/deleteGuard', null, {params:{id:this.state.delId}})
         .then(res=>{
             this.getAllGuard();
@@ -152,6 +155,16 @@ class ManageGuards extends React.Component{
                 })
         })
             
+    }
+
+    deleteGuardFromLogin = () =>{
+        console.log(this.state.email)
+        axios.post('https://ams-api.herokuapp.com/deleteGuardFromLogin', null, {params: {userid: this.state.email}})
+        .then(res=>{
+            console.log('delete Guard')
+            console.log(res)
+        })
+        .catch(err=> console.log(err))
     }
 
     // individualGuardHandler = (guard) =>{
@@ -265,7 +278,7 @@ class ManageGuards extends React.Component{
                 <GuardDetails 
                 // clicked={(guard)=>this.individualGuardHandler(guard)}
                 value={this.state.toggle}
-                clickedDelete={(id)=>this.deleteConfirm(id)}
+                clickedDelete={(id, email)=>this.deleteConfirm(id, email)}
                 toggle = {(value, imei)=>this.toggleHandler(value, imei)}
                 guardList={currentLists}/>
                 <Pagination 

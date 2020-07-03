@@ -265,6 +265,7 @@ class EmployeesList extends React.Component{
     deleteEmpHandler = () =>{
         this.deleteQrData();
         this.deleteLoginData();
+        this.deleteUserLogsData();
         axios.post('https://ams-api.herokuapp.com/deleteEmployee', null, {params:{id:this.state.delId}})
         .then(res=>
             this.setState({
@@ -287,6 +288,15 @@ class EmployeesList extends React.Component{
             {
             console.log(res)})
         .catch(err=> console.log(err))
+    }
+
+    deleteUserLogsData = () =>{
+        axios.post('https://ams-api.herokuapp.com/deleteEmployeeFromUserlogs', null, {params: {email: this.state.email}})
+        .then(res=>{
+            console.log('delte logs')
+            console.log(res)
+        })
+        .catch(err => console.log(err))
     }
 
     render(){
