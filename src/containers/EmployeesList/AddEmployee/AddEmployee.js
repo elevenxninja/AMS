@@ -181,9 +181,14 @@ class AddEmployee extends React.Component{
         }
         axios.post('https://ams-api.herokuapp.com/postAddEmployee', null, {params: empDetails})
         .then(res=>{
+            const emptyEmp = {...this.state.empForm};
+            for(let key in emptyEmp){
+                emptyEmp[key].value = '';
+            }
             console.log(res.data)
             this.setState({
                 isPopup:false,
+                empForm: emptyEmp
             })
             this.props.getAllEmployees();
             this.postQrData();

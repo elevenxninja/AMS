@@ -135,16 +135,21 @@ class AddGuard extends React.Component{
         }
         axios.post('https://ams-api.herokuapp.com/addGuard', null, {params: guardDetails})
         .then(res=>{
+            const emptyGuard = {...this.state.guardForm};
+            for(let key in emptyGuard){
+                emptyGuard[key].value = '';
+            }
             this.props.getAllGuard();
             this.setState({
                 isPopup: false,
+                guardForm: emptyGuard
             });
             axios.post('https://ams-api.herokuapp.com/addToLoginMaster', null, {params: 
             {username: guardDetails.email,
                 pwd: 'nhai@123',
                 type: 'mobile',
             }})
-            .then(res=>console.log(res))
+            .then(res=>{console.log(res)})
             .catch(err=>console.log(err))
         })
         .catch(err=> console.log(err))
