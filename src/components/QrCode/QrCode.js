@@ -1,10 +1,11 @@
 import React from 'react';
-import QRCode from "react-qr-code";
+import QRCode from "qrcode.react";
 import classes from './QrCode.css';
 
 const QrCode = (props) =>{
     const downloadQR = () =>{
         const canvas = document.getElementById("123456");
+        console.log(canvas)
     const pngUrl = canvas
         .toDataURL("image/png")
         .replace("image/png", "image/octet-stream");
