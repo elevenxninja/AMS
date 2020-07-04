@@ -24,7 +24,7 @@ const LogsDetails = (props) =>{
                     <tr>
                         <th>Name/Username</th>
                         <th>Mobile</th>
-                        <th><span>In-Timestamp</span> <span>Out-Timestamp</span></th>
+                        <th><span>Entry Time</span> <span>Exit Time</span></th>
                     </tr>
                 </thead>
                 <tbody>
