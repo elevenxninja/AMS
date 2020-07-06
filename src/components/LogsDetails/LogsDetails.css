@@ -29,10 +29,9 @@
     margin: 0 10%;
 }
 
-.Logs table thead tr th:nth-of-type(odd), 
-.Logs table tbody tr th:nth-of-type(odd), 
-.Logs table tfoot tr th:nth-of-type(odd){
-    width: 38%;
+.Logs table tfoot tr th:nth-child(1),
+.Logs table tfoot tr th:nth-child(5){
+    width: 23%;
 }
 
 .Logs table tfoot tr td{
@@ -51,6 +50,8 @@
     text-decoration-line: underline;
 }
 
-.Logs table tbody tr td:nth-child(2){
-    padding: 0 50px;
+.Logs table tfoot tr td:nth-child(2),
+.Logs table tfoot tr td:nth-child(3),
+.Logs table tfoot tr td:nth-child(4){
+    width: 18%;
 }

@@ -112,3 +112,42 @@
     flex-wrap: nowrap;
     z-index: 120;
 }
+
+.Attendance h3{
+    color: #2b86b3;
+    text-align: center;
+    margin-top: 0;
+}
+
+.Attendance table{
+    width: 100%;
+    font-size: 13px;
+}
+
+.Attendance table thead tr th, .Attendance table tfoot tr td{
+    background-color: #e6e6e6;
+    padding: 10px 10px;
+}
+
+.Attendance table thead tr th span:nth-child(1), .Attendance table tbody tr td span:nth-child(1){
+    margin: 0 10%;
+    float: left;
+}
+
+.Attendance table thead tr th span::after{
+    clear: both;
+}
+
+.Attendance table thead tr th span:nth-child(2), .Attendance table tbody tr td span:nth-child(2){
+    float: right;
+    margin: 0 10%;
+}
+.Attendance table tfoot tr td{
+    background-color: #e6e6e6;
+    height: 10px;
+}
+.Attendance table tbody tr td{
+    background-color: #efefef;
+    padding: 5px 10px;
+    text-align: center;
+}

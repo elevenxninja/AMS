@@ -45,7 +45,7 @@
   
   /* change password css */
 .ChangeBox{
-    width: 350px;
+    width: 357px;
     border-radius: 10px;
     background-color: white;
     padding: 15px;
@@ -58,7 +58,7 @@
 
   .ChangeBox div:nth-child(1){
       text-align: center;
-    position: relative;
+      position: relative;
   }
   
   .ChangeBox div:nth-child(1)::after{
@@ -72,19 +72,25 @@
   }
   
   .ChangeBox div:nth-child(1) h3{
-    margin-top: 10px;
+    margin-top: 0px;
   }
   
-  .ChangeBox div:nth-child(2){
-    margin-top: 50px;
-  }
   
-  .ChangeBox div:nth-child(2) span{
+  .ChangeBox div:nth-child(2) span,
+  .ChangeBox div:nth-child(3) span{
     margin:10px;
   }
   
+  .ChangeBox div:nth-child(2){
+    margin-top: 30px;
+  }
+  .ChangeBox div:nth-child(2) span:nth-child(1){
+    padding-right: 25px;
+  }
+  
   .ChangeBox div:nth-child(3){
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom: 25px;
   }
   
   .ChangeBox button{

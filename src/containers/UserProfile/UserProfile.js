@@ -9,6 +9,7 @@ class UserProfile extends React.Component{
     state={
         isPop: false,
         pass: null,
+        confPass: null,
     }
 
     changePassHandler = () =>{
@@ -29,20 +30,36 @@ class UserProfile extends React.Component{
         })
     }
 
+    confirmPassHandler = (e) =>{
+        this.setState({
+            confPass: e.target.value
+        })
+    }
+
     changePasswordHandler = () =>{
         let data = {
             username:this.props.userData.userid,
             newPwd:this.state.pass,
             type:this.props.userData.type,
         }
-        axios.post('https://ams-api.herokuapp.com/updatePassword', null, {params: data})
-        .then(res=>{
-            console.log('res')
-            this.setState({
-                isPop: false,
-            })
-        })
-        .catch(err=> console.log(err))
+        if(this.state.pass !== null && this.state.confPass !== null){
+            if(this.state.pass === this.state.confPass){
+                axios.post('https://ams-api.herokuapp.com/updatePassword', null, {params: data})
+                .then(res=>{
+                    console.log('res')
+                    this.setState({
+                        isPop: false,
+                    })
+                })
+                .catch(err=> console.log(err))
+            }
+            else{
+                alert('New Password and Confirm Password should be same!')
+            }
+        }
+        else{
+            alert('Please enter New Password or Confirm Password!')
+        }
     }
 
     render(){
@@ -59,6 +76,14 @@ class UserProfile extends React.Component{
                         </span>
                         <span>
                             <input type='text' onChange={this.newPassHandler}/>
+                        </span>
+                    </div>
+                    <div>
+                        <span>
+                            Confirm Password:
+                        </span>
+                        <span>
+                            <input type='text' onChange={this.confirmPassHandler}/>
                         </span>
                     </div>
                     <div>

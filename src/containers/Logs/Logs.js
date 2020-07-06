@@ -95,6 +95,7 @@ class Logs extends React.Component{
                 logObj.username = mapLog.username;
                 logObj.emp_id = mapLog.emp_id;
                 logObj.mobile = mapLog.mobile;
+                logObj.email = mapLog.email;
                 logObj.inTime = mapLog.timestamp;
                 logObj.designation = mapLog.designation;
                 logObj.department = mapLog.department;
@@ -261,14 +262,14 @@ class Logs extends React.Component{
                     logObj.username = mapLog.username;
                     logObj.emp_id = mapLog.emp_id;
                     logObj.mobile = mapLog.mobile;
-                    logObj.date =mapLog.timestamp;
+                    logObj.in_time =mapLog.timestamp;
                     logObj.designation = mapLog.designation;
                     logObj.emp_type = mapLog.emp_type;
                     logObj.department = mapLog.department;
                 }
-                // if(mapLog.status === 'OUT'){
-                //     logObj.outTime = new Date(parseInt(mapLog.timestamp)).toISOString().slice(11, -1);
-                // }
+                if(mapLog.status === 'OUT'){
+                    logObj.out_time = mapLog.timestamp;;
+                }
                 else{
                    return null;
                 } 
