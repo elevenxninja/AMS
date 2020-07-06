@@ -46,6 +46,8 @@
     color: white;
 }
 
+
+
 /* Header css */
 
 .Header header{
@@ -72,7 +74,7 @@
     line-height: 60px;
 }
 
-.Profile{
+.ProfileIcon .Profile{
     border-radius: 50%;
     border: 2px solid black;
     position: absolute;
@@ -85,15 +87,15 @@
     box-sizing: border-box;
 }
 
-.Profile p{
-    font-size: 40px;
-    display: inline;
-    padding-left: 5px;
-}
-
-.Profile a{
+.ProfileIcon a{
     color: black;
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;
+}
+
+
+.ProfileIcon .ActiveP .Profile{
+    border: 2px solid white;
+    color: white;
 }

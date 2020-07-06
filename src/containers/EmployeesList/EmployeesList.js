@@ -375,7 +375,7 @@ class EmployeesList extends React.Component{
                     clickedSms={(name, email) => this.sendSmsHandler(name, email)}
                     clickedDelete ={(id, email)=>this.deleteConfirm(id, email)}
                     clickedMail={(name, email) => this.sendEmailHandler(name, email)}/>
-                    <Pagination totalItems={this.state.employeesList.length} 
+                    <Pagination totalItems={filteredData.length} 
                     itemsPerPage={this.state.displayItemPerPage} 
                     clicked={(pageNumber) =>this.ClickedHandler(pageNumber)} 
                     changed={(e) => this.changedHandler(e)} 

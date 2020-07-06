@@ -11,11 +11,19 @@
     margin-left: -450px;
 }
 
+
+.UserLogs h3{
+    color: #2b86b3;
+    text-align: center;
+    margin-top: 15px;
+}
+
 .UserLogs .Filters{
     position: relative;
-    margin-top: -15px;
+    margin-top: -45px;
     padding: 20px 30px 0px 30px;
     box-sizing: border-box;
+    margin-bottom: -15px;
 }
 
 .UserLogs .Filters > div{
@@ -63,7 +71,7 @@
 .UserLogs .Filters .Close{
     position: absolute;
     right: 10px;
-    top: 32px;
+    top: 7px;
     border-radius: 50%;
     background-color: snow;
     border: 1.1px solid red;
@@ -113,11 +121,6 @@
     z-index: 120;
 }
 
-.Attendance h3{
-    color: #2b86b3;
-    text-align: center;
-    margin-top: 0;
-}
 
 .Attendance table{
     width: 100%;

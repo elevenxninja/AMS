@@ -20,12 +20,14 @@ const Sidebar = (props) =>{
                 <img src={logo} alt='logo'/>
                 <h2>SNAP</h2>
             </header>
-            <div className={classes.Profile}>
-            <NavLink to='/profile' activeClassName={classes.ActiveI}>
-                
-                   {props.userData.userid.slice(0,1).toUpperCase()}
-                
-            </NavLink>
+            
+            <div className={classes.ProfileIcon}>
+                <NavLink to='/profile' activeClassName={classes.ActiveP}>
+                    <div className={classes.Profile}>
+                    {props.userData.userid.slice(0,1).toUpperCase()}
+                    
+                    </div>
+                </NavLink>
             </div>
             <div className={classes.Sidebar}>
                 <div>

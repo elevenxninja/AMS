@@ -62,6 +62,9 @@ const IndividualsUserLogs = (props) =>{
 
     return(
         <div className={classes.UserLogs}>
+                <h3>
+                    {userName}
+                </h3>
             <div className={classes.Filters}>
                         <div className={classes.Close}>
                             <AiOutlineClose onClick={props.closeUser}/>    
@@ -79,9 +82,6 @@ const IndividualsUserLogs = (props) =>{
                         </div>
             </div>
             <div className={classes.Attendance}>
-                <h3>
-                    {userName}
-                </h3>
                 <table>
                     <thead>
                         <tr>
