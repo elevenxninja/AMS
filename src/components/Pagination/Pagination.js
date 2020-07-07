@@ -9,7 +9,7 @@ const Pagination = (props) =>{
     }
     const list = pageNumber.map(num=>{
     const activeClass = (props.crntPage === num) ? classes.active : null;
-    return <li key={num} onClick={() => props.clicked(num)} className={activeClass}>{num}</li>
+    return <li key={num} onClick={() => props.clicked(num)} className={activeClass} >{num}</li>
     });
 
     const disablePrev = props.crntPage<=1 ? classes.disable : null;

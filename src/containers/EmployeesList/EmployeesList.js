@@ -130,6 +130,12 @@ class EmployeesList extends React.Component{
         })
     }
 
+    numberUpdateHandler = (num) =>{
+        this.setState({
+            currentPage: num
+        })
+    }
+
     prevHandler = () =>{
         this.setState((prevState)=>({
             currentPage: prevState.currentPage-1,
@@ -144,6 +150,7 @@ class EmployeesList extends React.Component{
 
     searchHandler = event => {
         this.setState({ filter: event.target.value });
+        this.ClickedHandler(1)
       };
 
       sendSmsHandler = (name, email) =>{
@@ -354,7 +361,7 @@ class EmployeesList extends React.Component{
             item.name.toLowerCase().includes(lowercasedFilter)
             );
 
-        const indexOfLastItem = this.state.currentPage * this.state.displayItemPerPage;
+        const indexOfLastItem =this.state.currentPage * this.state.displayItemPerPage;
         const indexOfFirstItem = indexOfLastItem - this.state.displayItemPerPage;
         const currnetItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
         return(

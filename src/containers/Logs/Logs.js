@@ -126,9 +126,11 @@ class Logs extends React.Component{
     }
 
     changedHandler = (e) =>{
-        this.setState({
-            displayItemsPerPage: e.target.value,
-        })
+        if(e.target.value>=1){
+            this.setState({
+                displayItemsPerPage: e.target.value,
+            })
+        }
     }
 
     nextHandler = () =>{
@@ -153,6 +155,7 @@ class Logs extends React.Component{
         this.setState({
             filter:e.target.value
         })
+        this.pageHandler(1)
     }
 
     opneDatePicker = () =>this._calendar.setOpen(true);
@@ -351,8 +354,8 @@ class Logs extends React.Component{
         }
 
         const {currentPage, displayItemsPerPage} = this.state;
-        const indexOfLastItem = currentPage * displayItemsPerPage*2;
-        const indexOfFirstItem = indexOfLastItem - displayItemsPerPage*2;
+        const indexOfLastItem = currentPage * displayItemsPerPage;
+        const indexOfFirstItem = indexOfLastItem - displayItemsPerPage;
         updatedEmpForm = updatedForm.slice(indexOfFirstItem, indexOfLastItem);
         }
         
@@ -417,7 +420,7 @@ class Logs extends React.Component{
                     next={this.nextHandler}
                     changed={(e)=>this.changedHandler(e)}
                     crntPage={this.state.currentPage}
-                    totalItems={this.state.userLogs.length} 
+                    totalItems={updatedForm.length} 
                     itemsPerPage={this.state.displayItemsPerPage}/>
                 </div>
             </div>

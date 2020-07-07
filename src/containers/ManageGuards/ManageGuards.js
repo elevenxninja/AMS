@@ -122,6 +122,7 @@ class ManageGuards extends React.Component{
         this.setState({
             filter: e.target.value
         })
+        this.clickedHandler(1)
     }
 
     changedGuardHandler = (e, identifier) =>{
@@ -288,7 +289,7 @@ class ManageGuards extends React.Component{
                 next={this.nextHandler}
                 crntPage={this.state.currentPage}
                 itemsPerPage={this.state.dispalyItemsPerPage}
-                totalItems={this.state.guardList.length}/>
+                totalItems={filterArray.length}/>
                 </div>
             </div>
         );
