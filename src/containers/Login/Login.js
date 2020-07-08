@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 
 import classes from './Login.css';
 import { auth } from '../../store/actions/auth';
+import profile from '../../assets/Attendance.png';
+import flag from '../../assets/india.png'
+
 
 class Login extends React.Component{
     state = {
@@ -39,7 +42,8 @@ class Login extends React.Component{
         return(
             <div className={classes.Login}>
                 <div className={classes.Company}>
-                    <h1>COMPANY PROFILE</h1>
+                    <img src={profile} alt='componey profile' />
+                    <h1><div><span>SNAP</span></div>Contactless <br/> Attendance Management System</h1>
                 </div>
                 <div className={classes.Form}>
                     <div>
@@ -58,6 +62,7 @@ class Login extends React.Component{
                         </div>
                     </div>
                 </div>
+                <p className={classes.Flag}>Made in India  <div><img src={flag} alt='indian flag' /></div></p>
             </div>
         );
     }
