@@ -11,24 +11,26 @@ export const auth = (email, password) =>{
         if(email==='11x@myself.com' && password === '123'){
             dispatch(loginSuccess(1))
         }
-        if(email!=='' && password!==''){
-            console.log(authData)
-            axios.get('https://ams-api.herokuapp.com/login',{params:authData})
-            .then(res=>{
-                if(res.data.data.length > 0){
-                    dispatch(loginSuccess(res.data.data[0]))
-                }
-                else{
-                    console.log(res)
-                    alert('Please enter valid username or Passsword!')
-                }            
-            })
-            .catch(err=>{
-                dispatch(loginFail(err))
-            })
-        }
         else{
-            alert('Please enter name or password');
+            if(email!=='' && password!==''){
+                console.log(authData)
+                axios.get('https://ams-api.herokuapp.com/login',{params:authData})
+                .then(res=>{
+                    if(res.data.data.length > 0){
+                        dispatch(loginSuccess(res.data.data[0]))
+                    }
+                    else{
+                        console.log(res)
+                        alert('Please enter valid username or Passsword!')
+                    }            
+                })
+                .catch(err=>{
+                    dispatch(loginFail(err))
+                })
+            }
+            else{
+                alert('Please enter name or password');
+            }
         }
     }
 }
