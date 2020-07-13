@@ -24,7 +24,7 @@ const Sidebar = (props) =>{
             <div className={classes.ProfileIcon}>
                 <NavLink to='/profile' activeClassName={classes.ActiveP}>
                     <div className={classes.Profile}>
-                    {props.userData.userid.slice(0,1).toUpperCase()}
+                    {props.userData.userid ? props.userData.userid.slice(0,1).toUpperCase(): 'A'}
                     
                     </div>
                 </NavLink>
